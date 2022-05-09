@@ -1,0 +1,7 @@
+Ideas:
+
+- Simple game where the server saves all-time leaderboards similar to that of
+  an arcade machine.
+	- user input for name
+	- browser game (basic animations probably required)
+	- likely point and click stuff, but who knows we could do more
