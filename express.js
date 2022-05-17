@@ -1,8 +1,11 @@
 const http = require('http');
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 var app = express();
 require('dotenv').config();
+
+app.use(cookieParser());
 
 const spotifyReq = require('./spotifyrequest.js');
 
@@ -14,11 +17,20 @@ app.get('/auth', function(req, res, next) {
     res.redirect(spotifyLoginURL);
 })
 
+app.get('/logout', function(req, res, next) {
+    if (req.cookies.spToken !== undefined) {
+        res.clearCookie("spToken");
+    }
+    res.redirect("/")
+})
+
 app.get('/callback', async function(req, res, next) {
     const callbackCode = req.query.code;
     console.log("code is " + callbackCode);
     var token = await spotifyReq.GetOAuthToken(callbackCode);
-
+    if (req.cookies.spToken === undefined) {
+        res.cookie('spToken', JSON.stringify(token), { maxAge: 900000, httpOnly: false });
+    }
     res.redirect("/")
 })
 
