@@ -5,27 +5,20 @@ var app = express();
 require('dotenv').config();
 
 const spotifyReq = require('./spotifyrequest.js');
-const AUTH_TOKEN = Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`, 'utf-8').toString('base64');
 
 app.use(express.static(path.join(__dirname, '/public'))); // Serve static files from "public"
 app.use('/assets', express.static(__dirname + '/node_modules/bootstrap/dist/')); // Serve "/assets" from "node_modules/bootstrap"
 
 app.get('/auth', function(req, res, next) {
-    let spotifyLoginURL = spotifyReq.GetAuthURL(process.env.CLIENT_ID, process.env.CALLBACK_URL);
-    res.writeHead(307, { 'Location': spotifyLoginURL });
+    let spotifyLoginURL = spotifyReq.GetAuthURL();
+    res.redirect(spotifyLoginURL);
 })
 
 app.get('/callback', function(req, res, next) {
-    payload = {
-        "grant_type": "authorization_code",
-        "code": params.get('code'),
-        "redirect_uri": process.env.CALLBACK_URL,
-        "client_id": process.env.CLIENT_ID,
-        "client_secret": process.env.CLIENT_SECRET
-    };
-    var token = spotifyReq.GetOAuthToken(payload);
+    const callbackCode = req.query.code;
+    console.log("code is " + callbackCode);
+    var token = spotifyReq.GetOAuthToken(callbackCode);
 
-    res.writeHead(200, { 'Content-Type': 'text/html' });
     res.redirect("/")
 })
 
