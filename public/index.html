@@ -4,8 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/brand-buttons-inversed.min.css" rel="stylesheet">
+    <link href="/assets/brand-buttons.min.css" rel="stylesheet">
     <title> Placeholder Name </title>
-
+    <style>
+        .navbar {
+            z-index: 1;
+        }
+        
+        h1 {
+            padding: 10% 0%;
+            font-weight: 900;
+        }
+        
+        #left {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90%;
+        }
+        
+        #right {
+            height: 200vh;
+            width: 100%;
+            position: fixed;
+            background-color: black;
+            border-radius: 127% 0% 0% 88%;
+            top: -67vh;
+            z-index: 0;
+            left: 50%;
+        }
+        
+        .content {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        #learnMore {
+            margin: 15px;
+            color: black;
+            display: block;
+        }
+        
+        #learnMore:hover {
+            color: rgb(0, 91, 210);
+        }
+    </style>
 
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <div class="container-fluid">
@@ -32,7 +78,7 @@
 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="btn btn-outline-success" href="/auth" id="loginButton" type="button"> Log in to Spotify </a>
+                        <a class="btn btn-spotify" href="/auth" id="loginButton" type="button"> Log in to Spotify </a>
                 </ul>
             </div>
         </div>
@@ -44,7 +90,15 @@
 <body style="text-align: center;">
 
     <div class="content">
-        <p> Placeholder text </p>
+        <div id="left">
+            <div id="inner">
+                <h1>Visualize Your Music</h1>
+                <button class="btn btn-block btn-lg btn-spotify-inversed col-8" style="border-radius: 40px;"><i class="fa fa-spotify" aria-hidden="true"></i> Get Started</button>
+                <a id="learnMore" href="#">Learn More</a>
+            </div>
+        </div>
+
+        <div id="right"></div>
     </div>
 
     <script src="/assets/js/bootstrap.min.js"></script>

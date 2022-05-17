@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/osu-cs290-sp22/final-project-team-3#readme",
   "dependencies": {
+    "@cdgco/brand-buttons": "^1.0.3",
     "bootstrap": "^5.1.3",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
