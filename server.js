@@ -34,6 +34,7 @@ const server = http.createServer(function(req, res) {
         res.writeHead(200, { 'Content-Type': 'text/css' });
         res.write(BOOTSTRAP_CSS);
     } else if (route.pathname == '/auth') {
+        // let spotifyLoginURL = spotifyReq.GetAuthURL(process.env.CLIENT_ID, ("http://" + req.headers.host + '/callback'));
         let spotifyLoginURL = spotifyReq.GetAuthURL(process.env.CLIENT_ID, process.env.CALLBACK_URL);
         res.writeHead(307, { 'Location': spotifyLoginURL });
     } else if (route.pathname == '/callback') {
