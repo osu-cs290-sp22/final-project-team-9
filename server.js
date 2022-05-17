@@ -16,7 +16,7 @@ const BOOTSTRAP_CSS = fs.readFileSync(BOOTSTRAP_DIR + 'css/bootstrap.min.css');
 var INDEX = fs.readFileSync('public/index.html');
 
 
-const server = http.createServer(function(req, res) {
+const server = http.createServer(async function(req, res) {
     res.statusCode = 404;
 
     var route = new URL(req.url, process.env.CALLBACK_URL);
@@ -40,7 +40,7 @@ const server = http.createServer(function(req, res) {
     } else if (route.pathname == '/callback') {
         console.log(" * Callback recieved")
         const callbackCode = params.get('code');
-        var token = spotifyReq.GetOAuthToken(callbackCode);
+        var token = await spotifyReq.GetOAuthToken(callbackCode);
 
 
         res.writeHead(200, { 'Content-Type': 'text/html' });
