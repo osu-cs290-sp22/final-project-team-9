@@ -35,13 +35,18 @@ module.exports = {
             "client_secret": process.env.CLIENT_SECRET
         });
 
-        axios.post(AUTH_TOKEN_URL, config)
-            .then(function (response) {
-                return response['data'];
-            })
-            .catch((err) => {
-                console.log('ERR GETTING SPOTIFY ACCESS TOKEN', err);
-            });
+        return new Promise(function(resolve, reject) {
+            axios.post(AUTH_TOKEN_URL, config, {
+                    'Authorization': 'Basic ' + (Buffer.from((process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')))
+                })
+                .then(function(response) {
+                    resolve(response['data']);
+                })
+                .catch((err) => {
+                    console.log('ERR GETTING SPOTIFY ACCESS TOKEN', err);
+                    resolve(err);
+                });
+        });
 
     }
 }
