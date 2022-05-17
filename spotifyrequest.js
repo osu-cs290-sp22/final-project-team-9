@@ -21,7 +21,7 @@ module.exports = {
             'redirect_uri': process.env.CALLBACK_URL,
             'scope': 'user-top-read',
             "code_challenge_method": "S256",
-            "code_challenge": challenge,
+            "code_challenge": challenge, // comment out to disable PKCE
             "state": state,
             "show_dialog": false
         });
@@ -37,7 +37,8 @@ module.exports = {
             "code": code,
             "redirect_uri": process.env.CALLBACK_URL,
             "client_id": process.env.CLIENT_ID,
-            "code_verifier": challenge,
+            // 'client_secret': process.env.CLIENT_SECRET, // uncomment to disable PKCE
+            "code_verifier": challenge, // comment out to disable PKCE
         });
 
         return new Promise(function(resolve, reject) {
