@@ -14,10 +14,10 @@ app.get('/auth', function(req, res, next) {
     res.redirect(spotifyLoginURL);
 })
 
-app.get('/callback', function(req, res, next) {
+app.get('/callback', async function(req, res, next) {
     const callbackCode = req.query.code;
     console.log("code is " + callbackCode);
-    var token = spotifyReq.GetOAuthToken(callbackCode);
+    var token = await spotifyReq.GetOAuthToken(callbackCode);
 
     res.redirect("/")
 })
