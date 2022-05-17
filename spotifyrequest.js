@@ -1,5 +1,6 @@
 const url   = require('url');
 const axios = require('axios');
+const qs    = require('qs');
 
 const BASE_ACC_URL   = "https://accounts.spotify.com";
 const AUTH_URL       = BASE_ACC_URL + "/authorize";
@@ -9,10 +10,6 @@ const BASE_API_URL   = "https://api.spotify.com/v1";
 
 
 module.exports = {
-
-    hello: function() {
-        return "Hello";
-    },
 
     // Needs to be supplied the client_id, and where it should redirect back to.
     GetAuthURL: function(client_id, redirect_uri) {
@@ -30,20 +27,19 @@ module.exports = {
     },
 
 
-    GetOAuthToken: async function(payload) {
+    GetOAuthToken: async function(code) {
 
-        const config = {
-            "grant_type": payload['grant_type'],
-            "code": payload['code'],
-            "redirect_uri": payload['redirect_uri'],
-            "client_id": payload['client_id'],
-            "client_secret": payload['client_secret']
-        };
+        const config = qs.stringify({
+            "grant_type": 'authorization_code',
+            "code": code,
+            "redirect_uri": process.env.CALLBACK_URL,
+            "client_id": process.env.CLIENT_ID,
+            "client_secret": process.env.CLIENT_SECRET
+        });
 
-        axios.post(AUTH_TOKEN_URL, authOptions)
+        axios.post(AUTH_TOKEN_URL, config)
             .then(function (response) {
-                // console.log('  response.data' + response.data);
-                return response.data;
+                return response['data'];
             })
             .catch((err) => {
                 console.log('ERR GETTING SPOTIFY ACCESS TOKEN', err);
@@ -51,3 +47,4 @@ module.exports = {
 
     }
 }
+

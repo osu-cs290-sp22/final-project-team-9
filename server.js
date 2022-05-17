@@ -43,17 +43,8 @@ const server = http.createServer(function (req, res) {
     }
     else if (route.pathname == '/callback') {
         console.log(" * Callback recieved")
-
-        payload = {
-            "grant_type": "authorization_code",
-            "code": params.get('code'),
-            "redirect_uri": process.env.CALLBACK_URL,
-            "client_id": process.env.CLIENT_ID,
-            "client_secret": process.env.CLIENT_SECRET
-        };
-        // console.log(payload);
-        var token = spotifyReq.GetOAuthToken(payload);
-        
+        const callbackCode = params.get('code');
+        var token = spotifyReq.GetOAuthToken(callbackCode);
 
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(INDEX);
