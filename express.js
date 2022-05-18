@@ -33,7 +33,6 @@ app.get('/logout', function(req, res, next) {
 
 app.get('/callback', async function(req, res, next) {
     const callbackCode = req.query.code;
-    console.log("code is " + callbackCode);
     const state = req.query.state;
     var token = await spotifyReq.GetOAuthToken(callbackCode, challenge.code_verifier);
     if (req.cookies.spToken === undefined) {

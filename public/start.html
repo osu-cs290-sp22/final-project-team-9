@@ -152,7 +152,7 @@
                 <h1>Let's Get Started</h1>
                 <p>Search for your favorite playlist or choose from one of our recommendations to start.</p>
                 <div class="input-group" style="padding-top:3%;">
-                    <input class="form-control border-end-0 border" type="text" placeholder="Search" id="example-search-input">
+                    <input class="form-control border-end-0 border" type="text" placeholder="Search" id="playlist-search-input">
                     <span class="input-group-append">
                         <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n3" type="button">
                             <i class="fa fa-search"></i>
@@ -185,6 +185,25 @@
 
     <script src="/assets/js/bootstrap.min.js"></script>
     <script>
+        var plistSearch = document.getElementById("playlist-search-input")
+        plistSearch.addEventListener("keypress", function(event) {
+            // 13 is 'enter' key
+            if (event.keyCode == 13) {
+                SearchPlaylists(plistSearch.value);
+            }
+        });
+
+        // Passes the playlist search into the URI to be handled by the server.
+        function SearchPlaylists(searchParam) {
+            var params = new URLSearchParams({
+                "search": searchParam
+            });
+
+            // Not sure replace() is not the best function to use here.
+            location.replace(location.pathname + '?' + params);
+        }
+
+
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
