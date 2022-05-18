@@ -13,6 +13,7 @@ const spotifyReq = require('./spotifyrequest.js');
 app.use(express.static(path.join(__dirname, '/public'))); // Serve static files from "public"
 app.use('/assets', express.static(__dirname + '/node_modules/bootstrap/dist/')); // Serve "/assets" from "node_modules/bootstrap"
 app.use('/assets', express.static(__dirname + '/node_modules/@cdgco/brand-buttons/dist/')); // Serve "/assets" from "node_modules/bootstrap"
+app.use('/assets', express.static(__dirname + '/node_modules/font-awesome/')); // Serve "/assets" from "node_modules/bootstrap"
 
 app.get('/auth', function(req, res, next) {
     let spotifyLoginURL = spotifyReq.GetAuthURL(challenge.code_challenge);
