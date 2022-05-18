@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/brand-buttons-inversed.min.css" rel="stylesheet">
+    <link href="/assets/brand-buttons.min.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+    <title> Placeholder Name </title>
+    <style>
+        .navbar {
+            z-index: 1;
+        }
+        
+        h1 {
+            font-weight: 900;
+        }
+        
+        .item {
+            background: white;
+            width: 200px;
+            border-radius: 54% 34% 54% 34%;
+            height: 200px;
+            margin: 20px;
+            background-size: cover;
+            transition: 0.3s;
+        }
+        
+        .item:hover {
+            width: 210px;
+            height: 210px;
+            margin: 15px;
+        }
+        
+        #left {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            z-index: 10;
+        }
+        
+        #right {
+            width: 45%;
+            left: 55%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            color: white;
+            z-index: 1;
+            flex-wrap: wrap;
+            flex-direction: column;
+            overflow: hidden;
+            /* -webkit-animation: linear forwards;
+            -webkit-animation-name: run2;
+            -webkit-animation-duration: 1s; */
+        }
+        
+        #backRight {
+            height: 200vh;
+            width: 50%;
+            position: fixed;
+            background-color: black;
+            border-radius: 127% 0% 0% 88%;
+            top: -67vh;
+            z-index: 0;
+            left: 50%;
+            /* -webkit-animation: linear forwards;
+            -webkit-animation-name: run;
+            -webkit-animation-duration: 1s; */
+        }
+        
+        @-webkit-keyframes run {
+            0% {
+                left: 50%;
+            }
+            100% {
+                left: -50%;
+            }
+        }
+        
+        @-webkit-keyframes run2 {
+            0% {
+                left: 55%;
+            }
+            100% {
+                left: -45%;
+            }
+        }
+        
+        .content {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            top: 56px;
+            padding: 4% 10%;
+        }
+        
+        #learnMore {
+            margin: 15px;
+            color: black;
+            display: block;
+        }
+        
+        #learnMore:hover {
+            color: rgb(0, 91, 210);
+        }
+        
+        .navbar {
+            z-index: 10;
+        }
+        
+        #inner {
+            max-width: 50%;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1" href="/">SmartLists</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#"> Your playlists </a></li>
+                            <li><a class="dropdown-item" href="#"> Graphs </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="btn btn-spotify" href="/auth" id="loginButton" type="button">Login</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</head>
+
+
+<body>
+
+    <div class="content">
+        <div id="inner">
+            <h1>About SmartLists</h1>
+            <p>SmartLists is the CS290 Final Project by Jim Landers, Carter Roeser, Connor Mclaughlin and Yash Sankanagouda.<br><br>SmartLists integrates with the Spotify API to pull your listening history and playlist data in order to generate graphs and
+                visualizations. SmartLists never stores your credentials or personal information. Anonymized or user-shared data may be stored on SmartLists servers in order to publicly display generated content. </p>
+            <br><br>
+            <h1>Open Source License</h1>
+            <p>This project is licensed under the MIT license. The source code is available on <a href="https://github.com/osu-cs290-sp22/final-project-team-9">GitHub</a>. For a list of open source software used in this project, please see the <a href="license.html">third party licenses</a>                page.</p>
+        </div>
+    </div>
+
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        if (getCookie("spToken") != "") {
+            document.getElementById("loginButton").innerHTML = "Logout";
+            document.getElementById("loginButton").href = "/logout";
+        } else {
+            document.getElementById("loginButton").innerHTML = "Login";
+            document.getElementById("loginButton").href = "/auth";
+
+        }
+    </script>
+</body>
+
+</html>
