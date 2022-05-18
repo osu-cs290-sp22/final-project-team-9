@@ -50,7 +50,9 @@
                 <h1>Let's Get Started</h1>
                 <p>Search for your favorite playlist or choose from one of our recommendations to start.</p>
                 <div class="input-group" style="padding-top:3%;">
-                    <input class="form-control border-end-0 border" type="text" placeholder="Search" id="playlist-search-input">
+                    <form id="playlist-search-form">
+                        <input class="form-control border-end-0 border" type="text" placeholder="Search" id="playlist-search-input">
+                    </form>
                     <span class="input-group-append">
                         <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n3" type="button">
                             <i class="fa fa-search"></i>
@@ -81,28 +83,30 @@
         </div>
     </div>
 
+    <script src="/assets/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/index.js"></script>
     <script>
-        var plistSearch = document.getElementById("playlist-search-input")
-        plistSearch.addEventListener("keypress", function(event) {
-            // 13 is 'enter' key
-            if (event.keyCode == 13) {
-                SearchPlaylists(plistSearch.value);
-            }
+
+        $(document).ready(function () {
+            $("#playlist-search-form").submit(function (event) {
+                var formData = {
+                    'search': $('#playlist-search-input').val() 
+                };
+
+                $.ajax ({
+                    'type': 'POST',
+                    'url': location.origin + location.pathname,
+                    'data': formData,
+                    'dataType': 'json',
+                    'encode': 'true'
+                }).done(function (data) {
+                    console.log(data);
+                });
+                event.preventDefault();
+            });
         });
 
-        // Passes the playlist search into the URI to be handled by the server.
-        function SearchPlaylists(searchParam) {
-            var params = new URLSearchParams({
-                "search": searchParam
-            });
-
-            var searchReq = new XMLHttpRequest();
-            searchReq.open("POST", location.origin + location.pathname, true);
-            searchReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            searchReq.send(params);
-        }
     </script>
 </body>
 
