@@ -55,6 +55,28 @@ apiRouter.post('/playlists', async function (req, res, next) {
         });
     } while (count <= max);
 
+    var names = ["Daily Mix 1", "Daily Mix 2", "Daily Mix 3", "Daily Mix 4", "Daily Mix 5", "Daily Mix 6", "Daily Wellness", "Release Radar", "Discover Weekly", "Your Top Songs 2021", "Your Top Songs 2020", "Your Top Songs 2019", "Your Top Songs 2018", "Your Top Songs 2017", "Your Top Songs 2016"]
+
+    if (req.body.option == 2) {
+        items = items.filter(function(itm){
+            return names.indexOf(itm.name) == -1;
+        });
+    }
+    else if (req.body.option == 3) {
+        items = items.filter(function(itm){
+            return names.indexOf(itm.name) > -1;
+        });
+    }
+    else if (req.body.option == 4) {
+        var madeforyou = items.filter(function(itm){
+            return names.indexOf(itm.name) > -1;
+        });
+        items = items.filter(function(itm){
+            return names.indexOf(itm.name) == -1;
+        });
+        items = madeforyou.concat(items);
+    }
+
     res.json(items);
 })
 
