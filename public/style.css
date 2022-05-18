@@ -1,0 +1,108 @@
+.navbar {
+    z-index: 1;
+}
+
+h1 {
+    font-weight: 900;
+}
+
+.item {
+    background: white;
+    width: 200px;
+    border-radius: 45% 34% 45% 34%;
+    height: 200px;
+    margin: 20px;
+    background-size: cover;
+    transition: 0.3s;
+}
+
+.item:hover {
+    width: 210px;
+    height: 210px;
+    margin: 15px;
+}
+
+#left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 10;
+    position: fixed;
+}
+
+#right {
+    width: 45%;
+    left: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    color: white;
+    z-index: 1;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow: hidden;
+    /* -webkit-animation: linear forwards;
+    -webkit-animation-name: run2;
+    -webkit-animation-duration: 1s; */
+}
+
+#backRight {
+    height: 200vh;
+    width: 50%;
+    position: fixed;
+    background-color: black;
+    border-radius: 127% 0% 0% 88%;
+    top: -67vh;
+    z-index: 0;
+    left: 50%;
+    /* -webkit-animation: linear forwards;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 1s; */
+}
+
+@-webkit-keyframes run {
+    0% {
+        left: 50%;
+    }
+    100% {
+        left: -50%;
+    }
+}
+
+@-webkit-keyframes run2 {
+    0% {
+        left: 55%;
+    }
+    100% {
+        left: -45%;
+    }
+}
+
+.content {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#learnMore {
+    margin: 15px;
+    color: black;
+    display: block;
+}
+
+#learnMore:hover {
+    color: rgb(0, 91, 210);
+}
+
+.navbar {
+    z-index: 11;
+}
+
+#inner {
+    max-width: 50%;
+}
