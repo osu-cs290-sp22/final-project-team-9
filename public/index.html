@@ -17,15 +17,48 @@
             font-weight: 900;
         }
         
+        .item {
+            background: white;
+            width: 200px;
+            border-radius: 54% 34% 54% 34%;
+            height: 200px;
+            margin: 20px;
+            background-size: cover;
+            transition: 0.3s;
+        }
+        
+        .item:hover {
+            width: 210px;
+            height: 210px;
+            margin: 15px;
+        }
+        
         #left {
             width: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90%;
+            height: 100%;
+            z-index: 10;
         }
         
         #right {
+            width: 45%;
+            left: 55%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            color: white;
+            z-index: 1;
+            flex-wrap: wrap;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        #backRight {
             height: 200vh;
             width: 100%;
             position: fixed;
@@ -51,9 +84,13 @@
         #learnMore:hover {
             color: rgb(0, 91, 210);
         }
+        
+        .navbar {
+            z-index: 10;
+        }
     </style>
 
-    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand mb-0 h1" href="/"> Placeholder Name </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +115,7 @@
 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="btn btn-spotify" href="/auth" id="loginButton" type="button"> Log in to Spotify </a>
+                        <a class="btn btn-spotify" href="/auth" id="loginButton" type="button">Login</a>
                 </ul>
             </div>
         </div>
@@ -97,8 +134,22 @@
                 <a id="learnMore" href="#">Learn More</a>
             </div>
         </div>
-
-        <div id="right"></div>
+        <div id="right">
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000003d2789b816dfcdc308c56fb33');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000003903b0b0464af6bdce53f37da');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000023c52ff5ce471594a9d6b848e');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002693af7b6870f72b2ffcfcda6');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000036e618b1681ab40dc53e5fb7d');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002fe0099a8dcd3054706ffc92f');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002122921a072ad2ca9ce90a456');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f0000000209eec532a1a213bc950dff71');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000023105706fe5392048496c8e1e');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000027a1093011f570a0a950781d2');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000025b9afc20f73de2953ea450f7');"></div>
+            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f0000000250a3634f833113b4e1037c68');"></div>
+        </div>
+        <div id="backRight">
+        </div>
     </div>
 
     <script src="/assets/js/bootstrap.min.js"></script>
@@ -119,10 +170,10 @@
             return "";
         }
         if (getCookie("spToken") != "") {
-            document.getElementById("loginButton").innerHTML = "Log out";
+            document.getElementById("loginButton").innerHTML = "Logout";
             document.getElementById("loginButton").href = "/logout";
         } else {
-            document.getElementById("loginButton").innerHTML = "Log in to Spotify";
+            document.getElementById("loginButton").innerHTML = "Login";
             document.getElementById("loginButton").href = "/auth";
 
         }
