@@ -20,7 +20,7 @@
         .item {
             background: white;
             width: 200px;
-            border-radius: 54% 34% 54% 34%;
+            border-radius: 45% 34% 45% 34%;
             height: 200px;
             margin: 20px;
             background-size: cover;
@@ -31,6 +31,7 @@
             width: 210px;
             height: 210px;
             margin: 15px;
+            cursor: pointer;
         }
         
         #left {
@@ -50,12 +51,11 @@
             align-items: center;
             height: 100%;
             position: absolute;
-            top: 0px;
+            top: 9%;
             color: white;
             z-index: 1;
             flex-wrap: wrap;
-            flex-direction: column;
-            overflow: hidden;
+            flex-direction: row;
             /* -webkit-animation: linear forwards;
             -webkit-animation-name: run2;
             -webkit-animation-duration: 1s; */
@@ -115,6 +115,7 @@
         
         #inner {
             max-width: 50%;
+            position: fixed;
         }
     </style>
 
@@ -157,25 +158,35 @@
     <div class="content">
         <div id="left">
             <div id="inner">
-                <h1>Visualize Your Music</h1>
-                <p>You're one click away from unlocking all of the data behind your favorite music.<br><br>With SmartLists you can compare the hidden data in your playlists through tons of graphs and AI generated visualizations.</p>
-                <a class="btn btn-block btn-lg btn-spotify-inversed col-8" href="/auth" style="border-radius: 40px;margin-top:5%"><i class="fa fa-spotify" aria-hidden="true"></i> Get Started</a>
-                <a id="learnMore" href="#">Learn More</a>
+                <h1>Let's Get Started</h1>
+                <p>Search for your favorite playlist or choose from one of our recommendations to start.</p>
+                <div class="input-group" style="padding-top:3%;">
+                    <input class="form-control border-end-0 border" type="text" placeholder="Search" id="example-search-input">
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n3" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+
             </div>
         </div>
         <div id="right">
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000003d2789b816dfcdc308c56fb33');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000003903b0b0464af6bdce53f37da');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000023c52ff5ce471594a9d6b848e');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002693af7b6870f72b2ffcfcda6');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000036e618b1681ab40dc53e5fb7d');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002fe0099a8dcd3054706ffc92f');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002122921a072ad2ca9ce90a456');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f0000000209eec532a1a213bc950dff71');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000023105706fe5392048496c8e1e');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000027a1093011f570a0a950781d2');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f000000025b9afc20f73de2953ea450f7');"></div>
-            <div class="item" style="background-image: url('https://i.scdn.co/image/ab67706f0000000250a3634f833113b4e1037c68');"></div>
+            <div class="item" style="background-image: url('https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb84776fe119fa6503fdffb0f8/1/en/default');"></div>
+            <div class="item" style="background-image: url('https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb97e6df979e0c39443a6aa0e4/2/en/default');"></div>
+            <div class="item" style="background-image: url('https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb379c213b357ab1228c0a670d/3/en/default');"></div>
+            <div class="item" style="background-image: url('https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebc5bf602162d30b7133cfe96a/4/en/default');"></div>
+            <div class="item" style="background-image: url('https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb15425e51091c49d07b3bca64/5/en/default');"></div>
+            <div class="item" style="background-image: url('https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebd123e4c884d1a5e2edff1895/6/en/default');"></div>
+            <div class="item" style="background-image: url('https://newjams-images.scdn.co/v3/release-radar/ab6761610000e5eb46e7a06fa6dfefaed6a3f0db/en/default');"></div>
+            <div class="item" style="background-image: url('https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/fTieFtlyqdLbzy3aumi7M1gK0nNic9MLdu-GG0lk94E9yH8J28NuVXYm8uGM6AbqK5x6ATd47rJnO9besYFg6sitF_n1s61IXhQnjpFF0kE=/NjM6MTU6ODBUMDMtNTAtMg==');"></div>
+            <div class="item" style="background-image: url('https://mixed-media-images.spotifycdn.com/daily-wellness/daily-wellness-2.0-en-default.jpg');"></div>
+            <div class="item" style="background-image: url('https://lineup-images.scdn.co/wrapped-2021-top100_DEFAULT-en.jpg');"></div>
+            <div class="item" style="background-image: url('https://lineup-images.scdn.co/wrapped-2020-top100_DEFAULT-en.jpg');"></div>
+            <div class="item" style="background-image: url('https://lineup-images.scdn.co/your-top-songs-2019_DEFAULT-en.jpg');"></div>
+            <div class="item" style="background-image: url('https://lineup-images.scdn.co/your-top-songs-2018_DEFAULT-en.jpg');"></div>
+            <div class="item" style="background-image: url('https://lineup-images.scdn.co/your-top-songs-2017_DEFAULT-en.jpg');"></div>
+            <div class="item" style="background-image: url('https://lineup-images.scdn.co/your-top-songs-2016_DEFAULT-en.jpg');"></div>
         </div>
         <div id="backRight">
         </div>

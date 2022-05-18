@@ -35,7 +35,7 @@ app.get('/callback', async function(req, res, next) {
     if (req.cookies.spToken === undefined) {
         res.cookie('spToken', JSON.stringify(token), { maxAge: 900000, httpOnly: false });
     }
-    res.redirect("/")
+    res.redirect("/start.html")
 })
 
 http.createServer(app).listen((process.env.PORT || 8000), () => {
