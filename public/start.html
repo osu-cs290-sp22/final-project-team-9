@@ -199,8 +199,10 @@
                 "search": searchParam
             });
 
-            // Not sure replace() is not the best function to use here.
-            location.replace(location.pathname + '?' + params);
+            var searchReq = new XMLHttpRequest();
+            searchReq.open("POST", location.origin + location.pathname, true);
+            searchReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            searchReq.send(params);
         }
 
 

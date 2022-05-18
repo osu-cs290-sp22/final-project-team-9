@@ -7,6 +7,7 @@ require('dotenv').config();
 const pkceChallenge = require("pkce-challenge").default;
 const challenge = pkceChallenge();
 app.use(cookieParser());
+app.use(express.urlencoded({extended:false}));
 
 const spotifyReq = require('./spotifyrequest.js');
 
@@ -40,6 +41,13 @@ app.get('/callback', async function(req, res, next) {
     }
     res.redirect("/start.html")
 })
+
+app.post('/start.html', function (req, res, next) {
+    if (req.body.search) {
+        console.log(" PLAYLIST POST = " + req.body.search);
+    }
+})
+
 
 http.createServer(app).listen((process.env.PORT || 8000), () => {
     console.log("HTTP Server running on port " + (process.env.PORT || 8000));
