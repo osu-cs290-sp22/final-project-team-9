@@ -58,4 +58,20 @@ apiRouter.post('/playlists', async function (req, res, next) {
     res.json(items);
 })
 
+apiRouter.post('/playlist', async function (req, res, next) {
+    var items = [];
+    var count = 0;
+    var max = 0;
+    var active = true;
+    var url = 'https://api.spotify.com/v1/me/playlist/' + req.body.id;
+
+    await axios.get(url, {
+        headers: {
+            'Authorization': 'Bearer ' + req.body.token
+        }
+    }).then(function (response) {
+       res.json(response.data)
+    });
+})
+
 module.exports = apiRouter;
