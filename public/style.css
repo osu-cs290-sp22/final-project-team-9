@@ -13,13 +13,14 @@ h1 {
     height: 200px;
     margin: 20px;
     background-size: cover;
-    transition: 0.3s;
+    transition: 0.3s linear;
 }
 
 .item:hover {
     width: 210px;
     height: 210px;
     margin: 15px;
+    filter: brightness(0.4);
 }
 
 #left {
