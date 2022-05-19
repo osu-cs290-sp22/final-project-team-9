@@ -15,26 +15,40 @@ h1 {
     transition: 0.2s linear;
 }
 
+.item>img {
+    transition: 0.2s linear;
+}
+
+@media only screen and (max-width: 768px) {
+    .item>p {
+        opacity: 1;
+    }
+    .item>img {
+        filter: brightness(0.5);
+    }
+}
+
 .item:hover {
     width: 210px;
     height: 210px;
     margin: 15px;
+    cursor: pointer;
 }
 
-.item:hover > p {
-   opacity: 1;
+.item:hover>p {
+    opacity: 1;
 }
 
-.item:hover > img {
-    filter: brightness(0.4);
- }
+.item:hover>img {
+    filter: brightness(0.3);
+}
 
 .innerText {
     position: relative;
     top: -55%;
     font-weight: 700;
     font-size: 20px;
-    opacity:0;
+    opacity: 0;
     transition: 0.2s linear;
 }
 
