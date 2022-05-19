@@ -10,14 +10,30 @@
     <link href="/assets/style.css" rel="stylesheet">
     <title>SmartLists</title>
     <style>
+         ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background-color: gray;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+        }
+        
         #right {
             width: 100%;
             height: 50%;
-            bottom: 31vh;
-            overflow: scroll !important;
+            bottom: 33vh;
+            overflow-y: hidden;
+            overflow-x: scroll;
             padding: 0px 15px;
             top: initial;
             left: initial;
+            margin-left: 15px;
         }
         
         #backRight {
@@ -139,6 +155,13 @@
 
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/index.js"></script>
+    <script>
+        var scrollContainer = document.getElementById('right');
+        scrollContainer.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+        });
+    </script>
 </body>
 
 </html>

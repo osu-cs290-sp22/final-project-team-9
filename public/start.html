@@ -147,6 +147,12 @@
                 event.preventDefault();
             });
         });
+
+        var scrollContainer = document.getElementById('right');
+        scrollContainer.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+        });
     </script>
 </body>
 
