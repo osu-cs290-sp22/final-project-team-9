@@ -42,6 +42,27 @@ module.exports = {
                     resolve(err);
                 });
         });
+    },
+
+    RefreshToken: async function(token) {
+        const config = qs.stringify({
+            "grant_type": 'refresh_token',
+            "refresh_token": token,
+            "client_id": process.env.CLIENT_ID,
+            'client_secret': process.env.CLIENT_SECRET,
+        });
+
+        return new Promise(function(resolve, reject) {
+
+            axios.post(AUTH_TOKEN_URL, config)
+                .then(function(response) {
+                    resolve(response['data']);
+                })
+                .catch((err) => {
+                    console.log('ERR GETTING SPOTIFY ACCESS TOKEN', err);
+                    resolve(err);
+                });
+        });
 
     }
 }

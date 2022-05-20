@@ -13,3 +13,12 @@ function getCookie(cname) {
     }
     return "";
 }
+
+window.onload = function() {
+    var buttons = document.getElementsByClassName("item"),
+        len = buttons !== null ? buttons.length : 0,
+        i = 0;
+    for(i; i < len; i++) {
+        buttons[i].className += " item-transition"; 
+    }
+}

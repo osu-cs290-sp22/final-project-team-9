@@ -1,0 +1,115 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: SmartLists
+servers:
+  - url: /api
+paths:
+  /:
+    get:
+      description: API Home Page
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/refresh:
+    get:
+      description: Refresh Access Token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/session:
+    get:
+      description: Retrieve Session Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /playlists:
+    get:
+      description: Retrieve all followed playlists. If option is 1, playlists returned without changes. If option is 2, only return non-made for you playlists. If option is 3, only return made for you playlists. If option is 4, return all playlists with made for you at top of results.
+      parameters:
+        - name: option
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /playlists/featured:
+    get:
+      description: Retrieve list of editor's picked playlists.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /playlists/search:
+    get:
+      description: Search for a playlist. If public is false or omitted, will search followed playlists only.
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: public
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /playlists/{id}:
+    get:
+      description: Retrieve a single playlist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /playlists/{id}/metadata:
+    get:
+      description: Retrieve list of tracks and associated metadata for a playlist. 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  securitySchemes:
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: sl_session
+
+security:
+  - CookieAuth: []
+  

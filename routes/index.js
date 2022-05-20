@@ -52,6 +52,7 @@ router.get('/callback', async function(req, res, next) {
     var token = await spotifyReq.GetOAuthToken(callbackCode);
     if (token.access_token !== undefined) {
         req.session.token = token;
+        req.session.touch()
         req.session.save()
     }
     res.redirect("/start.html");
