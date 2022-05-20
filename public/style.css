@@ -15,7 +15,7 @@ h1 {
     transition: 0.2s linear;
 }
 
-@media only screen and (max-width: 768px) {
+@media (hover: none) {
     .item>p {
         opacity: 1;
     }

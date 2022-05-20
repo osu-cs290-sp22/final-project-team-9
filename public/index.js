@@ -13,11 +13,3 @@ function getCookie(cname) {
     }
     return "";
 }
-if (getCookie("spToken") != "") {
-    document.getElementById("loginButton").innerHTML = "Logout";
-    document.getElementById("loginButton").href = "/logout";
-} else {
-    document.getElementById("loginButton").innerHTML = "Login";
-    document.getElementById("loginButton").href = "/auth";
-
-}
