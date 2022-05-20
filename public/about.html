@@ -21,28 +21,28 @@
             max-width: initial;
         }
     </style>
-
-    <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1" href="/">SmartLists</a>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="btn btn-spotify" href="/auth" id="loginButton" type="button">Login</a>
-            </ul>
-        </div>
-    </nav>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1" href="/">SmartLists</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                  </li>
+                </ul>
+              </div>
+        </div>
+    </nav>
     <div class="content">
         <div id="inner">
             <h1>About SmartLists</h1>
-            <p>SmartLists is the CS290 Final Project by Jim Landers, Carter Roeser, Connor McLaughlin and Yash Sankanagouda.<br><br>SmartLists integrates with the Spotify API to pull your listening history and playlist data in order to generate graphs and
+            <p>SmartLists is the CS290 Final Project by <a href="https://github.com/jim-landers">Jim Landers</a>, <a href="https://github.com/cdgco">Carter Roeser</a>, <a href="https://github.com/comac13">Connor McLaughlin</a> and <a href="https://github.com/sankanay">Yash Sankanagouda</a>.<br><br>SmartLists integrates with the Spotify API to pull your listening history and playlist data in order to generate graphs and
                 visualizations. SmartLists never stores your credentials or personal information. Anonymized or user-shared data may be stored on SmartLists servers in order to publicly display generated content. </p>
             <br><br>
             <h1>Open Source License</h1>
