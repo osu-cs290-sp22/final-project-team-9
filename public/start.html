@@ -10,32 +10,60 @@
     <link href="/assets/style.css" rel="stylesheet">
     <title>SmartLists</title>
     <style>
+         ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background-color: gray;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+        }
+        
+        .line {
+            display: inline-block;
+        }
+        
         #right {
-            flex-direction: row;
-            overflow: auto;
+            width: 100%;
+            height: 50%;
+            bottom: 33vh;
+            overflow-y: hidden;
+            overflow-x: scroll;
+            padding: 0px 15px;
+            top: initial;
+            left: initial;
+        }
+        
+        #backRight {
+            overflow: hidden;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 0px;
+            font-size: 12px;
         }
     </style>
 
     <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand mb-0 h1" href="/">SmartLists</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-spotify" href="/logout" id="loginButton" type="button">Logout</a>
-                </ul>
-            </div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-spotify" href="/auth" id="loginButton">Login</a>
+            </ul>
         </div>
+
     </nav>
 </head>
 
@@ -57,58 +85,62 @@
                     </span>
                     </div>
                 </form>
+            </div>
+            <p class="footer">
+                <span class="line">Can't find your playlist?</span>
+                <span class="line">Make sure you're following it on Spotify first.</span>
+            </p>
+        </div>
 
-            </div>
-        </div>
-        <div id="right">
-            <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb84776fe119fa6503fdffb0f8/1/en/default' />
-                <p class="innerText">Daily Mix 1</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb97e6df979e0c39443a6aa0e4/2/en/default' />
-                <p class="innerText">Daily Mix 2</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb379c213b357ab1228c0a670d/3/en/default' />
-                <p class="innerText">Daily Mix 3</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebc5bf602162d30b7133cfe96a/4/en/default' />
-                <p class="innerText">Daily Mix 4</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb15425e51091c49d07b3bca64/5/en/default' />
-                <p class="innerText">Daily Mix 5</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebd123e4c884d1a5e2edff1895/6/en/default' />
-                <p class="innerText">Daily Mix 6</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://newjams-images.scdn.co/v3/release-radar/ab6761610000e5eb46e7a06fa6dfefaed6a3f0db/en/default' />
-                <p class="innerText">Release Radar</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/fTieFtlyqdLbzy3aumi7M1gK0nNic9MLdu-GG0lk94E9yH8J28NuVXYm8uGM6AbqK5x6ATd47rJnO9besYFg6sitF_n1s61IXhQnjpFF0kE=/NjM6MTU6ODBUMDMtNTAtMg=='
-                />
-                <p class="innerText">Discover Weekly</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://mixed-media-images.spotifycdn.com/daily-wellness/daily-wellness-2.0-en-default.jpg' />
-                <p class="innerText">Daily Wellness</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/wrapped-2021-top100_DEFAULT-en.jpg' />
-                <p class="innerText">Your Top Songs 2021</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/wrapped-2020-top100_DEFAULT-en.jpg' />
-                <p class="innerText">Your Top Songs 2020</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2019_DEFAULT-en.jpg' />
-                <p class="innerText">Your Top Songs 2019</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2018_DEFAULT-en.jpg' />
-                <p class="innerText">Your Top Songs 2018</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2017_DEFAULT-en.jpg' />
-                <p class="innerText">Your Top Songs 2017</p>
-            </div>
-            <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2016_DEFAULT-en.jpg' />
-                <p class="innerText">Your Top Songs 2016</p>
-            </div>
-        </div>
         <div id="backRight">
+            <div id="right">
+                <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb84776fe119fa6503fdffb0f8/1/en/default' />
+                    <p class="innerText">Daily Mix 1</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb97e6df979e0c39443a6aa0e4/2/en/default' />
+                    <p class="innerText">Daily Mix 2</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb379c213b357ab1228c0a670d/3/en/default' />
+                    <p class="innerText">Daily Mix 3</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebc5bf602162d30b7133cfe96a/4/en/default' />
+                    <p class="innerText">Daily Mix 4</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb15425e51091c49d07b3bca64/5/en/default' />
+                    <p class="innerText">Daily Mix 5</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebd123e4c884d1a5e2edff1895/6/en/default' />
+                    <p class="innerText">Daily Mix 6</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://newjams-images.scdn.co/v3/release-radar/ab6761610000e5eb46e7a06fa6dfefaed6a3f0db/en/default' />
+                    <p class="innerText">Release Radar</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/fTieFtlyqdLbzy3aumi7M1gK0nNic9MLdu-GG0lk94E9yH8J28NuVXYm8uGM6AbqK5x6ATd47rJnO9besYFg6sitF_n1s61IXhQnjpFF0kE=/NjM6MTU6ODBUMDMtNTAtMg=='
+                    />
+                    <p class="innerText">Discover Weekly</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://mixed-media-images.spotifycdn.com/daily-wellness/daily-wellness-2.0-en-default.jpg' />
+                    <p class="innerText">Daily Wellness</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/wrapped-2021-top100_DEFAULT-en.jpg' />
+                    <p class="innerText">Your Top Songs 2021</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/wrapped-2020-top100_DEFAULT-en.jpg' />
+                    <p class="innerText">Your Top Songs 2020</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2019_DEFAULT-en.jpg' />
+                    <p class="innerText">Your Top Songs 2019</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2018_DEFAULT-en.jpg' />
+                    <p class="innerText">Your Top Songs 2018</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2017_DEFAULT-en.jpg' />
+                    <p class="innerText">Your Top Songs 2017</p>
+                </div>
+                <div class="item"><img class="innerItem" src='https://lineup-images.scdn.co/your-top-songs-2016_DEFAULT-en.jpg' />
+                    <p class="innerText">Your Top Songs 2016</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -136,6 +168,16 @@
                 });
                 event.preventDefault();
             });
+        });
+
+
+        var scrollContainer = document.getElementById('right');
+        document.body.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+            scrollContainer.scrollLeft += evt.deltaX;
+        }, {
+            passive: false
         });
     </script>
 </body>

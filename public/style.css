@@ -1,7 +1,3 @@
-.navbar {
-    z-index: 1;
-}
-
 h1 {
     font-weight: 900;
 }
@@ -101,6 +97,7 @@ h1 {
     top: -67vh;
     z-index: 0;
     left: 50%;
+    box-shadow: -1px -1px 5px #aaa;
     /* -webkit-animation: linear forwards;
     -webkit-animation-name: run;
     -webkit-animation-duration: 1s; */
@@ -140,10 +137,17 @@ h1 {
     color: rgb(0, 91, 210);
 }
 
-.navbar {
+.navbar-brand,
+.nav-item,
+.nav-item>.btn {
     z-index: 11;
+    font-weight: 200;
 }
 
 #inner {
-    max-width: 50%;
+    max-width: 60%;
+}
+
+p {
+    font-weight: 300;
 }
