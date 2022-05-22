@@ -1,7 +1,9 @@
 var express = require('express');
 const path = require('path');
 const router = require('express').Router();
-const spotifyReq = require('../spotifyrequest.js');
+const api = require('../api');
+
+router.use('/api', api.router);
 
 router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
@@ -12,7 +14,7 @@ router.get(['/', '/index.html'], (req, res, next) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-router.get('/start.html', (req, res, next) => {
+router.get(['/start', '/start.html'], (req, res, next) => {
     if (req.session.token === undefined || req.session.token === null) {
         res.redirect('/');
         return;
@@ -39,28 +41,6 @@ router.get('/license', function(req, res, next) {
         layout: 'blank'
     });
 })
-
-router.get('/auth', function(req, res, next) {
-    let spotifyLoginURL = spotifyReq.GetAuthURL();
-    res.redirect(spotifyLoginURL);
-})
-
-router.get('/logout', function(req, res, next) {
-    req.session.token = null;
-    req.session.save()
-    res.redirect("/")
-})
-
-router.get('/callback', async function(req, res, next) {
-    const callbackCode = req.query.code;
-    var token = await spotifyReq.GetOAuthToken(callbackCode);
-    if (token.access_token !== undefined) {
-        req.session.token = token;
-        req.session.touch()
-        req.session.save()
-    }
-    res.redirect("/start.html");
-});
 
 router.post('/start.html', function(req, res, next) {
     if (req.body.search) {

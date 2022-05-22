@@ -35,6 +35,45 @@ paths:
             application/json:
               schema:
                 type: object
+  /auth/callback:
+    get:
+      security: []  
+      description: Handle Spotify Auth Callback
+      parameters:
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/login:
+    get:
+      security: []  
+      description: Start Spotify Auth Flow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/logout:
+    get:
+      security: []  
+      description: End Auth Session
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
   /playlists:
     get:
       description: Retrieve all followed playlists. If option is 1, playlists returned without changes. If option is 2, only return non-made for you playlists. If option is 3, only return made for you playlists. If option is 4, return all playlists with made for you at top of results.
@@ -112,4 +151,3 @@ components:
 
 security:
   - CookieAuth: []
-  

@@ -4,6 +4,7 @@ const exprhbs = require('express-handlebars');
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 const bodyParser = require("body-parser");
+const router = require('./routes');
 var app = express();
 require('dotenv').config();
 
@@ -20,7 +21,7 @@ app.use(require('express-session')({
     secret: process.env.SECRET,
     cookie: {
         maxAge: 1000 * 60 * 60, // 1 Hour
-        httpOnly: false
+        httpOnly: true
     },
     store: store,
     resave: false,
@@ -41,10 +42,6 @@ app.engine('hbs', exprhbs.engine({
     defaultLayout: 'base'
 }))
 
-const apiRouter = require('./api');
-app.use('/api', apiRouter);
-
-const router = require('./routes');
 app.use('/', router);
 
 http.createServer(app).listen((process.env.PORT || 8000), () => {
