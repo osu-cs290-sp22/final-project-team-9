@@ -36,6 +36,12 @@ router.get('/about', function(req, res, next) {
     res.redirect('/about.html');
 })
 
+router.get('/test', function(req, res, next) {
+    res.render('test', {
+        layout: 'base'
+    });
+});
+
 router.get('/auth', function(req, res, next) {
     let spotifyLoginURL = spotifyReq.GetAuthURL();
     res.redirect(spotifyLoginURL);

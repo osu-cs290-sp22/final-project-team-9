@@ -1,5 +1,6 @@
 const http = require('http');
 const express = require('express');
+const exprhbs = require('express-handlebars');
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 const bodyParser = require("body-parser");
@@ -29,6 +30,16 @@ app.use(require('express-session')({
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// 'hbs' is an abbreviated convention for 'handlebars. Only one or the other can be used, not interchangeable.
+app.set('view engine', 'hbs');
+app.set('/views', __dirname + '/views');
+app.engine('hbs', exprhbs.engine({
+    layoutsDir: (__dirname + '/views/layouts'),
+    partialsDir: (__dirname + '/views/partials'),
+    extname: 'hbs',
+    defaultLayout: 'base'
+}))
 
 const apiRouter = require('./api');
 app.use('/api', apiRouter);

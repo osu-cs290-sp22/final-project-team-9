@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/brand-buttons-inversed.min.css" rel="stylesheet">
+    <link href="/assets/brand-buttons.min.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <title>SmartLists</title>
+    <style>
+         ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background-color: gray;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+        }
+        
+        .line {
+            display: inline-block;
+        }
+        
+        #right {
+            width: 100%;
+            height: 50%;
+            bottom: 33vh;
+            overflow-y: hidden;
+            overflow-x: scroll;
+            padding: 0px 15px;
+            top: initial;
+            left: initial;
+        }
+        
+        #backRight {
+            overflow: hidden;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 0px;
+            font-size: 12px;
+            max-width: 65%;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1" href="/">SmartLists</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="btn btn-spotify" href="/logout" id="loginButton">Logout</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        <div id="left">
+
+            {{{body}}}
+            
+        </div>
+
+        <div id="backRight">
+
+        </div>
+    </div>
+
+
+
+
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/index.js"></script>
+    <script>
+        animateFlex("item", "right");
+
+        var scrollContainer = document.getElementById('right');
+        document.body.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+            scrollContainer.scrollLeft += evt.deltaX;
+        }, {
+            passive: false
+        });
+    </script>
+</body>
+
+</html>
