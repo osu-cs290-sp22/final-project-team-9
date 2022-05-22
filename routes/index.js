@@ -34,6 +34,12 @@ router.get('/about', function(req, res, next) {
     });
 })
 
+router.get('/license', function(req, res, next) {
+    res.render('license', {
+        layout: 'blank'
+    });
+})
+
 router.get('/auth', function(req, res, next) {
     let spotifyLoginURL = spotifyReq.GetAuthURL();
     res.redirect(spotifyLoginURL);
