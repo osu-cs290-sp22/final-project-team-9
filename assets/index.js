@@ -64,9 +64,24 @@ function animateFlex(elClass, wrapper) {
         // Apply increasing animation delay to each subsequent diagonal line
         for (var i = 0; i < diags.length; i++) {
             diags[i].forEach(el => {
-                el.style["-webkit-animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
-                el.style["animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
+                if (el != null) {
+                    el.style["-webkit-animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
+                    el.style["animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
+                }
             })
         }
     }
+}
+
+function scrollOut() {
+    document.getElementById('right').classList = "animate__animated animate__fadeOutUp"
+    document.getElementById('right').style["overflow-x"] = "hidden";
+    document.getElementById('left').classList = "animate__animated animate__fadeOutUp"
+
+}
+
+function scrollIn() {
+    document.getElementById('right').classList = "animate__animated animate__fadeInUp"
+    document.getElementById('right').style["overflow-x"] = "hidden";
+    document.getElementById('left').classList = "animate__animated animate__fadeInUp"
 }

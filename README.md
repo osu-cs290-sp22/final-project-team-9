@@ -1,13 +1,14 @@
 # CS 290 Final Project
 
+This branch containes the serverless distribution designed to run on Cloudflare Workers / Cloudflare Pages.
+
 ## Setup
-
+1. Setup a Cloudflare Key-Value store with the name `SMARTLISTS`
 1. Run the command `npm install` to install all project dependencies.
-2. Copy ".env.example" to ".env" in the same directory.
-3. Fill ".env" with the proper API keys.
+2. Edit `_worker.js` and fill in lines 1 - 5 (lines 3 - 5 not necessary if set inside of Cloudflare Workers environment variables).
 
-**Note:** API keys should not be published in this repository, so make sure your ".env" is not getting picked up by git. The gitignore is configured to handle this as long as the file is named properly.
+
+**Note:** API keys should not be published in this repository, so make sure your API keys are not included in `_worker.js` when publishing commits to this repository.
 
 ## Usage
-1. To start the server, run `node express.js`. To start the server as a background service, run `pm2 start express.js`. To start the server as a cluster, run `pm2 start ecosystem.config.js`
-2. Access the server at `http://localhost:8000` or your environment defined address and port.
+1. To start the development server, run `npm run serve`.
