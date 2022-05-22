@@ -3,26 +3,22 @@ const path = require('path');
 const router = require('express').Router();
 const spotifyReq = require('../spotifyrequest.js');
 
-router.get('/', (req, res, next) => {
+router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
         res.redirect('/start.html');
-    } else {
-        res.sendFile(path.join(__dirname, '../public/index.html'));
+        return;
     }
+
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
-router.get('/index.html', (req, res, next) => {
-    if (req.session.token !== undefined && req.session.token !== null) {
-        res.redirect('/start.html');
-    } else {
-        res.sendFile(path.join(__dirname, '../public/index.html'));
-    }
-});
+
 router.get('/start.html', (req, res, next) => {
     if (req.session.token === undefined || req.session.token === null) {
         res.redirect('/');
-    } else {
-        res.sendFile(path.join(__dirname, '../public/start.html'));
+        return;
     }
+
+    res.sendFile(path.join(__dirname, '../public/start.html'));
 });
 
 router.use(express.static(path.join(__dirname, '../public'))); // Serve static files from "public"
