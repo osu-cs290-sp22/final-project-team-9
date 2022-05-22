@@ -1,8 +1,5 @@
 var frontendURL = 'https://smartlists.pages.dev';
-var backendURL = "https://smartlists.cdg.workers.dev";
-var CLIENT_ID = "" // Only need to fill in if not set in environment
-var CLIENT_SECRET = "" // Only need to fill in if not set in environment
-var SECRET = "" // Only need to fill in if not set in environment
+var backendURL = "https://smartlists.pages.dev";
 
 async function aesGcmEncrypt(plaintext) {
     const pwUtf8 = new TextEncoder().encode(SECRET);

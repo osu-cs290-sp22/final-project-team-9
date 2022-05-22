@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "serve": "npx wrangler pages dev ./ --kv SMARTLISTS"
+        "serve": "npx wrangler pages dev ./ --kv SMARTLISTS",
+        "build": "zip -r pages.zip _worker.js index.html about/ assets/ license/ start/"
     },
     "repository": {
         "type": "git",
