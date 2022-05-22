@@ -1,7 +1,7 @@
 var frontendURL = 'https://smartlists.pages.dev';
 var backendURL = "https://smartlists.pages.dev";
 
-async function aesGcmEncrypt(plaintext) {
+async function aesGcmEncrypt(plaintext, SECRET) {
     const pwUtf8 = new TextEncoder().encode(SECRET);
     const pwHash = await crypto.subtle.digest('SHA-256', pwUtf8);
     const iv = crypto.getRandomValues(new Uint8Array(12));
@@ -15,7 +15,7 @@ async function aesGcmEncrypt(plaintext) {
     return btoa(ivStr + ctStr);
 }
 
-async function aesGcmDecrypt(ciphertext) {
+async function aesGcmDecrypt(ciphertext, SECRET) {
     const pwUtf8 = new TextEncoder().encode(SECRET);
     const pwHash = await crypto.subtle.digest('SHA-256', pwUtf8);
     const ivStr = atob(ciphertext).slice(0, 12);
@@ -55,15 +55,10 @@ export default {
         } else {
             var kv = SMARTLISTS
         }
-        if (env.CLIENT_ID) {
-            CLIENT_ID = env.CLIENT_ID;
-        }
-        if (env.CLIENT_SECRET) {
-            CLIENT_SECRET = env.CLIENT_SECRET;
-        }
-        if (env.SECRET) {
-            SECRET = env.SECRET;
-        }
+
+        var CLIENT_ID = env.CLIENT_ID;
+        var CLIENT_SECRET = env.CLIENT_SECRET;
+        var SECRET = env.SECRET;
         var callbackURL = encodeURIComponent(backendURL);
 
         if (pathname.startsWith("/api/auth")) {
@@ -89,7 +84,7 @@ export default {
                 await kv.put(code, qs, { expirationTtl: 3600 });
             }
 
-            const enc = await aesGcmEncrypt(code);
+            const enc = await aesGcmEncrypt(code, SECRET);
 
             return new Response(null, {
                 status: 302,
@@ -108,7 +103,7 @@ export default {
                 if (parts.length === 2) {
                     let cookie = parts.pop().split(';').shift()
                     try {
-                        var dec = await aesGcmDecrypt(cookie);
+                        var dec = await aesGcmDecrypt(cookie, SECRET);
                     } catch (e) {
                         return new Response(JSON.stringify({ "valid": false }), {
                             headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': frontendURL, 'Access-Control-Allow-Credentials': true },
@@ -135,7 +130,7 @@ export default {
                 if (parts.length === 2) {
                     let cookie = parts.pop().split(';').shift()
                     try {
-                        var dec = await aesGcmDecrypt(cookie);
+                        var dec = await aesGcmDecrypt(cookie, SECRET);
                     } catch (e) {
                         return new Response(null, {
                             status: 302,
@@ -165,7 +160,7 @@ export default {
                 if (parts.length === 2) {
                     let cookie = parts.pop().split(';').shift()
                     try {
-                        var dec = await aesGcmDecrypt(cookie);
+                        var dec = await aesGcmDecrypt(cookie, SECRET);
                     } catch (e) {
                         return new Response(JSON.stringify({}), {
                             headers: { "Content-Type": "application/json" },
