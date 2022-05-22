@@ -2,6 +2,11 @@ h1 {
     font-weight: 900;
 }
 
+body {
+    background-color: black;
+    color: white;
+}
+
 .item {
     background: white;
     width: 200px;
@@ -114,7 +119,7 @@ h1 {
     height: 200vh;
     width: 50%;
     position: fixed;
-    background-color: black;
+    background-color: white;
     border-radius: 127% 0% 0% 88%;
     top: -67vh;
     z-index: 0;
