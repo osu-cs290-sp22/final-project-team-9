@@ -1,5 +1,4 @@
 # CS 290 Final Project
-
 This branch containes the serverless distribution designed to run on Cloudflare Workers / Cloudflare Pages.
 
 ## Local Development
@@ -13,7 +12,7 @@ This branch containes the serverless distribution designed to run on Cloudflare 
     - `CLIENT_ID`: Your Spotify API Client ID
     - `CLIENT_SECRET`: Your Spotify API Client Secret
     - `SECRET`: A random string used to encrypt user session IDs
-4. Add your Cloudflare Pages url as an authorized redirect URL in the Spotify developed dashboard.
+4. Add your Cloudflare Pages url as an authorized redirect URL in the Spotify developer dashboard.
     - If your Cloudflare Pages domain is `https://myproject.pages.dev`, add `https://myproject.pages.dev/api/callback` as your redirect URL.
 
 ## Setup Cloudflare Pages with Workers
@@ -23,7 +22,7 @@ This branch containes the serverless distribution designed to run on Cloudflare 
     - `CLIENT_ID`: Your Spotify API Client ID
     - `CLIENT_SECRET`: Your Spotify API Client Secret
     - `SECRET`: A random string used to encrypt user session IDs
-5. Add your Cloudflare Workers url as an authorized redirect URL in the Spotify developed dashboard.
+5. Add your Cloudflare Workers url as an authorized redirect URL in the Spotify developer dashboard.
     - If your Cloudflare Workers domain is `https://myworker.org.workers.dev`, add `hhttps://myworker.org.workers.dev/api/callback` as your redirect URL.
 
 ## Deploy Manually
