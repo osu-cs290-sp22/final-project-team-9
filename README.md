@@ -3,7 +3,14 @@ This branch containes the serverless distribution designed to run on Cloudflare 
 
 ## Local Development
 1. Run `npm install` to install dependencies.
-2. To start the development server, run `npm run serve`.
+2. Copy `.env.example` to `.env` and add API keys & secret.`
+3. Change lines 1 and 2 in `_worker.js`:
+
+    ```
+    var frontendURL = "http://localhost:8788";
+    var backendURL  = "http://localhost:8788";
+    ```
+3. To start the development server, run `npm run serve`.
 
 ##  Setup Cloudflare Pages with Functions
 1. Setup a Cloudflare Key-Value store with the name `SMARTLISTS` and link it to your Pages project.
