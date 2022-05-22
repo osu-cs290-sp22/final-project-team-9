@@ -29,14 +29,10 @@ router.use('/assets', express.static(path.join(__dirname, '../node_modules/font-
 router.use('/assets', express.static(path.join(__dirname, '../public/'))); // Serve "/assets" from "node_modules/bootstrap"
 
 router.get('/about', function(req, res, next) {
-    res.redirect('/about.html');
-})
-
-router.get('/test', function(req, res, next) {
-    res.render('test', {
-        layout: 'base'
+    res.render('about', {
+        layout: 'blank'
     });
-});
+})
 
 router.get('/auth', function(req, res, next) {
     let spotifyLoginURL = spotifyReq.GetAuthURL();
