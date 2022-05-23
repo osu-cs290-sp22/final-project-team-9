@@ -5,6 +5,8 @@ const router = require('express').Router();
 const api = require('../api');
 
 const TEST_GLOBAL_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/global-playlists.json'));
+const TEST_FEATURED_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/featured-playlists.json'));
+const TEST_CARTERS_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/carters-playlists.json'));
 const TEST_USER_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/user-playlists.json'));
 
 router.use('/api', api.router);
@@ -17,14 +19,14 @@ router.use('/assets', express.static(path.join(__dirname, '../public/'))); // Se
 router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
         res.render('start', {
-            playlists: TEST_USER_PLAYLISTS,
+            playlists: TEST_CARTERS_PLAYLISTS.result.playlists,
             navState: 2
         });
         return;
     }
 
     res.render('index', {
-        playlists: TEST_GLOBAL_PLAYLISTS,
+        playlists: TEST_FEATURED_PLAYLISTS.result.playlists,
         navState: 1
     });
 });
@@ -32,14 +34,14 @@ router.get(['/', '/index.html'], (req, res, next) => {
 router.get(['/start', '/start.html'], (req, res, next) => {
     if (req.session.token === undefined || req.session.token === null) {
         res.render('index', {
-            playlists: TEST_GLOBAL_PLAYLISTS,
+            playlists: TEST_FEATURED_PLAYLISTS.result.playlists,
             navState: 1
         });
         return;
     }
 
     res.render('start', {
-        playlists: TEST_USER_PLAYLISTS,
+        playlists: TEST_CARTERS_PLAYLISTS.result.playlists,
         navState: 2
     });
 });
