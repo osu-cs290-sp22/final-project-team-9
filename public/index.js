@@ -64,8 +64,10 @@ function animateFlex(elClass, wrapper) {
         // Apply increasing animation delay to each subsequent diagonal line
         for (var i = 0; i < diags.length; i++) {
             diags[i].forEach(el => {
-                el.style["-webkit-animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
-                el.style["animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
+                if (el != null) {
+                    el.style["-webkit-animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
+                    el.style["animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
+                }
             })
         }
     }

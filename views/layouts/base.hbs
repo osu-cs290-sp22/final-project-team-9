@@ -62,11 +62,8 @@
         $(document).ready(function() {
             $("#playlist-search-form").submit(function(event) {
                 var formData = {
-                    'search': $('#playlist-search-input').val(),
-                    'token': JSON.parse(getCookie('spToken')).access_token
+                    'search': $('#playlist-search-input').val()
                 };
-
-                console.log(formData['token']);
 
                 $.ajax({
                     'type': 'POST',

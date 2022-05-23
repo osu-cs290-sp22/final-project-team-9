@@ -58,10 +58,14 @@ router.get('/license', function(req, res, next) {
     });
 })
 
-router.post('/start.html', function(req, res, next) {
+router.post(['/start', '/start.html'], function(req, res, next) {
     if (req.body.search) {
         console.log(" PLAYLIST POST = " + req.body.search);
     }
+    res.json({
+        success: true,
+        data: req.body.search
+    })
 })
 
 module.exports = router;
