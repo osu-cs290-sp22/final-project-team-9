@@ -1,26 +1,38 @@
 var express = require('express');
 const path = require('path');
+const fs = require('fs');
 const router = require('express').Router();
 const api = require('../api');
 
 router.use('/api', api.router);
 
+const TEST_GLOBAL_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/global-playlists.json'));
+const TEST_USER_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/user-playlists.json'));
+
 router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
-        res.redirect('/start.html');
+        res.render('start', {
+            playlists: TEST_USER_PLAYLISTS
+        });
         return;
     }
 
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.render('index', {
+        playlists: TEST_GLOBAL_PLAYLISTS
+    });
 });
 
 router.get(['/start', '/start.html'], (req, res, next) => {
     if (req.session.token === undefined || req.session.token === null) {
-        res.redirect('/');
+        res.render('index', {
+            playlists: TEST_GLOBAL_PLAYLISTS
+        });
         return;
     }
 
-    res.sendFile(path.join(__dirname, '../public/start.html'));
+    res.render('start', {
+        playlists: TEST_USER_PLAYLISTS
+    });
 });
 
 router.use(express.static(path.join(__dirname, '../public'))); // Serve static files from "public"

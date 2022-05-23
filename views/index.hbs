@@ -1,0 +1,18 @@
+<div id="left">
+    <div id="inner">
+        <h1>Visualize Your Music</h1>
+        <p>
+            You're one click away from unlocking all of the data behind your favorite music.<br><br>
+            With SmartLists you can compare the hidden data in your playlists through tons of graphs and AI generated visualizations.
+        </p>
+        <a class="btn btn-block btn-lg btn-spotify-inversed col-8" href="/api/auth/login" style="border-radius: 40px;margin-top:5%"><i class="fa fa-spotify" aria-hidden="true"></i> Get Started</a>
+        <a id="learnMore" href="/about">Learn More</a>
+    </div>
+</div>
+<div id="backRight">
+    <div id="right">
+        {{#each playlists}}
+            {{> playlist-thumbnail imageSrc=imageSrc title=title}}
+        {{/each}}
+    </div>
+</div>

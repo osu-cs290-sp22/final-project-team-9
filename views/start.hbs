@@ -1,0 +1,30 @@
+<div id="left">
+    <div id="inner">
+        <h1>Let's Get Started</h1>
+        <p>Search for your favorite playlist or choose from one of our recommendations to start.</p>
+        <form id="playlist-search-form">
+            <div class="input-group" style="padding-top:3%;">
+
+                <input class="form-control border-end-0 border" type="text" placeholder="Search" id="playlist-search-input">
+
+                <span class="input-group-append">
+                <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n3" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+            </div>
+        </form>
+    </div>
+    <p class="footer">
+        <span class="line">Can't find your playlist?</span>
+        <span class="line">Make sure you're following it on Spotify first.</span>
+    </p>
+</div>
+
+<div id="backRight">
+    <div id="right">
+        {{#each playlists}}
+            {{> playlist-thumbnail imageSrc=imageSrc title=title}}
+        {{/each}}
+    </div>
+</div>

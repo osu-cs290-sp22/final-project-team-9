@@ -73,15 +73,7 @@
         </div>
     </nav>
     <div class="content">
-        <div id="left">
-
-            {{{body}}}
-            
-        </div>
-
-        <div id="backRight">
-
-        </div>
+        {{{body}}}
     </div>
 
 
@@ -92,6 +84,28 @@
     <script src="/assets/index.js"></script>
     <script>
         animateFlex("item", "right");
+
+        $(document).ready(function() {
+            $("#playlist-search-form").submit(function(event) {
+                var formData = {
+                    'search': $('#playlist-search-input').val(),
+                    'token': JSON.parse(getCookie('spToken')).access_token
+                };
+
+                console.log(formData['token']);
+
+                $.ajax({
+                    'type': 'POST',
+                    'url': location.origin + location.pathname,
+                    'data': formData,
+                    'dataType': 'json',
+                    'encode': 'true'
+                }).done(function(data) {
+                    console.log(data);
+                });
+                event.preventDefault();
+            });
+        });
 
         var scrollContainer = document.getElementById('right');
         document.body.addEventListener("wheel", (evt) => {
