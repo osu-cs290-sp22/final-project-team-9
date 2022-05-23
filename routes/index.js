@@ -14,6 +14,7 @@ router.use('/assets', express.static(path.join(__dirname, '../node_modules/boots
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/@cdgco/brand-buttons/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/jquery/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/font-awesome/'))); // Serve "/assets" from "node_modules/bootstrap"
+router.use('/assets', express.static(path.join(__dirname, '../node_modules/animate.css/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../public/'))); // Serve "/assets" from "node_modules/bootstrap"
 
 router.get(['/', '/index.html'], (req, res, next) => {
@@ -46,13 +47,13 @@ router.get(['/start', '/start.html'], (req, res, next) => {
     });
 });
 
-router.get('/about', function(req, res, next) {
+router.get(['/about', '/about.html'], function(req, res, next) {
     res.render('about', {
         layout: 'blank'
     });
 })
 
-router.get('/license', function(req, res, next) {
+router.get(['/license', '/license.html'], function(req, res, next) {
     res.render('license', {
         layout: 'blank'
     });

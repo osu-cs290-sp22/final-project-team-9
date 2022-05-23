@@ -72,3 +72,15 @@ function animateFlex(elClass, wrapper) {
         }
     }
 }
+
+function scrollOut() {
+    document.getElementById('right').classList = "animate__animated animate__fadeOutUp";
+    document.getElementById('right').style["overflow-x"] = "hidden";
+    document.getElementById('left').classList = "animate__animated animate__fadeOutUp";
+}
+
+function scrollIn() {
+    document.getElementById('right').classList = "animate__animated animate__fadeInUp";
+    document.getElementById('right').style["overflow-x"] = "hidden";
+    document.getElementById('left').classList = "animate__animated animate__fadeInUp";
+}
