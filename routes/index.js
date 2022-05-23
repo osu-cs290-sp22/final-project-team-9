@@ -15,14 +15,11 @@ router.use('/assets', express.static(path.join(__dirname, '../node_modules/@cdgc
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/jquery/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/font-awesome/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/animate.css/'))); // Serve "/assets" from "node_modules/bootstrap"
-router.use('/assets', express.static(path.join(__dirname, '../public/'))); // Serve "/assets" from "node_modules/bootstrap"
+router.use('/assets', express.static(path.join(__dirname, '../dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 
 router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
-        res.render('start', {
-            playlists: TEST_CARTERS_PLAYLISTS.result.playlists,
-            navState: 2
-        });
+        res.redirect('/start');
         return;
     }
 
@@ -34,10 +31,7 @@ router.get(['/', '/index.html'], (req, res, next) => {
 
 router.get(['/start', '/start.html'], (req, res, next) => {
     if (req.session.token === undefined || req.session.token === null) {
-        res.render('index', {
-            playlists: TEST_FEATURED_PLAYLISTS.result.playlists,
-            navState: 1
-        });
+        res.redirect('/');
         return;
     }
 

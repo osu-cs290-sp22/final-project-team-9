@@ -1,5 +1,8 @@
+@tailwind base;
+@tailwind utilities;
 h1 {
     font-weight: 900;
+    margin-bottom: 0.5rem;
 }
 
 ::-webkit-scrollbar {
@@ -21,6 +24,7 @@ h1 {
     bottom: 0px;
     font-size: 12px;
     max-width: 65%;
+    margin-bottom: 1rem;
 }
 
 .item {
@@ -83,6 +87,7 @@ h1 {
     border-radius: 45% 34% 45% 34%;
     transition: 0.3s linear;
     height: 102%;
+    max-width: 102%;
     left: -1%;
     position: relative;
     top: -1%;
