@@ -39,7 +39,8 @@ app.engine('hbs', exprhbs.engine({
     layoutsDir: (__dirname + '/views/layouts'),
     partialsDir: (__dirname + '/views/partials'),
     extname: 'hbs',
-    defaultLayout: 'base'
+    defaultLayout: 'base',
+    helpers: require('handlebars-helpers')()
 }))
 
 app.use('/', router);

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand mb-0 h1" href="/">SmartLists</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+            {{#if (eq navState 1)}}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-spotify" href="/api/auth/login" id="loginButton">Login</a>
+            </ul>
+            {{/if}}
+            {{#if (eq navState 2)}}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-spotify" href="/api/auth/logout" id="loginButton">Logout</a>
+            </ul>
+            {{/if}}
+        </div>
+    </div>
+</nav>

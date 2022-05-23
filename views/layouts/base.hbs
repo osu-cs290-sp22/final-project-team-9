@@ -2,12 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/brand-buttons-inversed.min.css" rel="stylesheet">
-    <link href="/assets/brand-buttons.min.css" rel="stylesheet">
-    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
+     {{> head}}
     <title>SmartLists</title>
     <style>
          ::-webkit-scrollbar {
@@ -53,31 +48,10 @@
 </head>
 
 <body style="text-align: center;">
-    <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1" href="/">SmartLists</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-spotify" href="/api/auth/logout" id="loginButton">Logout</a>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {{> nav navState=navState}}
     <div class="content">
         {{{body}}}
     </div>
-
-
-
 
     <script src="/assets/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
