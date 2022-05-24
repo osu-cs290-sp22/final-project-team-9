@@ -10,8 +10,6 @@ const apiSpec = path.join(__dirname, 'api.yaml');
 
 apiRouter.use(cookieParser()); // Need cookie parser for cookie auth
 apiRouter.use('/spec', express.static(apiSpec));
-apiRouter.use('/auth', auth.router);
-apiRouter.use('/playlists', playlists.router);
 
 apiRouter.use(
     OpenApiValidator.middleware({
@@ -54,6 +52,9 @@ apiRouter.get('/', function(req, res, next) {
         "result": null
     });
 })
+
+apiRouter.use('/auth', auth.router);
+apiRouter.use('/playlists', playlists.router);
 
 module.exports = {
     router: apiRouter,
