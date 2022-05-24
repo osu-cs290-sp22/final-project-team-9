@@ -25,8 +25,7 @@ function InsertBubbles(playlists) {
 
     }
 
-    // Animation must be played after the bubbles are finished being added.
-    animateFlex("item", "right");
+
 }
 
 
