@@ -34,13 +34,12 @@ h1 {
     height: 200px;
     margin: 20px;
     transition: 0.25s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .item-tranition {
-    transition: 0.25s linear;
-}
-
-.item>img {
     transition: 0.25s linear;
 }
 
@@ -75,23 +74,20 @@ h1 {
     transition: 0.25s linear;
     margin: 5px;
     position: absolute;
-    top: 50%;
     width: fit-content;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
 }
 
 .innerItem {
     background: white;
     border-radius: 45% 34% 45% 34%;
-    transition: 0.3s linear;
+    transition: 0.25s linear;
     height: 102%;
-    max-width: 102%;
     left: -1%;
-    position: relative;
     top: -1%;
     width: 102%;
+    max-width: 102%;
+    max-height: 102%;
+    align-self: baseline;
 }
 
 #left {
