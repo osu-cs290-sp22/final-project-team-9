@@ -1,98 +1,149 @@
-[
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000003d2789b816dfcdc308c56fb33",
-        "title": "My Life is a Movie"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000003903b0b0464af6bdce53f37da",
-        "title": "New Music Friday"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000023c52ff5ce471594a9d6b848e",
-        "title": "Rock Party"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000002693af7b6870f72b2ffcfcda6",
-        "title": "Classic Hardcore"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000036e618b1681ab40dc53e5fb7d",
-        "title": "Soul Revived"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000002fe0099a8dcd3054706ffc92f",
-        "title": "Happy Beats"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000002122921a072ad2ca9ce90a456",
-        "title": "Hype"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f0000000209eec532a1a213bc950dff71",
-        "title": "Night Rider"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000023105706fe5392048496c8e1e",
-        "title": "Wine & Dine"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000027a1093011f570a0a950781d2",
-        "title": "License To Chill"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000025b9afc20f73de2953ea450f7",
-        "title": "Power Workout"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f0000000250a3634f833113b4e1037c68",
-        "title": "All Out 50s"
-    },
-    {
-        "imageSrc": "https://seed-mix-image.spotifycdn.com/v6/img/chill/0Vw76uk7P8yVtTClWyOhac/en/default",
-        "title": "Chill Mix"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000021a7b20185da0443625a20f1a",
-        "title": "Today's Top Hits"
-    },
-    {
-        "imageSrc": "https://charts-images.scdn.co/assets/locale_en/regional/daily/region_us_default.jpg",
-        "title": "Top 50 - USA"
-    },
-    {
-        "imageSrc": "https://charts-images.scdn.co/assets/locale_en/regional/daily/region_global_default.jpg",
-        "title": "Top 50 - Global"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000020280d638f41ea8380a446afd",
-        "title": "Just Hits"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000028b7d60af7518beaaf4d1b33a",
-        "title": "Signed XOXO"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f000000026ace012ca7d090d0a72564ea",
-        "title": "Soft Pop Hits"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000002ff63d0902c734a53b81a723d",
-        "title": "Gold School"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000002c8f1b87c156e1ce9a7af7c1b",
-        "title": "Get Turnt"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000002baace641d37f9f3104f117fd",
-        "title": "B.A.E"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f0000000247cd5a0f1c493c1f809cdeec",
-        "title": "It's ALT Good!"
-    },
-    {
-        "imageSrc": "https://i.scdn.co/image/ab67706f00000002a7418b70d9ecaf44a600b98a",
-        "title": "Alternative Beats"
+{
+    "result": {
+        "playlists": [{
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000003d2789b816dfcdc308c56fb33"
+                }],
+                "name": "My Life is a Movie"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000003903b0b0464af6bdce53f37da"
+                }],
+                "name": "New Music Friday"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000023c52ff5ce471594a9d6b848e"
+                }],
+                "name": "Rock Party"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000002693af7b6870f72b2ffcfcda6"
+                }],
+                "name": "Classic Hardcore"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000036e618b1681ab40dc53e5fb7d"
+                }],
+                "name": "Soul Revived"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000002fe0099a8dcd3054706ffc92f"
+                }],
+                "name": "Happy Beats"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000002122921a072ad2ca9ce90a456"
+                }],
+                "name": "Hype"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f0000000209eec532a1a213bc950dff71"
+                }],
+                "name": "Night Rider"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000023105706fe5392048496c8e1e"
+                }],
+                "name": "Wine & Dine"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000027a1093011f570a0a950781d2"
+                }],
+                "name": "License To Chill"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000025b9afc20f73de2953ea450f7"
+                }],
+                "name": "Power Workout"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f0000000250a3634f833113b4e1037c68"
+                }],
+                "name": "All Out 50s"
+            },
+            {
+                "images": [{
+                    "url": "https://seed-mix-image.spotifycdn.com/v6/img/chill/0Vw76uk7P8yVtTClWyOhac/en/default"
+                }],
+                "name": "Chill Mix"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000021a7b20185da0443625a20f1a"
+                }],
+                "name": "Today's Top Hits"
+            },
+            {
+                "images": [{
+                    "url": "https://charts-images.scdn.co/assets/locale_en/regional/daily/region_us_default.jpg"
+                }],
+                "name": "Top 50 - USA"
+            },
+            {
+                "images": [{
+                    "url": "https://charts-images.scdn.co/assets/locale_en/regional/daily/region_global_default.jpg"
+                }],
+                "name": "Top 50 - Global"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000020280d638f41ea8380a446afd"
+                }],
+                "name": "Just Hits"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000028b7d60af7518beaaf4d1b33a"
+                }],
+                "name": "Signed XOXO"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f000000026ace012ca7d090d0a72564ea"
+                }],
+                "name": "Soft Pop Hits"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000002ff63d0902c734a53b81a723d"
+                }],
+                "name": "Gold School"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000002c8f1b87c156e1ce9a7af7c1b"
+                }],
+                "name": "Get Turnt"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000002baace641d37f9f3104f117fd"
+                }],
+                "name": "B.A.E"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f0000000247cd5a0f1c493c1f809cdeec"
+                }],
+                "name": "It's ALT Good!"
+            },
+            {
+                "images": [{
+                    "url": "https://i.scdn.co/image/ab67706f00000002a7418b70d9ecaf44a600b98a"
+                }],
+                "name": "Alternative Beats"
+            }
+        ]
     }
-]
+}
