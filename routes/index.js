@@ -25,7 +25,7 @@ router.get(['/', '/index.html'], (req, res, next) => {
     }
 
     res.render('index', {
-        playlists: TEST_FEATURED_PLAYLISTS.result.playlists,
+        playlists: TEST_GLOBAL_PLAYLISTS.result.playlists,
         navState: 1
     });
 });
