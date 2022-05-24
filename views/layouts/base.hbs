@@ -38,13 +38,16 @@
         });
 
         function Playlists() {
-            console.log(location.origin + '/api/playlists');
             pdata = $.ajax({
                 'type': 'GET',
                 'url': location.origin + '/api/playlists',
                 'dataType': 'json'
+            }).done(function(data) {
+                console.log(data.result.playlists);
+            }).fail(function(err) {
+                console.log('Error fetching user-playlists');
             });
-            console.log(pdata);
+            console.log('-----')
         }
 
         var scrollContainer = document.getElementById('right');
