@@ -14,22 +14,28 @@
 
     <script src="/assets/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/handlebars.min.js"></script>
+    <script src="/assets/partials/bubble.js"></script>
     <script src="/assets/index.js"></script>
     <script>
-        animateFlex("item", "right");
 
         $(document).ready(function() {
-            $.ajax({
-                'type': 'GET',
-                'url': '/api/playlists',
-                'dataType': 'json'
-            }).done(function(data) {
-                var userPlaylists = data.result.playlists;
-                console.log(userPlaylists);
-            }).fail(function(err) {
-                console.log('Error fetching user-playlists');
-            });
 
+            // Requests user's playlist data (only on /start)
+            if (location.pathname == '/start') {
+                $.ajax({
+                    'type': 'GET',
+                    'url': '/api/playlists',
+                    'dataType': 'json'
+                }).done(function(data) {
+                    var userPlaylists = data.result.playlists;
+                    InsertBubbles(userPlaylists);
+                }).fail(function(err) {
+                    console.log('Error fetching user-playlists');
+                });
+            }
+
+            // Sends search requests to the server
             $("#playlist-search-form").submit(function(event) {
                 var formData = {
                     'search': $('#playlist-search-input').val()
@@ -46,6 +52,8 @@
                 });
                 event.preventDefault();
             });
+
+
         });
 
 

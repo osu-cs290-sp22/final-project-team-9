@@ -14,6 +14,22 @@ function getCookie(cname) {
     return "";
 }
 
+// Playlists takes in an array of playlists in a Spotify request format
+function InsertBubbles(playlists) {
+    for (let i = 0; i < playlists.length; i++) {
+        const element = Handlebars.templates['bubble.hbs']({
+            title: playlists[i].name,
+            imageSrc: playlists[i].images[0].url
+        });
+        document.getElementById('right').insertAdjacentHTML('beforeend', element);
+
+    }
+
+    // Animation must be played after the bubbles are finished being added.
+    animateFlex("item", "right");
+}
+
+
 window.onload = function() {
     var buttons = document.getElementsByClassName("item"),
         len = buttons !== null ? buttons.length : 0,

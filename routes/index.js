@@ -11,6 +11,7 @@ const TEST_USER_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/user-playlis
 
 router.use('/api', api.router);
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
+router.use('/assets', express.static(path.join(__dirname, '../node_modules/handlebars/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/@cdgco/brand-buttons/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/jquery/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/font-awesome/'))); // Serve "/assets" from "node_modules/bootstrap"
@@ -36,7 +37,6 @@ router.get(['/start', '/start.html'], (req, res, next) => {
     }
 
     res.render('start', {
-        playlists: TEST_CARTERS_PLAYLISTS.result.playlists,
         navState: 2
     });
 });
