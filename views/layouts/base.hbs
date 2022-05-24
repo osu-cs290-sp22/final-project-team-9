@@ -19,6 +19,17 @@
         animateFlex("item", "right");
 
         $(document).ready(function() {
+            $.ajax({
+                'type': 'GET',
+                'url': '/api/playlists',
+                'dataType': 'json'
+            }).done(function(data) {
+                var userPlaylists = data.result.playlists;
+                console.log(userPlaylists);
+            }).fail(function(err) {
+                console.log('Error fetching user-playlists');
+            });
+
             $("#playlist-search-form").submit(function(event) {
                 var formData = {
                     'search': $('#playlist-search-input').val()
@@ -37,18 +48,6 @@
             });
         });
 
-        function Playlists() {
-            pdata = $.ajax({
-                'type': 'GET',
-                'url': location.origin + '/api/playlists',
-                'dataType': 'json'
-            }).done(function(data) {
-                console.log(data.result.playlists);
-            }).fail(function(err) {
-                console.log('Error fetching user-playlists');
-            });
-            console.log('-----')
-        }
 
         var scrollContainer = document.getElementById('right');
         document.body.addEventListener("wheel", (evt) => {
