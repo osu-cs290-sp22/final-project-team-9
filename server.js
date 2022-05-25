@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const exprhbs = require('express-handlebars');
+const hbshelpers = require('handlebars-helpers')();
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 const bodyParser = require("body-parser");
@@ -40,7 +41,16 @@ app.engine('hbs', exprhbs.engine({
     partialsDir: (__dirname + '/views/partials'),
     extname: 'hbs',
     defaultLayout: 'base',
-    helpers: require('handlebars-helpers')()
+    helpers: {
+            hbshelpers,
+            section: function (name, options) {
+                if (!this.sections) {
+                    this.sections = {};
+                }
+                this.sections[name] = options.fn(this);
+                return null;
+            }
+    }
 }))
 
 app.use('/', router);

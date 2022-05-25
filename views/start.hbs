@@ -26,3 +26,20 @@
         {{/each}}
     </div>
 </div>
+
+{{#section 'script'}}
+<script type="application/javascript">
+    $.ajax({
+        'type': 'GET',
+        'url': '/api/playlists',
+        'dataType': 'json'
+    }).done(function(data) {
+        var userPlaylists = data.result.playlists;
+        InsertBubbles(userPlaylists);
+        // Animation must be played after the bubbles are finished being added.
+        animateFlex("item", "right");
+    }).fail(function(err) {
+        console.log('Error fetching user-playlists');
+    });
+</script>
+{{/section}}

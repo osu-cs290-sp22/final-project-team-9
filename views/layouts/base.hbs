@@ -18,31 +18,7 @@
     <script src="/assets/partials/bubble.js"></script>
     <script src="/assets/index.js"></script>
     <script>
-
         $(document).ready(function() {
-
-            // Requests user's playlist data (only on /start)
-            if (location.pathname == '/start') {
-                $.ajax({
-                    'type': 'GET',
-                    'url': '/api/playlists',
-                    'dataType': 'json'
-                }).done(function(data) {
-                    var userPlaylists = data.result.playlists;
-                    InsertBubbles(userPlaylists);
-                    // Animation must be played after the bubbles are finished being added.
-                    animateFlex("item", "right");
-                }).fail(function(err) {
-                    console.log('Error fetching user-playlists');
-                });
-            }
-            // This block is a bandaid fix for now.
-            else if (location.pathname == '/') {
-                animateFlex("item", "right");
-            }
-
-            console.log(location.pathname);
-
             // Sends search requests to the server
             $("#playlist-search-form").submit(function(event) {
                 var formData = {
@@ -60,8 +36,6 @@
                 });
                 event.preventDefault();
             });
-
-
         });
 
 
@@ -76,4 +50,5 @@
     </script>
 </body>
 
+{{{sections.script}}}
 </html>
