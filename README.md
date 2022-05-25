@@ -14,4 +14,4 @@
   - As a single process: `npm run start`
   - As a background service: `pm2 start server.js`
   - As a cluster: `pm2 start ecosystem.config.js`
-3. Access the server at `http://localhost:8000` or your environment defined address and port.
+2. Access the server at `http://localhost:8000` or your environment defined address and port.
