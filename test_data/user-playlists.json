@@ -1,62 +1,95 @@
-[
-    {
-        "imageSrc": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb84776fe119fa6503fdffb0f8/1/en/default",
-        "title": "Daily Mix 1"
-    },
-    {
-        "imageSrc": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb97e6df979e0c39443a6aa0e4/2/en/default",
-        "title": "Daily Mix 2"
-    },
-    {
-        "imageSrc": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb379c213b357ab1228c0a670d/3/en/default",
-        "title": "Daily Mix 3"
-    },
-    {
-        "imageSrc": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebc5bf602162d30b7133cfe96a/4/en/default",
-        "title": "Daily Mix 4"
-    },
-    {
-        "imageSrc": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb15425e51091c49d07b3bca64/5/en/default",
-        "title": "Daily Mix 5"
-    },
-    {
-        "imageSrc": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebd123e4c884d1a5e2edff1895/6/en/default",
-        "title": "Daily Mix 6"
-    },
-    {
-        "imageSrc": "https://newjams-images.scdn.co/v3/release-radar/ab6761610000e5eb46e7a06fa6dfefaed6a3f0db/en/default",
-        "title": "Release Radar"
-    },
-    {
-        "imageSrc": "https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/fTieFtlyqdLbzy3aumi7M1gK0nNic9MLdu-GG0lk94E9yH8J28NuVXYm8uGM6AbqK5x6ATd47rJnO9besYFg6sitF_n1s61IXhQnjpFF0kE=/NjM6MTU6ODBUMDMtNTAtMg==",
-        "title": "Discover Weekly"
-    },
-    {
-        "imageSrc": "https://mixed-media-images.spotifycdn.com/daily-wellness/daily-wellness-2.0-en-default.jpg",
-        "title": "Daily Wellness"
-    },
-    {
-        "imageSrc": "https://lineup-images.scdn.co/wrapped-2021-top100_DEFAULT-en.jpg",
-        "title": "Your Top Songs 2021"
-    },
-    {
-        "imageSrc": "https://lineup-images.scdn.co/wrapped-2020-top100_DEFAULT-en.jpg",
-        "title": "Your Top Songs 2020"
-    },
-    {
-        "imageSrc": "https://lineup-images.scdn.co/your-top-songs-2019_DEFAULT-en.jpg",
-        "title": "Your Top Songs 2019"
-    },
-    {
-        "imageSrc": "https://lineup-images.scdn.co/your-top-songs-2018_DEFAULT-en.jpg",
-        "title": "Your Top Songs 2018"
-    },
-    {
-        "imageSrc": "https://lineup-images.scdn.co/your-top-songs-2017_DEFAULT-en.jpg",
-        "title": "Your Top Songs 2017"
-    },
-    {
-        "imageSrc": "https://lineup-images.scdn.co/your-top-songs-2016_DEFAULT-en.jpg",
-        "title": "Your Top Songs 2016"
+{
+    "result": {
+        "playlists": [{
+                "images": [{
+                    "url": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb84776fe119fa6503fdffb0f8/1/en/default"
+                }],
+                "name": "Daily Mix 1"
+            },
+            {
+                "images": [{
+                    "url": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb97e6df979e0c39443a6aa0e4/2/en/default"
+                }],
+                "name": "Daily Mix 2"
+            },
+            {
+                "images": [{
+                    "url": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb379c213b357ab1228c0a670d/3/en/default"
+                }],
+                "name": "Daily Mix 3"
+            },
+            {
+                "images": [{
+                    "url": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebc5bf602162d30b7133cfe96a/4/en/default"
+                }],
+                "name": "Daily Mix 4"
+            },
+            {
+                "images": [{
+                    "url": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb15425e51091c49d07b3bca64/5/en/default"
+                }],
+                "name": "Daily Mix 5"
+            },
+            {
+                "images": [{
+                    "url": "https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebd123e4c884d1a5e2edff1895/6/en/default"
+                }],
+                "name": "Daily Mix 6"
+            },
+            {
+                "images": [{
+                    "url": "https://newjams-images.scdn.co/v3/release-radar/ab6761610000e5eb46e7a06fa6dfefaed6a3f0db/en/default"
+                }],
+                "name": "Release Radar"
+            },
+            {
+                "images": [{
+                    "url": "https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/fTieFtlyqdLbzy3aumi7M1gK0nNic9MLdu-GG0lk94E9yH8J28NuVXYm8uGM6AbqK5x6ATd47rJnO9besYFg6sitF_n1s61IXhQnjpFF0kE=/NjM6MTU6ODBUMDMtNTAtMg=="
+                }],
+                "name": "Discover Weekly"
+            },
+            {
+                "images": [{
+                    "url": "https://mixed-media-images.spotifycdn.com/daily-wellness/daily-wellness-2.0-en-default.jpg"
+                }],
+                "name": "Daily Wellness"
+            },
+            {
+                "images": [{
+                    "url": "https://lineup-images.scdn.co/wrapped-2021-top100_DEFAULT-en.jpg"
+                }],
+                "name": "Your Top Songs 2021"
+            },
+            {
+                "images": [{
+                    "url": "https://lineup-images.scdn.co/wrapped-2020-top100_DEFAULT-en.jpg"
+                }],
+                "name": "Your Top Songs 2020"
+            },
+            {
+                "images": [{
+                    "url": "https://lineup-images.scdn.co/your-top-songs-2019_DEFAULT-en.jpg"
+                }],
+                "name": "Your Top Songs 2019"
+            },
+            {
+                "images": [{
+                    "url": "https://lineup-images.scdn.co/your-top-songs-2018_DEFAULT-en.jpg"
+                }],
+                "name": "Your Top Songs 2018"
+            },
+            {
+                "images": [{
+                    "url": "https://lineup-images.scdn.co/your-top-songs-2017_DEFAULT-en.jpg"
+                }],
+                "name": "Your Top Songs 2017"
+            },
+            {
+                "images": [{
+                    "url": "https://lineup-images.scdn.co/your-top-songs-2016_DEFAULT-en.jpg"
+                }],
+                "name": "Your Top Songs 2016"
+            }
+        ]
     }
-]
+}
