@@ -18,11 +18,7 @@
     <script src="/assets/partials/bubble.js"></script>
     <script src="/assets/index.js"></script>
     <script>
-
         $(document).ready(function() {
-
-            animateFlex("item", "right");
-
             // Sends search requests to the server
             $("#playlist-search-form").submit(function(event) {
                 var formData = {
@@ -40,8 +36,6 @@
                 });
                 event.preventDefault();
             });
-
-
         });
 
 
