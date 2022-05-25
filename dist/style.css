@@ -643,13 +643,9 @@ h1 {
 }
 
 #right:hover {
-  
   overflow-x: overlay;
   padding-bottom: 0px;
-
 }
-
-
 
 #backRight {
   height: 200vh;
