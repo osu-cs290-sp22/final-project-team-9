@@ -639,13 +639,17 @@ h1 {
   overflow-y: hidden;
   overflow-x: hidden;
   padding: 0px 25px;
-  padding-bottom: 8px;
+  
 }
 
 #right:hover {
-  overflow-x: scroll;
+  
+  overflow-x: overlay;
   padding-bottom: 0px;
+
 }
+
+
 
 #backRight {
   height: 200vh;
