@@ -8,40 +8,83 @@
 
 <body style="text-align: center;">
     {{> nav navState=navState}}
-    <div class="content">
+    <div class="content" id="content">
         {{{body}}}
     </div>
 
     <script src="/assets/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/pjax.min.js"></script>
     <script src="/assets/handlebars.min.js"></script>
     <script src="/assets/partials/bubble.js"></script>
     <script src="/assets/index.js"></script>
     <script>
 
-        $(document).ready(function() {
-
-            // Requests user's playlist data (only on /start)
-            if (location.pathname == '/start') {
+        function populateBubbles(callback = null, url = null) {
+            if (location.pathname == "/start" && url != "/next") {
                 $.ajax({
-                    'type': 'GET',
-                    'url': '/api/playlists',
-                    'dataType': 'json'
-                }).done(function(data) {
-                    var userPlaylists = data.result.playlists;
-                    InsertBubbles(userPlaylists);
-                    // Animation must be played after the bubbles are finished being added.
-                    animateFlex("item", "right");
-                }).fail(function(err) {
-                    console.log('Error fetching user-playlists');
-                });
-            }
-            // This block is a bandaid fix for now.
-            else if (location.pathname == '/') {
+                        'type': 'GET',
+                        'url': '/api/playlists',
+                        'dataType': 'json'
+                    }).done(function(data) {
+                        var userPlaylists = data.result.playlists;
+                        InsertBubbles(userPlaylists);
+                        $(".bubble").on('click', function(event){
+                            curPath = $(this).attr('href');
+                        });
+                        animateFlex("item", "right");
+                        if (callback && typeof callback === "function") {
+                            callback();
+                        }
+                    }).fail(function(err) {
+                        console.log('Error fetching user-playlists');
+                    });
+            } else if (location.pathname == "/" && url != "/next") {
                 animateFlex("item", "right");
+            } else {
+                if (callback && typeof callback === "function") {
+                    callback();
+                }
             }
+        }
+        
 
-            console.log(location.pathname);
+        $("#right").ready(function() {
+                populateBubbles(function() {
+                    $(document).on('pjax:complete', function(event) {
+                        populateBubbles(null, event.currentTarget.location.pathname);
+                    });
+                    var pjax = new Pjax({
+                        elements: "a.bubble",
+                        selectors: ["#right", "#left"],
+                        cacheBust: false,
+                        switches: {
+                            "#right": Pjax.switches.sideBySide,
+                            "#left": Pjax.switches.sideBySide
+                        },
+                        switchesOptions: {
+                            "#right": {
+                                classNames: {
+                                    remove: "animate__animated animate__fadeOutUp",
+                                    add: "animate__animated animate__fadeInUp"
+                                }
+                            },
+                            "#left": {
+                                classNames: {
+                                    remove: "animate__animated animate__fadeOutUp",
+                                    add: "animate__animated animate__fadeInUp",
+                                },
+                                callbacks: {
+                                    removeElement: function(el) {
+                                        el.style.marginLeft = "-" + (el.getBoundingClientRect().width/2) + "px"
+                                        el.style.position = "absolute"
+                                        el.style.left = "50%"
+                                    },
+                                }
+                            }
+                        },
+                    })
+                });
 
             // Sends search requests to the server
             $("#playlist-search-form").submit(function(event) {
@@ -63,7 +106,6 @@
 
 
         });
-
 
         var scrollContainer = document.getElementById('right');
         document.body.addEventListener("wheel", (evt) => {

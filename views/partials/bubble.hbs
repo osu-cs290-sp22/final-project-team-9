@@ -1,9 +1,11 @@
-<div class="item animation-target">
-    {{#if imageSrc}}
-        <img alt="{{title}}" class="innerItem" src='{{imageSrc}}' />
-        <p class="innerText">{{title}}</p>
-    {{else}}
-        <img alt="{{title}}" class="innerItem" src='assets/grey.png' />
-        <p class="innerText" style="opacity:1">{{title}}</p>
-    {{/if}}
-</div>
+<a class="bubble" href="/next">
+    <div class="item animation-target">
+        {{#if imageSrc}}
+            <img alt="{{title}}" class="innerItem" src='{{imageSrc}}' />
+            <p class="innerText">{{title}}</p>
+        {{else}}
+            <img alt="{{title}}" class="innerItem" src='assets/grey.png' />
+            <p class="innerText" style="opacity:1">{{title}}</p>
+        {{/if}}
+    </div>
+</a>

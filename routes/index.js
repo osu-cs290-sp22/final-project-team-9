@@ -10,13 +10,14 @@ const TEST_CARTERS_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/carters-p
 const TEST_USER_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/user-playlists.json'));
 
 router.use('/api', api.router);
+router.use('/assets', express.static(path.join(__dirname, '../dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/handlebars/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/@cdgco/brand-buttons/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/jquery/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/font-awesome/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/animate.css/'))); // Serve "/assets" from "node_modules/bootstrap"
-router.use('/assets', express.static(path.join(__dirname, '../dist/'))); // Serve "/assets" from "node_modules/bootstrap"
+router.use('/assets', express.static(path.join(__dirname, '../node_modules/pjax/'))); // Serve "/assets" from "node_modules/bootstrap"
 
 router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
@@ -37,6 +38,17 @@ router.get(['/start', '/start.html'], (req, res, next) => {
     }
 
     res.render('start', {
+        navState: 2
+    });
+});
+
+router.get(['/next', '/next.html'], (req, res, next) => {
+    if (req.session.token === undefined || req.session.token === null) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('next', {
         navState: 2
     });
 });

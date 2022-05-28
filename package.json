@@ -36,6 +36,7 @@
         "handlebars": "^4.7.7",
         "handlebars-helpers": "^0.10.0",
         "jquery": "^3.6.0",
+        "pjax": "^0.2.8",
         "qs": "^6.10.3",
         "search-array": "^1.5.0"
     },
