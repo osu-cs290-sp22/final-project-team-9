@@ -76,7 +76,7 @@ authRouter.get('/callback', async function(req, res, next) {
     const config = qs.stringify({
         "grant_type": 'authorization_code',
         "code": req.query.code,
-        "redirect_uri": process.env.CALLBACK_URL,
+        "redirect_uri": req.headers.referer + 'api/auth/callback',
         "client_id": process.env.CLIENT_ID,
         'client_secret': process.env.CLIENT_SECRET,
     });
@@ -93,10 +93,11 @@ authRouter.get('/callback', async function(req, res, next) {
 });
 
 authRouter.get('/login', function(req, res, next) {
+    console.log(req.headers.referer);
     const config = qs.stringify({
         'client_id': process.env.CLIENT_ID,
         'response_type': 'code',
-        'redirect_uri': process.env.CALLBACK_URL,
+        'redirect_uri': req.headers.referer + 'api/auth/callback',
         'scope': 'user-top-read',
         "show_dialog": false
     });
