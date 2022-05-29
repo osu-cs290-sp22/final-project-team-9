@@ -14,6 +14,26 @@ function getCookie(cname) {
     return "";
 }
 
+<<<<<<< Updated upstream
+=======
+// Playlists takes in an array of playlists in a Spotify request format
+function InsertBubbles(playlists) {
+    for (let i = 0; i < playlists.length; i++) {
+        if(playlists[i].tracks.total == 0){
+            continue;
+        }
+        const element = Handlebars.templates['bubble.hbs']({
+            title: playlists[i].name,
+            imageSrc: (playlists[i].images[0]) ? playlists[i].images[0].url : "",
+            id: playlists[i].id
+        });
+        document.getElementById('right').insertAdjacentHTML('beforeend', element);
+        
+    }
+}
+
+
+>>>>>>> Stashed changes
 window.onload = function() {
     var buttons = document.getElementsByClassName("item"),
         len = buttons !== null ? buttons.length : 0,
