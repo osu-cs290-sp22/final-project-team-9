@@ -5,6 +5,10 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
+body {
+    overflow: hidden;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -19,12 +23,28 @@ h1 {
     border-radius: 20px;
 }
 
+.js-Pjax {
+    position: relative
+}
+
+.js-Pjax-child {
+    width: 100%
+}
+
+.js-Pjax-remove {
+    margin-left: -width/2;
+}
+
 .footer {
     position: absolute;
     bottom: 0px;
     font-size: 12px;
     max-width: 65%;
     margin-bottom: 1rem;
+}
+
+.bubble:hover {
+    color: white;
 }
 
 .item {
@@ -97,7 +117,7 @@ h1 {
     align-items: center;
     height: 100%;
     z-index: 10;
-    position: fixed;
+    position: absolute;
 }
 
 #right {
