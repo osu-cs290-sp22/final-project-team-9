@@ -9,6 +9,29 @@ body {
     overflow: hidden;
 }
 
+.btn:focus,
+.btn-check:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-check:focus+.btn-secondary,
+.btn-secondary:focus {
+    box-shadow: none;
+}
+
+#searchbutton {
+    transition: 0.15s linear;
+}
+
+#searchbutton:hover {
+    color: #000
+}
+
+#searchbutton:active {
+    box-shadow: none !important;
+}
+
 .btn-check:active+.btn-secondary,
 .btn-check:checked+.btn-secondary,
 .btn-secondary.active,
