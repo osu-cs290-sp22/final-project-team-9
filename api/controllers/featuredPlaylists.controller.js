@@ -156,7 +156,7 @@ exports.updateCache = async(req, res) => {
                                             "code": 200,
                                             "errors": [],
                                             "messages": [],
-                                            "result": null
+                                            "result": update
                                         });
                                     }
                                 }
@@ -171,7 +171,7 @@ exports.updateCache = async(req, res) => {
                 "code": 200,
                 "errors": [],
                 "messages": [],
-                "result": null
+                "result": update
             });
         }
     });

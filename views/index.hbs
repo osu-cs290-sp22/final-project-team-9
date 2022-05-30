@@ -12,7 +12,7 @@
 <div id="backRight">
     <div id="right">
         {{#each playlists}}
-            {{> bubble title=name imageSrc=(get "url" (first images)) }}
+            {{> bubble title=name imageSrc=(get "url" (first images)) curView="global" }}
         {{/each}}
     </div>
 </div>
