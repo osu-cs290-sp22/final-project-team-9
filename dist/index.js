@@ -17,6 +17,9 @@ function getCookie(cname) {
 // Playlists takes in an array of playlists in a Spotify request format
 function InsertBubbles(playlists) {
     for (let i = 0; i < playlists.length; i++) {
+        if (playlists[i].tracks.total == 0) {
+            continue;
+        }
         const element = Handlebars.templates['bubble.hbs']({
             title: playlists[i].name,
             imageSrc: (playlists[i].images[0]) ? playlists[i].images[0].url : "",
@@ -25,10 +28,7 @@ function InsertBubbles(playlists) {
         document.getElementById('right').insertAdjacentHTML('beforeend', element);
 
     }
-
-
 }
-
 
 window.onload = function() {
     var buttons = document.getElementsByClassName("item"),
