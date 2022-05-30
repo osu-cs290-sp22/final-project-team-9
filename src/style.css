@@ -48,7 +48,6 @@ body {
 }
 
 .item {
-    background: white;
     width: 200px;
     border-radius: 45% 34% 45% 34%;
     height: 200px;
@@ -98,7 +97,6 @@ body {
 }
 
 .innerItem {
-    background: white;
     border-radius: 45% 34% 45% 34%;
     transition: 0.25s linear;
     height: 102%;
@@ -135,11 +133,10 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
     padding: 0px 25px;
-    padding-bottom: 8px;
 }
 
 #right:hover {
-    overflow-x: scroll;
+    overflow-x: overlay;
     padding-bottom: 0px;
 }
 
