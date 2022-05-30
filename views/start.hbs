@@ -2,7 +2,7 @@
     <div id="inner">
         <h1 class="text-4xl">Let's Get Started</h1>
         <p>Search for your favorite playlist or choose from one of our recommendations to start.</p>
-        <form id="playlist-search-form">
+        <form id="playlist-search-form" action="javascript:void(0);">
             <div class="input-group" style="padding-top:3%;">
                 <input class="form-control border-end-0 border" type="text" placeholder="Search" id="playlist-search-input">
                 <span class="input-group-append">
@@ -28,7 +28,6 @@
 
 <div id="backRight">
     <div id="right">
-        <h2 class="text-3xl" style="display:none" id="noresults">No Results Found</h2>
         {{#each playlists}}
             {{> bubble title=name imageSrc=(get "url" (first images)) curView="local" }}
         {{/each}}
@@ -38,6 +37,28 @@
 {{#section 'script'}}
 <script type="application/javascript" id="dynamicScript">
 animateLoad();
+
+function addNoResultsMessage() {
+    const noResults = document.getElementById("noresults");
+    if (!noResults) {
+        const newHeader = document.createElement("h2");
+        const newContent = document.createTextNode("No Results Found");
+        newHeader.classList.add("text-3xl");
+        newHeader.style.position = "absolute";
+        newHeader.id = "noresults";
+        newHeader.appendChild(newContent);
+        const currentDiv = document.getElementById("right");
+        document.getElementById('right').insertAdjacentElement("afterbegin", newHeader);
+    }
+}
+
+function removeNoResultsMessage() {
+    const noResults = document.getElementById("noresults");
+    if (noResults) {
+        noResults.remove();
+    }
+}
+
 $.ajax({
     'type': 'GET',
     'url': '/api/playlists?option=4',
@@ -52,7 +73,7 @@ $.ajax({
     animateFlex("item", "right");
     pjax.refresh();
 }).fail(function(err) {
-    document.getElementById("noresults").style.display = "block";
+    addNoResultsMessage()
 });
 $.ajax({
     'type': 'GET',
@@ -64,7 +85,6 @@ var radio = "option1";
 function changeRadio(el) {
     radio = el.id;
 }
-
 
 document.getElementById('playlist-search-form').addEventListener('submit', function(event) {
     document.querySelectorAll('.placeholder').forEach(el => {
@@ -78,16 +98,17 @@ document.getElementById('playlist-search-form').addEventListener('submit', funct
             el1.remove();
         });
         filterBubbles(search, "local");
-        if($('#right').children(':visible').length == 0 || ($('#right').children(':visible').length == 1 && document.getElementById("noresults").style.display == "block")) {
-            document.getElementById("noresults").style.display = "block";
+        if($('#right').children(':visible').length == 0 || ($('#right').children(':visible').length == 1 && document.getElementById("noresults"))) {
+            addNoResultsMessage()
         }
         else {
-            document.getElementById("noresults").style.display = "none";
+            removeNoResultsMessage()
         }
+        pjax.refresh();
     }
     else {
         if (search !== "") {
-            document.getElementById("noresults").style.display = "none";
+            removeNoResultsMessage()
             var els = document.querySelectorAll('.bubble.local');
             for (var i = 0; i < els.length; i++) {
                 els[i].style.display = "none";
@@ -112,14 +133,15 @@ document.getElementById('playlist-search-form').addEventListener('submit', funct
                     InsertBubbles(userPlaylists, "global");
                     // Animation must be played after the bubbles are finished being added.
                     animateFlex("item", "right");
-                    pjax.refresh();
-                    document.getElementById("noresults").style.display = "none";
+                    removeNoResultsMessage()
                 }
                 else {
-                    document.getElementById("noresults").style.display = "block";
+                    addNoResultsMessage()
                 }
+                pjax.refresh();
             }).fail(function(err) {
-                document.getElementById("noresults").style.display = "block";
+                addNoResultsMessage()
+                pjax.refresh();
             });
         }
     }
