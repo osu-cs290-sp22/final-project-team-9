@@ -10,12 +10,15 @@ const TEST_CARTERS_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/carters-p
 const TEST_USER_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/user-playlists.json'));
 
 router.use('/api', api.router);
+router.use('/assets', express.static(path.join(__dirname, '../dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
+router.use('/assets', express.static(path.join(__dirname, '../node_modules/handlebars/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/@cdgco/brand-buttons/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/jquery/dist/'))); // Serve "/assets" from "node_modules/bootstrap"
+router.use('/assets', express.static(path.join(__dirname, '../node_modules/echarts/dist'))); // Serve "/assets" from "node_modules/echarts"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/font-awesome/'))); // Serve "/assets" from "node_modules/bootstrap"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/animate.css/'))); // Serve "/assets" from "node_modules/bootstrap"
-router.use('/assets', express.static(path.join(__dirname, '../dist/'))); // Serve "/assets" from "node_modules/bootstrap"
+router.use('/assets', express.static(path.join(__dirname, '../node_modules/pjax/'))); // Serve "/assets" from "node_modules/bootstrap"
 
 router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
@@ -24,7 +27,7 @@ router.get(['/', '/index.html'], (req, res, next) => {
     }
 
     res.render('index', {
-        playlists: TEST_FEATURED_PLAYLISTS.result.playlists,
+        playlists: TEST_GLOBAL_PLAYLISTS.result.playlists,
         navState: 1
     });
 });
@@ -36,13 +39,29 @@ router.get(['/start', '/start.html'], (req, res, next) => {
     }
 
     res.render('start', {
-        playlists: TEST_CARTERS_PLAYLISTS.result.playlists,
+        navState: 2
+    });
+});
+
+router.get(['/next', '/next.html'], (req, res, next) => {
+    if (req.session.token === undefined || req.session.token === null) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('next', {
         navState: 2
     });
 });
 
 router.get(['/about', '/about.html'], function(req, res, next) {
     res.render('about', {
+        layout: 'blank'
+    });
+})
+
+router.get('/graphdemo', function(req, res, next) {
+    res.render('graphdemo', {
         layout: 'blank'
     });
 })

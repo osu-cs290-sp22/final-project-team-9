@@ -2,23 +2,57 @@
 <html lang="en">
 
 <head>
-     {{> head}}
+    {{> head}}
     <title>SmartLists</title>
 </head>
 
 <body style="text-align: center;">
     {{> nav navState=navState}}
-    <div class="content">
+    <div class="content" id="content">
         {{{body}}}
     </div>
 
     <script src="/assets/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/pjax.min.js"></script>
+    <script src="/assets/handlebars.min.js"></script>
+    <script src="/assets/partials/bubble.js"></script>
     <script src="/assets/index.js"></script>
     <script>
-        animateFlex("item", "right");
-
+        var pjax = new Pjax({
+            elements: "a.bubble",
+            selectors: ["#right", "#left", "#dynamicScript"],
+            cacheBust: false,
+            switches: {
+                "#right": Pjax.switches.sideBySide,
+                "#left": Pjax.switches.sideBySide,
+                "#dynamicScript": Pjax.switches.outerHTML
+            },
+            switchesOptions: {
+                "#right": {
+                    classNames: {
+                        remove: "animate__animated animate__fadeOutUp",
+                        add: "animate__animated animate__fadeInUp"
+                    }
+                },
+                "#left": {
+                    classNames: {
+                        remove: "animate__animated animate__fadeOutUp",
+                        add: "animate__animated animate__fadeInUp",
+                    },
+                    callbacks: {
+                        removeElement: function(el) {
+                            el.style.marginLeft = "-" + (el.getBoundingClientRect().width/2) + "px"
+                            el.style.position = "absolute"
+                            el.style.left = "50%"
+                        },
+                    }
+                }
+            },
+        })
         $(document).ready(function() {
+            
+            // Sends search requests to the server
             $("#playlist-search-form").submit(function(event) {
                 var formData = {
                     'search': $('#playlist-search-input').val()
@@ -48,4 +82,5 @@
     </script>
 </body>
 
+{{{sections.script}}}
 </html>

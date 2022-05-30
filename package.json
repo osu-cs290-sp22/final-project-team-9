@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css",
-        "start": "npm run build && node ./express.js"
+        "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/bubble.hbs -f ./dist/partials/bubble.js",
+        "start": "npm run build && node ./server.js"
     },
     "repository": {
         "type": "git",
@@ -28,6 +28,7 @@
         "cookie-parser": "^1.4.6",
         "dotenv": "^16.0.1",
         "dream-api": "^1.0.3",
+        "echarts": "^5.3.2",
         "express": "^4.18.1",
         "express-handlebars": "^6.0.6",
         "express-openapi-validator": "^4.13.7",
@@ -36,6 +37,7 @@
         "handlebars": "^4.7.7",
         "handlebars-helpers": "^0.10.0",
         "jquery": "^3.6.0",
+        "pjax": "^0.2.8",
         "qs": "^6.10.3",
         "search-array": "^1.5.0"
     },

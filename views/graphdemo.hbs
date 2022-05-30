@@ -1,0 +1,39 @@
+<p>Testing area for rendering an ECharts graph. This page will be deleted soon. </p>
+<br>
+<br>
+
+<div id="graph" style="width: 800px;height:400px;"> </div>
+
+
+{{#section 'script'}}
+<script src="/assets/echarts.min.js"> </script>
+<script>
+    // Initialize the echarts instance based on the prepared dom
+    var myChart = echarts.init(document.getElementById('graph'));
+
+    var option = {
+      title: {
+        text: 'Playlist: Number of Songs in Genres'
+      },
+      tooltip: {},
+      legend: {
+        data: ['genres']
+      },
+      xAxis: {
+        data: ['Rock', 'Jazz', 'Pop', 'Hiphop', 'Blues', 'Classical']
+      },
+      yAxis: {},
+      series: [
+        {
+          name: 'genres',
+          type: 'bar',
+          data: [25, 20, 36, 10, 10, 20]
+        }
+      ]
+    };
+
+    // Display the chart using the configuration items and data just specified.
+    myChart.setOption(option);
+
+</script>
+{{/section}}

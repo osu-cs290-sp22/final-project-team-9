@@ -12,7 +12,13 @@
 <div id="backRight">
     <div id="right">
         {{#each playlists}}
-            {{> playlist-thumbnail title=name imageSrc=(get "url" (first images)) }}
+            {{> bubble title=name imageSrc=(get "url" (first images)) }}
         {{/each}}
     </div>
 </div>
+
+{{#section 'script'}}
+<script type="application/javascript">
+    animateFlex("item", "right");
+</script>
+{{/section}}
