@@ -31,7 +31,7 @@
 <script type="application/javascript" id="dynamicScript">
 $.ajax({
     'type': 'GET',
-    'url': '/api/playlists',
+    'url': '/api/playlists?option=4',
     'dataType': 'json'
 }).done(function(data) {
     var userPlaylists = data.result.playlists;
@@ -41,6 +41,10 @@ $.ajax({
     pjax.refresh();
 }).fail(function(err) {
     console.log('Error fetching user-playlists');
+});
+$.ajax({
+    'type': 'GET',
+    'url': '/api/featuredPlaylists/update',
 });
 </script>
 {{/section}}

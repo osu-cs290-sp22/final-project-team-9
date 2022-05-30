@@ -42,14 +42,14 @@ app.engine('hbs', exprhbs.engine({
     extname: 'hbs',
     defaultLayout: 'base',
     helpers: {
-            hbshelpers,
-            section: function (name, options) {
-                if (!this.sections) {
-                    this.sections = {};
-                }
-                this.sections[name] = options.fn(this);
-                return null;
+        hbshelpers,
+        section: function(name, options) {
+            if (!this.sections) {
+                this.sections = {};
             }
+            this.sections[name] = options.fn(this);
+            return null;
+        }
     }
 }))
 

@@ -74,6 +74,27 @@ paths:
             application/json:
               schema:
                 type: object
+  /featuredPlaylists:
+    get:
+      security: []  
+      description: Retrieve latest list of featured playlists from cache.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /featuredPlaylists/update:
+    get: 
+      description: Update featured playlist cache if out of date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
   /playlists:
     get:
       description: Retrieve all followed playlists. If option is 1, playlists returned without changes. If option is 2, only return non-made for you playlists. If option is 3, only return made for you playlists. If option is 4, return all playlists with made for you at top of results.
@@ -83,16 +104,6 @@ paths:
           required: false
           schema:
             type: number
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-  /playlists/featured:
-    get:
-      description: Retrieve list of editor's picked playlists.
       responses:
         '200':
           description: OK
