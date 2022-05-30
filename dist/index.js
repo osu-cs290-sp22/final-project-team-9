@@ -40,6 +40,55 @@ window.onload = function() {
     }
 }
 
+function animateLoad() {
+    var outerEl = document.getElementById("right");
+    var row = Math.floor(outerEl.offsetHeight / 220);
+    var col = Math.ceil(outerEl.offsetWidth / 220);
+    var numElements = (row * col);
+
+    for (var i = 0; i < numElements; i++) {
+        const element = Handlebars.templates['placeholder.hbs']();
+        document.getElementById('right').insertAdjacentHTML('beforeend', element);
+    }
+
+    var innerEls = document.getElementsByClassName("placeholder");
+
+    if (row > 1 && col > 1) {
+        // Create 2D array computed grid
+        let matrix = [...Array(row)].map(e => Array());
+        for (var i = 0; i < col; i++) {
+            for (var j = 0; j < row; j++) {
+                if (innerEls[(row * i) + (j)]) {
+                    matrix[j].push(innerEls[(row * i) + (j)]);
+                } else {
+                    matrix[j].push(null);
+                }
+            }
+        }
+        // Calculate diagonal lines from matrix
+        let diags = [...Array(row + col - 1)].map(e => Array());
+        for (let line = 1; line <= (row + col - 1); line++) {
+            let start_col = Math.max(0, line - row);
+            let count = Math.min(line, (col - start_col), row);
+
+            for (let j = 0; j < count; j++) {
+                if (matrix[Math.min(row, line) - j - 1]) {
+                    diags[line - 1].push(matrix[Math.min(row, line) - j - 1][start_col + j])
+                }
+            }
+        }
+        // Apply increasing animation delay to each subsequent diagonal line
+        for (var i = 0; i < diags.length; i++) {
+            diags[i].forEach(el => {
+                if (el != null) {
+                    el.style["-webkit-animation"] = "loadanimation " + (1000 + (500 * (i + 1))) + "ms linear infinite";
+                    el.style["animation"] = "loadanimation " + (1000 + (500 * (i + 1))) + "ms linear infinite";
+                }
+            })
+        }
+    }
+}
+
 function animateFlex(elClass, wrapper) {
     // Store elements to variables
     var innerEls = document.getElementsByClassName(elClass);
@@ -82,8 +131,8 @@ function animateFlex(elClass, wrapper) {
         for (var i = 0; i < diags.length; i++) {
             diags[i].forEach(el => {
                 if (el != null) {
-                    el.style["-webkit-animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
-                    el.style["animation"] = "animation " + (1500 * (i + 1)) + "ms linear both";
+                    el.style["-webkit-animation"] = "animation " + (1000 + (500 * (i + 1))) + "ms linear both";
+                    el.style["animation"] = "animation " + (1000 + (500 * (i + 1))) + "ms linear both";
                 }
             })
         }

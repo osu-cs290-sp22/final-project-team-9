@@ -19,11 +19,15 @@
 
 {{#section 'script'}}
 <script type="application/javascript">
+animateLoad();
 $.ajax({
     'type': 'GET',
     'url': '/api/featuredPlaylists',
     'dataType': 'json'
 }).done(function(data) {
+    document.querySelectorAll('.placeholder').forEach(el => {
+        el.remove();
+    })
     var featuredPlaylists = data.result.playlists;
     InsertBubbles(featuredPlaylists);
     // Animation must be played after the bubbles are finished being added.

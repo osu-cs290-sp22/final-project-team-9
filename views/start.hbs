@@ -36,11 +36,15 @@
 
 {{#section 'script'}}
 <script type="application/javascript" id="dynamicScript">
+animateLoad();
 $.ajax({
     'type': 'GET',
     'url': '/api/playlists?option=4',
     'dataType': 'json'
 }).done(function(data) {
+    document.querySelectorAll('.placeholder').forEach(el => {
+        el.remove();
+    })
     var userPlaylists = data.result.playlists;
     InsertBubbles(userPlaylists, "local");
     // Animation must be played after the bubbles are finished being added.

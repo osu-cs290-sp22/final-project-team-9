@@ -303,3 +303,35 @@ p {
         transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     }
 }
+
+@-webkit-keyframes loadanimation {
+    0% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
+    }
+    20% {
+        -webkit-filter: brightness(0.6);
+        filter: brightness(0.6);
+    }
+    40%,
+    100% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
+    }
+}
+
+@keyframes loadanimation {
+    0% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
+    }
+    40% {
+        -webkit-filter: brightness(0.8);
+        filter: brightness(0.6);
+    }
+    60%,
+    100% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
+    }
+}
