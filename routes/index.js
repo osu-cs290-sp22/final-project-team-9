@@ -1,13 +1,7 @@
 var express = require('express');
 const path = require('path');
-const fs = require('fs');
 const router = require('express').Router();
 const api = require('../api');
-
-const TEST_GLOBAL_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/global-playlists.json'));
-const TEST_FEATURED_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/featured-playlists.json'));
-const TEST_CARTERS_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/carters-playlists.json'));
-const TEST_USER_PLAYLISTS = JSON.parse(fs.readFileSync('./test_data/user-playlists.json'));
 
 router.use('/api', api.router);
 router.use('/assets', express.static(path.join(__dirname, '../dist/'))); // Serve "/assets" from "node_modules/bootstrap"
@@ -27,7 +21,6 @@ router.get(['/', '/index.html'], (req, res, next) => {
     }
 
     res.render('index', {
-        playlists: TEST_GLOBAL_PLAYLISTS.result.playlists,
         navState: 1
     });
 });
