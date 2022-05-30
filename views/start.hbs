@@ -78,7 +78,7 @@ document.getElementById('playlist-search-form').addEventListener('submit', funct
             el1.remove();
         });
         filterBubbles(search, "local");
-        if($('#right').children(':visible').length == 0) {
+        if($('#right').children(':visible').length == 0 || ($('#right').children(':visible').length == 1 && document.getElementById("noresults").style.display == "block")) {
             document.getElementById("noresults").style.display = "block";
         }
         else {
@@ -87,6 +87,7 @@ document.getElementById('playlist-search-form').addEventListener('submit', funct
     }
     else {
         if (search !== "") {
+            document.getElementById("noresults").style.display = "none";
             var els = document.querySelectorAll('.bubble.local');
             for (var i = 0; i < els.length; i++) {
                 els[i].style.display = "none";
