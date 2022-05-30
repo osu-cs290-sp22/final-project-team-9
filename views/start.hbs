@@ -28,6 +28,7 @@
 
 <div id="backRight">
     <div id="right">
+        <h2 class="text-3xl" style="display:none" id="noresults">No Results Found</h2>
         {{#each playlists}}
             {{> bubble title=name imageSrc=(get "url" (first images)) curView="local" }}
         {{/each}}
@@ -51,7 +52,7 @@ $.ajax({
     animateFlex("item", "right");
     pjax.refresh();
 }).fail(function(err) {
-    console.log('Error fetching user-playlists');
+    document.getElementById("noresults").style.display = "block";
 });
 $.ajax({
     'type': 'GET',
@@ -66,6 +67,9 @@ function changeRadio(el) {
 
 
 document.getElementById('playlist-search-form').addEventListener('submit', function(event) {
+    document.querySelectorAll('.placeholder').forEach(el => {
+        el.remove();
+    })
     event.preventDefault();
     var search = document.getElementById('playlist-search-input').value;
     if (radio === "option1") {
@@ -74,6 +78,12 @@ document.getElementById('playlist-search-form').addEventListener('submit', funct
             el1.remove();
         });
         filterBubbles(search, "local");
+        if($('#right').children(':visible').length == 0) {
+            document.getElementById("noresults").style.display = "block";
+        }
+        else {
+            document.getElementById("noresults").style.display = "none";
+        }
     }
     else {
         if (search !== "") {
@@ -86,18 +96,29 @@ document.getElementById('playlist-search-form').addEventListener('submit', funct
                 el1.remove();
             });
 
+            animateLoad();
+
             $.ajax({
                 'type': 'GET',
                 'url': '/api/playlists/search?query=' + search + '&public=true',
                 'dataType': 'json'
             }).done(function(data) {
+                document.querySelectorAll('.placeholder').forEach(el => {
+                    el.remove();
+                })
                 var userPlaylists = data.result.playlists;
-                InsertBubbles(userPlaylists, "global");
-                // Animation must be played after the bubbles are finished being added.
-                animateFlex("item", "right");
-                pjax.refresh();
+                if (data.result.count > 0) {
+                    InsertBubbles(userPlaylists, "global");
+                    // Animation must be played after the bubbles are finished being added.
+                    animateFlex("item", "right");
+                    pjax.refresh();
+                    document.getElementById("noresults").style.display = "none";
+                }
+                else {
+                    document.getElementById("noresults").style.display = "block";
+                }
             }).fail(function(err) {
-                console.log('Error fetching user-playlists');
+                document.getElementById("noresults").style.display = "block";
             });
         }
     }
