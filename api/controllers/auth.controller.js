@@ -95,7 +95,7 @@ exports.login = async(req, res) => {
         'client_id': process.env.CLIENT_ID,
         'response_type': 'code',
         'redirect_uri': process.env.CALLBACK_URL,
-        'scope': 'user-top-read',
+        'scope': 'user-top-read playlist-read-private playlist-read-collaborative',
         "show_dialog": false
     });
 
