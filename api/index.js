@@ -3,8 +3,11 @@ const OpenApiValidator = require('express-openapi-validator');
 const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const auth = require('./auth');
-const playlists = require('./playlists');
+const authRouter = require('./routes/auth');
+const playlistRouter = require('./routes/playlists');
+const featuredPlaylistsRouter = require('./routes/featuredPlaylists');
+const auth = require('./controllers/auth.controller');
+const db = require("./models/");
 
 const apiSpec = path.join(__dirname, 'api.yaml');
 
@@ -53,8 +56,22 @@ apiRouter.get('/', function(req, res, next) {
     });
 })
 
-apiRouter.use('/auth', auth.router);
-apiRouter.use('/playlists', playlists.router);
+db.mongoose
+    .connect(db.url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log("Connected to the database!");
+    })
+    .catch(err => {
+        console.log("Cannot connect to the database!", err);
+        process.exit();
+    });
+
+apiRouter.use('/auth', authRouter);
+apiRouter.use('/playlists', playlistRouter);
+apiRouter.use('/featuredPlaylists', featuredPlaylistsRouter);
 
 module.exports = {
     router: apiRouter,

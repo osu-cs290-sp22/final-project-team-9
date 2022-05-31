@@ -1,41 +1,8 @@
-const playlistRouter = require('express').Router();
 const axios = require('axios');
 const JsonSearch = require('search-array').default
-const refresh = require('./auth').refresh;
+const refresh = require('../controllers/auth.controller').refresh;
 
-playlistRouter.get('/featured', async function(req, res, next) {
-    refresh(req);
-    var items = [];
-    var count = 0;
-    var max = 0;
-    var url = 'https://api.spotify.com/v1/browse/featured-playlists';
-    do {
-        await axios.get(url, {
-            headers: {
-                'Authorization': 'Bearer ' + req.session.token.access_token
-            }
-        }).then(function(response) {
-            response.data.playlists.items.forEach(element => {
-                items.push(element);
-            });
-            count += 50;
-            max = response.data.total;
-            url = response.data.next;
-        });
-    } while (count <= max);
-    res.json({
-        "success": true,
-        "code": 200,
-        "errors": [],
-        "messages": [],
-        "result": {
-            "playlists": items,
-            "count": items.length
-        }
-    });
-})
-
-playlistRouter.get('/search', async function(req, res, next) {
+exports.search = async(req, res) => {
     refresh(req);
     var items = [];
     var count = 0;
@@ -87,9 +54,9 @@ playlistRouter.get('/search', async function(req, res, next) {
             });
         });
     }
-})
+}
 
-playlistRouter.get('/:id', async function(req, res, next) {
+exports.getPlaylist = async(req, res) => {
     refresh(req);
     var url = 'https://api.spotify.com/v1/playlists/' + req.params.id;
     await axios.get(url, {
@@ -105,9 +72,9 @@ playlistRouter.get('/:id', async function(req, res, next) {
             "result": response.data
         });
     });
-})
+}
 
-playlistRouter.get('/:id/metadata', async function(req, res, next) {
+exports.getPlaylistMetadata = async(req, res) => {
     refresh(req);
     var url = 'https://api.spotify.com/v1/playlists/' + req.params.id;
     await axios.get(url, {
@@ -162,9 +129,9 @@ playlistRouter.get('/:id/metadata', async function(req, res, next) {
             }
         });
     });
-})
+}
 
-playlistRouter.get('/', async function(req, res, next) {
+exports.getPlaylists = async(req, res) => {
     refresh(req);
     var items = [];
     var count = 0;
@@ -204,6 +171,7 @@ playlistRouter.get('/', async function(req, res, next) {
         });
         items = madeforyou.concat(items);
     }
+    items = [...new Set(items)];
     res.json({
         "success": true,
         "code": 200,
@@ -214,8 +182,4 @@ playlistRouter.get('/', async function(req, res, next) {
             "count": items.length
         }
     });
-})
-
-module.exports = {
-    router: playlistRouter,
-};
+}
