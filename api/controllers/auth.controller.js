@@ -74,7 +74,7 @@ exports.handleCallback = async(req, res) => {
     const config = qs.stringify({
         "grant_type": 'authorization_code',
         "code": req.query.code,
-        "redirect_uri": process.env.CALLBACK_URL,
+        "redirect_uri": req.headers.referer + 'api/auth/callback',
         "client_id": process.env.CLIENT_ID,
         'client_secret': process.env.CLIENT_SECRET,
     });
@@ -94,7 +94,7 @@ exports.login = async(req, res) => {
     const config = qs.stringify({
         'client_id': process.env.CLIENT_ID,
         'response_type': 'code',
-        'redirect_uri': process.env.CALLBACK_URL,
+        'redirect_uri': req.headers.referer + 'api/auth/callback',
         'scope': 'user-top-read playlist-read-private playlist-read-collaborative',
         "show_dialog": false
     });
