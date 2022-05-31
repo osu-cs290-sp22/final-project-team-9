@@ -62,10 +62,6 @@ body {
     width: 100%
 }
 
-.js-Pjax-remove {
-    margin-left: -width/2;
-}
-
 .footer {
     position: absolute;
     bottom: 0px;
