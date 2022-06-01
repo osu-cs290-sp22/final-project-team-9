@@ -9,8 +9,7 @@ body {
     overflow: hidden;
 }
 
-<<<<<<< Updated upstream
-=======
+
 .btn:focus,
 .btn-check:focus {
     outline: none;
@@ -44,7 +43,7 @@ body {
     background-color: #202529;
 }
 
->>>>>>> Stashed changes
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -67,10 +66,6 @@ body {
     width: 100%
 }
 
-.js-Pjax-remove {
-    margin-left: -width/2;
-}
-
 .footer {
     position: absolute;
     bottom: 0px;
@@ -84,7 +79,6 @@ body {
 }
 
 .item {
-    background: white;
     width: 200px;
     border-radius: 45% 34% 45% 34%;
     height: 200px;
@@ -134,7 +128,6 @@ body {
 }
 
 .innerItem {
-    background: white;
     border-radius: 45% 34% 45% 34%;
     transition: 0.25s linear;
     height: 102%;
@@ -157,26 +150,25 @@ body {
 }
 
 #right {
-  width: 100%;
-  bottom: 33vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(50% - 56px);
-  position: absolute;
-  color: white;
-  z-index: 1;
-  flex-wrap: wrap;
-  flex-direction: column;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  padding: 0px 25px;
-  
+    width: 100%;
+    bottom: 33vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(50% - 56px);
+    position: absolute;
+    color: white;
+    z-index: 1;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    padding: 0px 25px;
 }
 
 #right:hover {
-  overflow-x: overlay;
-  padding-bottom: 0px;
+    overflow-x: overlay;
+    padding-bottom: 0px;
 }
 
 #backRight {
@@ -332,5 +324,37 @@ p {
     100% {
         -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
         transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+}
+
+@-webkit-keyframes loadanimation {
+    0% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
+    }
+    20% {
+        -webkit-filter: brightness(0.6);
+        filter: brightness(0.6);
+    }
+    40%,
+    100% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
+    }
+}
+
+@keyframes loadanimation {
+    0% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
+    }
+    40% {
+        -webkit-filter: brightness(0.8);
+        filter: brightness(0.6);
+    }
+    60%,
+    100% {
+        -webkit-filter: brightness(1.0);
+        filter: brightness(1.0);
     }
 }

@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/bubble.hbs -f ./dist/partials/bubble.js",
+        "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/bubble.hbs -f ./dist/partials/bubble.js && handlebars ./views/partials/placeholder.hbs -f ./dist/partials/placeholder.js",
         "start": "npm run build && node ./server.js"
     },
     "repository": {
@@ -37,6 +37,7 @@
         "handlebars": "^4.7.7",
         "handlebars-helpers": "^0.10.0",
         "jquery": "^3.6.0",
+        "mongoose": "^6.3.4",
         "pjax": "^0.2.8",
         "qs": "^6.10.3",
         "search-array": "^1.5.0"

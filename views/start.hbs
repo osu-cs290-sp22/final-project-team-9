@@ -2,14 +2,21 @@
     <div id="inner">
         <h1 class="text-4xl">Let's Get Started</h1>
         <p>Search for your favorite playlist or choose from one of our recommendations to start.</p>
-        <form id="playlist-search-form">
+        <form id="playlist-search-form" action="javascript:void(0);">
             <div class="input-group" style="padding-top:3%;">
-                <input class="form-control border-end-0 border" type="text" placeholder="Search" id="playlist-search-input">
+                <input class="form-control border-end-0 border focus:ring-0" type="text" placeholder="Search" id="playlist-search-input">
                 <span class="input-group-append">
-                <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n3" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </span>
+                    <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n3" id="searchbutton" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <div class="col-12 my-3">
+                <input type="radio" class="btn-check" onclick="changeRadio(this)" name="options" id="option1" autocomplete="off" checked>
+                <label class="btn btn-secondary col-5" for="option1">Followed Playlists</label>
+
+                <input type="radio" class="btn-check" onclick="changeRadio(this)" name="options" id="option2" autocomplete="off">
+                <label class="btn btn-secondary col-5" for="option2">All Playlists</label>
             </div>
         </form>
     </div>
@@ -29,18 +36,127 @@
 
 {{#section 'script'}}
 <script type="application/javascript" id="dynamicScript">
+animateLoad();
+
+function addNoResultsMessage() {
+    const noResults = document.getElementById("noresults");
+    if (!noResults) {
+        const newHeader = document.createElement("h2");
+        const newContent = document.createTextNode("No Results Found");
+        newHeader.classList.add("text-3xl");
+        newHeader.style.position = "absolute";
+        newHeader.id = "noresults";
+        newHeader.appendChild(newContent);
+        const currentDiv = document.getElementById("right");
+        document.getElementById('right').insertAdjacentElement("afterbegin", newHeader);
+    }
+}
+
+function removeNoResultsMessage() {
+    const noResults = document.getElementById("noresults");
+    if (noResults) {
+        noResults.remove();
+    }
+}
+
+var original;
 $.ajax({
     'type': 'GET',
-    'url': '/api/playlists',
+    'url': '/api/playlists?option=4',
     'dataType': 'json'
 }).done(function(data) {
+    document.querySelectorAll('.ph').forEach(el => {
+        el.remove();
+    })
     var userPlaylists = data.result.playlists;
-    InsertBubbles(userPlaylists);
-    // Animation must be played after the bubbles are finished being added.
-    animateFlex("item", "right");
-    pjax.refresh();
+    original = userPlaylists;
+    if (userPlaylists.length > 0) {
+        InsertBubbles(userPlaylists);
+        pjax.refresh()
+        animateFlex("item", "right");
+    }
+    else {
+        addNoResultsMessage()
+    }
 }).fail(function(err) {
-    console.log('Error fetching user-playlists');
+    addNoResultsMessage()
+});
+$.ajax({
+    'type': 'GET',
+    'url': '/api/featuredPlaylists/update',
+});
+
+var radio = "option1";
+
+function changeRadio(el) {
+    radio = el.id;
+}
+
+document.getElementById('playlist-search-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var search = document.getElementById('playlist-search-input').value;
+    if (radio === "option1") {
+        removeNoResultsMessage()
+        animateLoad();
+        document.querySelectorAll('.bubble').forEach(el => {
+            el.remove();
+        });
+        document.querySelectorAll('.ph').forEach(el => {
+            el.remove();
+        })
+        if (original.length > 0) {
+            if (search == "") {     
+                InsertBubbles(original);
+                pjax.refresh()
+                animateFlex("item", "right");
+            } else {
+                var results = [];
+                for (var i = 0; i < original.length; i++) {
+                    if (original[i].name.toLowerCase().includes(search.toLowerCase()) || original[i].description.toLowerCase().includes(search.toLowerCase())) {
+                        results.push(original[i]);
+                    }
+                }
+                InsertBubbles(results);
+                if (results.length > 0) {
+                    pjax.refresh()
+                    animateFlex("item", "right");
+                } else {
+                    addNoResultsMessage()
+                }
+            }
+        } else {
+            addNoResultsMessage()
+        }
+    }
+    else {
+        if (search !== "") {
+            removeNoResultsMessage()
+            animateLoad();
+            document.querySelectorAll('.bubble').forEach(el => {
+                el.remove();
+            });
+            $.ajax({
+                'type': 'GET',
+                'url': '/api/playlists/search?query=' + search + '&public=true',
+                'dataType': 'json'
+            }).done(function(data) {
+                document.querySelectorAll('.placeholder').forEach(el => {
+                    el.remove();
+                })
+                var userPlaylists = data.result.playlists;
+                if (data.result.count > 0) {
+                    InsertBubbles(userPlaylists);
+                    pjax.refresh()
+                    animateFlex("item", "right");
+                }
+                else {
+                    addNoResultsMessage()
+                }
+            }).fail(function(err) {
+                addNoResultsMessage()
+            });
+        }
+    }
 });
 </script>
 {{/section}}
