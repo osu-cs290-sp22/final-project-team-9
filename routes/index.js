@@ -65,6 +65,12 @@ router.get('/linegraphdemo', function(req, res, next) {
     });
 })
 
+router.get('/piechartdemo', function(req, res, next) {
+    res.render('piechartdemo', {
+        layout: 'blank'
+    });
+})
+
 router.get(['/license', '/license.html'], function(req, res, next) {
     res.render('license', {
         layout: 'blank'
