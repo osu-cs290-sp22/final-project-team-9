@@ -53,8 +53,20 @@ router.get(['/about', '/about.html'], function(req, res, next) {
     });
 })
 
-router.get('/graphdemo', function(req, res, next) {
-    res.render('graphdemo', {
+router.get('/bargraphdemo', function(req, res, next) {
+    res.render('bargraphdemo', {
+        layout: 'blank'
+    });
+})
+
+router.get('/linegraphdemo', function(req, res, next) {
+    res.render('linegraphdemo', {
+        layout: 'blank'
+    });
+})
+
+router.get('/piechartdemo', function(req, res, next) {
+    res.render('piechartdemo', {
         layout: 'blank'
     });
 })

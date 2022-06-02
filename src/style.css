@@ -9,6 +9,7 @@ body {
     overflow: hidden;
 }
 
+
 .btn:focus,
 .btn-check:focus {
     outline: none;
@@ -32,6 +33,8 @@ body {
     box-shadow: none !important;
 }
 
+
+
 .btn-check:active+.btn-secondary,
 .btn-check:checked+.btn-secondary,
 .btn-secondary.active,
@@ -39,6 +42,7 @@ body {
 .show>.btn-secondary.dropdown-toggle {
     background-color: #202529;
 }
+
 
 ::-webkit-scrollbar {
     width: 8px;
