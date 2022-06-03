@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/bubble.hbs -f ./dist/partials/bubble.js && handlebars ./views/partials/placeholder.hbs -f ./dist/partials/placeholder.js",
+        "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/*.hbs -f ./dist/partials.js",
         "start": "npm run build && node ./server.js"
     },
     "repository": {
@@ -23,7 +23,8 @@
         "animate.css": "^4.1.1",
         "axios": "^0.27.2",
         "body-parser": "^1.20.0",
-        "bootstrap": "^5.1.3",
+        "bootstrap": "^5.2.0-beta1",
+        "bootstrap-select": "^1.14.0-beta3",
         "connect-mongodb-session": "^3.1.1",
         "cookie-parser": "^1.4.6",
         "dotenv": "^16.0.1",

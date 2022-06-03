@@ -120,7 +120,9 @@ exports.updateCache = async(req, res) => {
                                                 var trackList = "";
                                                 var length = (tracks.length > 100) ? 100 : tracks.length;
                                                 for (var i = 0; i < length; i++) {
-                                                    trackList += tracks[i].track.id + ",";
+                                                    if (tracks[i].track) {
+                                                        trackList += tracks[i].track.id + ",";
+                                                    }
                                                     tracks.splice(i--, 1);
                                                     length--;
                                                 }
