@@ -42,6 +42,22 @@
 <div id="backRight">
     <div id="right" class="overflow-hidden">
         <div id="graph" style="margin-left: 10%; width: 90%;height:60%"> </div>
+        <div class="row" style="margin-left: 10%;">
+            <div class="col-3">
+                <a class="btn btn-spotify-inversed" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-spotify-inversed" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-spotify-inversed" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
+            </div>
+           
+        
+        
+        </div>
+        
+
     </div>
 </div>
 
@@ -166,6 +182,14 @@ $(document).ready(function() {
             }
         }
     }
+    function downloadImage() {
+        var a = document.createElement("a"); //Create <a>
+        a.href = myChart.getDataURL({
+            pixelRatio: 2,
+        });
+        a.download = "chart.png"; //File name Here
+        a.click(); //Downloaded file
+        }
 
     pjax.refresh();
 </script>
