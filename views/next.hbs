@@ -1,17 +1,125 @@
 <div id="left">
     <div id="inner">
-        <h1 class="text-4xl">NEXT</h1>
+        <h1 class="text-4xl">Configure your first graph.</h1>
+        <p>Choose the type of graph and variables you would like to visualize.</p>
+        <form id="graph-configure-form" action="javascript:void(0);">
+            <br>
+            <h2>Graph Type</h2>
+            <div class="input-group" style="padding-top:3%;">
+                <select id="graphPicker" class="selectpicker" data-width="100%" required>
+                    <option value="bar" data-size="1">Bar</option>
+                    <option value="pie" data-size="1">Pie</option>
+                    <option value="line" data-size="2">Line</option>
+                    <option value="scatter" data-size="2">Scatter</option>
+                </select>
+            </div>
+            <br>
+            <h2>Variables</h2>
+            <div class="input-group" style="padding-top:3%;">
+                <select id="variablePicker" class="selectpicker" multiple data-max-options="1" data-width="100%" data-size="5" required>
+                    {{!-- <option value="1" data-content="<span class='badge text-bg-dark'>Popularity</span>" selected>Popularity</option> --}}
+                    {{!-- <option value="2" data-content="<span class='badge text-bg-dark'>Release Date</span>">Release Date</option> --}}
+                    <option data-unit="duration (ms)" value="duration_ms" data-content="<span class='badge text-bg-dark'>Duration</span>">Duration</option>
+                    <option data-unit="danceability score" value="danceability" selected data-content="<span class='badge text-bg-dark'>Danceability</span>">Danceability</option>
+                    <option data-unit="energy score" value="energy" data-content="<span class='badge text-bg-dark'>Energy</span>">Energy</option>
+                    <option data-unit="loudness (db)" value="loudness" data-content="<span class='badge text-bg-dark'>Loudness</span>">Loudness</option>
+                    <option data-unit="speechiness score" value="speechiness" data-content="<span class='badge text-bg-dark'>Speechiness</span>">Speechiness</option>
+                    <option data-unit="acousticness score" value="acousticness" data-content="<span class='badge text-bg-dark'>Acousticness</span>">Acousticness</option>
+                    <option data-unit="instrumentalness score" value="instrumentalness" data-content="<span class='badge text-bg-dark'>Instrumentalness</span>">Instrumentalness</option>
+                    <option data-unit="liveness score" value="liveness" data-content="<span class='badge text-bg-dark'>Liveness</span>">Liveness</option>
+                    <option data-unit="valence score" value="valence" data-content="<span class='badge text-bg-dark'>Valence</span>">Valence</option>
+                    <option data-unit="tempo (bpm)" value="tempo" data-content="<span class='badge text-bg-dark'>Tempo</span>">Tempo</option>
+                    <option data-unit="time signature (beats per bar)" value="time_signature" data-content="<span class='badge text-bg-dark'>Time Signature</span>">Time Signature</option>
+                    <option data-unit="key (pitch class)" value="key" data-content="<span class='badge text-bg-dark'>Key</span>">Key</option>
+                    <option data-unit="mode (0=minor, 1=major)" value="mode" data-content="<span class='badge text-bg-dark'>Mode</span>">Mode</option>
+                </select>
+            </div>
+            <a class="btn btn-spotify-inversed col-8" href="#" onclick="renderGraph()" style="margin-top:5%">Generate Graph</a>
+        </form>
     </div>
 </div>
 
 <div id="backRight">
-    <div id="right">
-        <p style="height: 50%;top: 50%;position: absolute;width: 100%;">Some Content Here</p>
+    <div id="right" class="overflow-hidden">
+        <div id="graph" style="width: 800px;height:400px"> </div>
     </div>
 </div>
 
 {{#section 'script'}}
 <script type="application/javascript" id="dynamicScript">
+var xhr = new XMLHttpRequest();
+var myChart;
+$.getJSON('/assets/chalk.project.json', function(themeJSON) {
+    echarts.registerTheme('chalk', themeJSON);
+    myChart = echarts.init(document.getElementById('graph'), themeJSON['theme']);
+});
+
+var jsonData;
+$(document).ready(function() {
+        $.ajax({
+            'type': 'GET',
+            'url': '/api/playlists/' + findGetParameter('id') + '/metadata',
+            'dataType': 'json'
+        }).done(function(data) {
+            jsonData = data.result;
+            barGraph(jsonData, 'danceability', 'danceability score');
+            
+        });
+    });
+
+
+    $('#left').ready(function() {
+        $('#graphPicker').selectpicker();
+        $('#variablePicker').selectpicker({
+                multipleSeparator: ' '
+            });
+            
+    });
+    $('#graphPicker').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+        $('#variablePicker').selectpicker('deselectAll');
+        var val = $(this).val();
+        if (val == "bar") {
+            $('#variablePicker').selectpicker('destroy');
+            $('#variablePicker').selectpicker({
+                maxOptions: 1,
+                multipleSeparator: ' '
+            });
+        } else if (val == "pie") {
+            $('#variablePicker').selectpicker('destroy');
+            $('#variablePicker').selectpicker({
+                maxOptions: 1,
+                multipleSeparator: ' '
+            });
+        } else if (val == "line") {
+            $('#variablePicker').selectpicker('destroy');
+            $('#variablePicker').selectpicker({
+                maxOptions: 2,
+                multipleSeparator: ' '
+            });
+        } else if (val == "scatter") {
+            $('#variablePicker').selectpicker('destroy');
+            $('#variablePicker').selectpicker({
+                maxOptions: 2,
+                multipleSeparator: ' '
+            });
+        }
+    });
+
+    function renderGraph() {
+        var graphType = $('#graphPicker').val();
+        var variables = $('#variablePicker').val();
+        var unit = $('#variablePicker').find(':selected').data('unit')
+        if (graphType == "bar") {
+            barGraph(jsonData, variables[0], unit);
+        } else if (graphType == "pie") {
+            pieGraph(jsonData, variables[0]);
+        } else if (graphType == "line") {
+            lineGraph(jsonData, variables[0], variables[1]);
+        } else if (graphType == "scatter") {
+            scatterPlot(jsonData, variables[0], variables[1]);
+        }
+    }
+
     pjax.refresh();
 </script>
 {{/section}}

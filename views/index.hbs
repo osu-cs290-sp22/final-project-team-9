@@ -19,6 +19,14 @@
 
 {{#section 'script'}}
 <script type="application/javascript">
+var scrollContainer = document.getElementById('right');
+        document.body.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+            scrollContainer.scrollLeft += evt.deltaX;
+        }, {
+            passive: false
+        });
 animateLoad();
 $.ajax({
     'type': 'GET',
