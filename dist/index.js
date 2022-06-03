@@ -181,3 +181,9 @@ function findGetParameter(parameterName) {
         });
     return result;
 }
+
+function scrollHandler(evt) {
+    evt.preventDefault();
+    scrollContainer.scrollLeft += evt.deltaY;
+    scrollContainer.scrollLeft += evt.deltaX;
+};

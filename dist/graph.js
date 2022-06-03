@@ -5,7 +5,9 @@ function scatterPlot(data, var1, var2) {
     }
 
     option = {
-        darkMode: true,
+        grid: {
+            containLabel: true,
+        },
         title: {
             text: var1 + ' vs ' + var2,
             left: '10%',
@@ -100,7 +102,9 @@ function barGraph(data, var1, unit) {
     }
 
     var option = {
-        darkMode: true,
+        grid: {
+            containLabel: true,
+        },
         title: {
             text: var1,
             left: '10%',
@@ -135,7 +139,7 @@ function barGraph(data, var1, unit) {
                 color: '#fff'
             },
             axisLabel: {
-                color: '#fff'
+                color: '#fff',
             }
         },
         series: [{
