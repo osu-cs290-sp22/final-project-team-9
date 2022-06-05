@@ -160,3 +160,76 @@ function barGraph(data, var1, unit) {
     // Display the chart using the configuration items and data just specified.
     myChart.setOption(option, true);
 }
+
+function scatter3d(data, var1, var2, var3) {
+    var dataArr = [
+        [var1, var2, var3]
+    ];
+    for (var i = 0; i < data.metadata.length; i++) {
+        dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"]]);
+    }
+    var option = {
+        grid3D: {},
+        xAxis3D: {
+            name: var1,
+            nameLocation: 'middle',
+            nameGap: 30,
+            nameTextStyle: {
+                color: '#fff'
+            },
+            axisLabel: {
+                color: '#fff',
+            }
+        },
+        yAxis3D: {
+            name: var2,
+            nameLocation: 'middle',
+            nameGap: 30,
+            nameTextStyle: {
+                color: '#fff'
+            },
+            axisLabel: {
+                color: '#fff',
+            }
+        },
+        zAxis3D: {
+            name: var3,
+            nameLocation: 'middle',
+            nameGap: 30,
+            nameTextStyle: {
+                color: '#fff'
+            },
+            axisLabel: {
+                color: '#fff',
+            }
+        },
+        dataset: {
+            dimensions: [
+                var1, var2, var3, 'name'
+            ],
+            source: dataArr
+        },
+        series: [{
+            type: 'scatter3D',
+            encode: {
+                x: var1,
+                y: var2,
+                z: var3,
+            },
+            emphasis: {
+                focus: 'series',
+                label: {
+                    show: true,
+                    formatter: function(param) {
+                        return param.data[3];
+                    },
+                    position: 'top'
+                }
+            },
+        }]
+    };
+    myChart.setOption(option, true);
+
+
+
+}
