@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/auth');
 const playlistRouter = require('./routes/playlists');
 const featuredPlaylistsRouter = require('./routes/featuredPlaylists');
+const playbackRouter = require('./routes/playback');
 const auth = require('./controllers/auth.controller');
 const db = require("./models/");
 
@@ -72,6 +73,7 @@ db.mongoose
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/playlists', playlistRouter);
 apiRouter.use('/featuredPlaylists', featuredPlaylistsRouter);
+apiRouter.use('/playback', playbackRouter);
 
 module.exports = {
     router: apiRouter,

@@ -5,7 +5,7 @@ const BASE_ACC_URL = "https://accounts.spotify.com";
 const AUTH_URL = BASE_ACC_URL + "/authorize";
 const AUTH_TOKEN_URL = BASE_ACC_URL + "/api/token"
 
-exports.refresh = async(req, success = null, fail = null) => {
+var refresh = exports.refresh = async(req, success = null, fail = null) => {
     if (req.session.token !== undefined && req.session.token !== null && req.session.token.refresh_token !== undefined) {
         const token = req.session.token.refresh_token;
         const config = qs.stringify({
@@ -95,7 +95,7 @@ exports.login = async(req, res) => {
         'client_id': process.env.CLIENT_ID,
         'response_type': 'code',
         'redirect_uri': req.headers.referer + 'api/auth/callback',
-        'scope': 'user-top-read playlist-read-private playlist-read-collaborative',
+        'scope': 'user-top-read playlist-read-private playlist-read-collaborative streaming user-read-email user-read-private',
         "show_dialog": false
     });
 

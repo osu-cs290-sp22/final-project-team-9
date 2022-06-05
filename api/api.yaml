@@ -95,6 +95,43 @@ paths:
             application/json:
               schema:
                 type: object
+  /playback/play:
+    get:
+      description: Play song
+      parameters:
+        - name: device_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: uri
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /playback/pause:
+    get:
+      description: Pause song
+      parameters:
+        - name: device_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
   /playlists:
     get:
       description: Retrieve all followed playlists. If option is 1, playlists returned without changes. If option is 2, only return non-made for you playlists. If option is 3, only return made for you playlists. If option is 4, return all playlists with made for you at top of results.

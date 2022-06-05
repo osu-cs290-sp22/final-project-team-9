@@ -16,7 +16,7 @@ function scatterPlot(data, variables) {
         var dataArr = [];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.tracks[i].track["name"]]);
+            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.tracks[i].track["name"], data.tracks[i].track["uri"]]);
         }
 
         // Create the configuration object for the chart
@@ -122,7 +122,7 @@ function barGraph(data, variables, unit) {
         var names = [];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push(data.metadata[i][var1]);
+            dataArr.push([data.tracks[i].track["name"], data.metadata[i][var1], data.tracks[i].track["uri"]]);
             names.push(data.tracks[i].track["name"]);
         }
 
@@ -144,11 +144,10 @@ function barGraph(data, variables, unit) {
                 top: '3%',
             },
             xAxis: {
-                name: "songs",
+                name: 'name',
                 nameLocation: 'middle',
                 nameGap: 30,
                 type: 'category',
-                data: names,
                 nameTextStyle: {
                     color: '#fff'
                 },
@@ -168,8 +167,10 @@ function barGraph(data, variables, unit) {
                     color: '#fff',
                 }
             },
+            dataset: {
+                source: dataArr
+            },
             series: [{
-                data: dataArr,
                 type: 'bar',
                 // Display track name on hover
                 emphasis: {
@@ -177,7 +178,7 @@ function barGraph(data, variables, unit) {
                     label: {
                         show: true,
                         formatter: function(param) {
-                            return param.name;
+                            return param.data[0];
                         },
                         position: 'top'
                     }
@@ -207,7 +208,7 @@ function scatter3d(data, variables) {
         ];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"]]);
+            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track["uri"]]);
         }
         // Create the configuration object for the chart
         var option = {

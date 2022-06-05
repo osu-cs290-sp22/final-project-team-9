@@ -56,6 +56,12 @@ router.get(['/about', '/about.html'], function(req, res, next) {
     });
 })
 
+router.get(['/playback', '/playback.html'], function(req, res, next) {
+    res.render('playback', {
+        layout: 'blank'
+    });
+})
+
 router.get(['/learn', '/learn.html'], function(req, res, next) {
     res.render('learn', {
         layout: 'blank'
