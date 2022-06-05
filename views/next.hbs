@@ -7,9 +7,10 @@
             <h2>Graph Type</h2>
             <div class="input-group" style="padding-top:3%;">
                 <select id="graphPicker" class="selectpicker" data-width="100%" required>
+                    <!-- Graph Options Go Here -->
                     <option value="bar" data-size="1">Bar</option>
-                    <option value="pie" data-size="1">Pie</option>
-                    <option value="line" data-size="2">Line</option>
+                    {{!-- <option value="pie" data-size="1">Pie</option> --}}
+                    {{!-- <option value="line" data-size="2">Line</option> --}}
                     <option value="scatter" data-size="2">2D Scatter</option>
                     <option value="scatter3d" data-size="3">3D Scatter</option>
                 </select>
@@ -87,7 +88,7 @@ $(document).ready(function() {
             'dataType': 'json'
         }).done(function(data) {
             jsonData = data.result;
-            barGraph(jsonData, 'danceability', 'danceability score');
+            barGraph(jsonData, ['danceability'], 'danceability score');
             
         });
         window.onresize = function() {
@@ -105,94 +106,46 @@ $(document).ready(function() {
     });
     $('#graphPicker').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
         $('#variablePicker').selectpicker('deselectAll');
+        $('#variablePicker').selectpicker('destroy');
         var val = $(this).val();
-        if (val == "bar") {
-            $('#variablePicker').selectpicker('destroy');
-            $('#variablePicker').selectpicker({
-                maxOptions: 1,
-                multipleSeparator: ' '
-            });
-        } else if (val == "pie") {
-            $('#variablePicker').selectpicker('destroy');
-            $('#variablePicker').selectpicker({
-                maxOptions: 1,
-                multipleSeparator: ' '
-            });
-        } else if (val == "line") {
-            $('#variablePicker').selectpicker('destroy');
-            $('#variablePicker').selectpicker({
-                maxOptions: 2,
-                multipleSeparator: ' '
-            });
-        } else if (val == "scatter") {
-            $('#variablePicker').selectpicker('destroy');
-            $('#variablePicker').selectpicker({
-                maxOptions: 2,
-                multipleSeparator: ' '
-            });
-        } else if (val == "scatter3d") {
-            $('#variablePicker').selectpicker('destroy');
-            $('#variablePicker').selectpicker({
-                maxOptions: 3,
-                multipleSeparator: ' '
-            });
+        var optionCount = 1;
+        // Set the max number of variables per graph here
+        switch(val) {
+            case "bar":
+                optionCount = 1;
+                break;
+            case "scatter":
+                optionCount = 2;
+                break;
+            case "scatter3d":
+                optionCount = 3;
+                break;
+            default:
+                break;
         }
+        $('#variablePicker').selectpicker({
+            maxOptions: optionCount,
+            multipleSeparator: ' '
+        });
     });
 
     function renderGraph() {
         var graphType = $('#graphPicker').val();
         var variables = $('#variablePicker').val();
-        var unit = $('#variablePicker').find(':selected').data('unit')
-        if (graphType == "bar") {
-            if (variables.length == 1) {
-                barGraph(jsonData, variables[0], unit);
-            } else {
-                const errorToast = document.getElementById('liveToast');
-                var toastText = document.getElementById('toast-msg-text');
-                toastText.innerHTML = "Please select one variable.";
-                const toast =  new bootstrap.Toast(errorToast);
-                toast.show();
-            }
-        } else if (graphType == "pie") {
-            if (variables.length == 1) {
-                pieGraph(jsonData, variables[0], unit);
-            } else {
-                const errorToast = document.getElementById('liveToast');
-                var toastText = document.getElementById('toast-msg-text');
-                toastText.innerHTML = "Please select one variable.";
-                const toast =  new bootstrap.Toast(errorToast);
-                toast.show();
-            }
-        } else if (graphType == "line") {
-            if (variables.length == 2) {
-                lineGraph(jsonData, variables[0], variables[1], unit);
-            } else {
-                const errorToast = document.getElementById('liveToast');
-                var toastText = document.getElementById('toast-msg-text');
-                toastText.innerHTML = "Please select two variables.";
-                const toast =  new bootstrap.Toast(errorToast);
-                toast.show();
-            }
-        } else if (graphType == "scatter") {
-            if (variables.length == 2) {
-                scatterPlot(jsonData, variables[0], variables[1]);
-            } else {
-                const errorToast = document.getElementById('liveToast');
-                var toastText = document.getElementById('toast-msg-text');
-                toastText.innerHTML = "Please select two variables.";
-                const toast =  new bootstrap.Toast(errorToast);
-                toast.show();
-            }
-        } else if (graphType == "scatter3d") {
-            if (variables.length == 3) {
-                scatter3d(jsonData, variables[0], variables[1], variables[2]);
-            } else {
-                const errorToast = document.getElementById('liveToast');
-                var toastText = document.getElementById('toast-msg-text');
-                toastText.innerHTML = "Please select three variables.";
-                const toast =  new bootstrap.Toast(errorToast);
-                toast.show();
-            }
+        var unit = $('#variablePicker').find(':selected').data('unit');
+        // Call graph rendering function here
+        switch(graphType) {
+            case "bar":
+                barGraph(jsonData, variables, unit);
+                break;
+            case "scatter":
+                scatterPlot(jsonData, variables);
+                break;
+            case "scatter3d":
+                scatter3d(jsonData, variables);
+                break;
+            default:
+                break;
         }
     }
     function downloadImage() {
