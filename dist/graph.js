@@ -16,11 +16,21 @@ function scatterPlot(data, variables) {
         var dataArr = [];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.tracks[i].track["name"], data.tracks[i].track["uri"]]);
+            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
         }
 
         // Create the configuration object for the chart
         option = {
+            tooltip: {
+                formatter: (param) => {
+                    return `
+                        track: ${param.data[2]}<br />
+                        artist: ${param.data[3]}<br />
+                        ${var1}: ${param.data[0]}<br />
+                        ${var2}: ${param.data[1]}
+                        `;
+                },
+            },
             grid: {
                 containLabel: true,
             },
@@ -122,12 +132,21 @@ function barGraph(data, variables, unit) {
         var names = [];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.tracks[i].track["name"], data.metadata[i][var1], data.tracks[i].track["uri"]]);
+            dataArr.push([data.tracks[i].track["name"], data.metadata[i][var1], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
             names.push(data.tracks[i].track["name"]);
         }
 
         // Create the configuration object for the chart
         var option = {
+            tooltip: {
+                formatter: (param) => {
+                    return `
+                        track: ${param.data[0]}<br />
+                        artist: ${param.data[2]}<br />
+                        ${var1}: ${param.data[1]}<br />
+                        `;
+                },
+            },
             grid: {
                 containLabel: true,
             },
@@ -208,10 +227,21 @@ function scatter3d(data, variables) {
         ];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track["uri"]]);
+            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
         }
         // Create the configuration object for the chart
         var option = {
+            tooltip: {
+                formatter: (param) => {
+                    return `
+                        track: ${param.data[3]}<br />
+                        artist: ${param.data[4]}<br />
+                        ${var1}: ${param.data[0]}<br />
+                        ${var2}: ${param.data[1]}<br />
+                        ${var3}: ${param.data[2]}
+                        `;
+                },
+            },
             grid3D: {},
             xAxis3D: {
                 name: var1,
@@ -274,6 +304,139 @@ function scatter3d(data, variables) {
         };
         // Display the chart using the configuration items and data just specified.
         myChart.setOption(option, true);
+    } else {
+        // If the user has selected the wrong number of variables, display an error message
+        errMsg("three");
+    }
+}
+
+function bar3d(data, variables) {
+    // Check if the user has selected the correct number of variables  
+    if (variables.length == 3) {
+        // Get the variables from array
+        var var1 = variables[0],
+            var2 = variables[1],
+            var3 = variables[2];
+
+        // Manually set first array item to be axis labels
+        var dataArr = [];
+        // Pull corresponding data from the metadata and tracks arrays based on the variables
+        for (var i = 0; i < data.metadata.length; i++) {
+            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+        }
+        // Create the configuration object for the chart
+        var option = {
+            tooltip: {
+                formatter: (param) => {
+                    return `
+                        track: ${param.data[3]}<br />
+                        artist: ${param.data[4]}<br />
+                        ${var1}: ${param.data[0]}<br />
+                        ${var2}: ${param.data[1]}<br />
+                        ${var3}: ${param.data[2]}
+                        `;
+                },
+            },
+            grid3D: {},
+            visualMap: {
+                type: 'continuous',
+                max: 1,
+                min: 0,
+                precision: 2,
+                show: false,
+                inRange: {
+                    color: [
+                        '#313695',
+                        '#4575b4',
+                        '#74add1',
+                        '#abd9e9',
+                        '#e0f3f8',
+                        '#ffffbf',
+                        '#fee090',
+                        '#fdae61',
+                        '#f46d43',
+                        '#d73027',
+                        '#a50026'
+                    ]
+                }
+            },
+            xAxis3D: {
+                axisPointer: {
+                    show: false
+                },
+                name: var1,
+                nameLocation: 'middle',
+                nameGap: 30,
+                nameTextStyle: {
+                    color: '#fff'
+                },
+                axisLabel: {
+                    color: '#fff',
+                },
+                type: 'value'
+            },
+            yAxis3D: {
+                axisPointer: {
+                    show: false
+                },
+                name: var2,
+                nameLocation: 'middle',
+                nameGap: 30,
+                nameTextStyle: {
+                    color: '#fff'
+                },
+                axisLabel: {
+                    color: '#fff',
+                },
+                type: 'value'
+            },
+            zAxis3D: {
+                axisPointer: {
+                    show: false
+                },
+                name: var3,
+                nameLocation: 'middle',
+                nameGap: 30,
+                nameTextStyle: {
+                    color: '#fff'
+                },
+                axisLabel: {
+                    color: '#fff',
+                },
+                type: 'value'
+            },
+            dataset: {
+                dimensions: [
+                    var1, var2, var3
+                ],
+                source: dataArr
+            },
+            series: [{
+                type: 'bar3D',
+                shading: 'color',
+                encode: {
+                    x: var1,
+                    y: var2,
+                    z: var3,
+                },
+                itemStyle: {
+                    opacity: 0.7
+                },
+                // Display track name on hover
+                emphasis: {
+                    focus: 'series',
+                    label: {
+                        show: true,
+                        formatter: function(param) {
+                            return param.data[3];
+                        },
+                        position: 'top'
+                    }
+                },
+            }]
+        };
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option, true, false, true);
     } else {
         // If the user has selected the wrong number of variables, display an error message
         errMsg("three");
