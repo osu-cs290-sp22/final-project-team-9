@@ -95,20 +95,22 @@
 document.body.removeEventListener("wheel", scrollHandler, { passive: false });
 var xhr = new XMLHttpRequest();
 var myChart, curType = "bar", curVars = ['danceability'];
+var playerId;
 $.getJSON('/assets/chalk.project.json', function(themeJSON) {
     echarts.registerTheme('chalk', themeJSON);
     myChart = echarts.init(document.getElementById('graph'), themeJSON['theme']);
     myChart.on('click', 'series', function (e) {
         var track_uri = e.data[e.data.length - 1];
-        $.ajax({
-            'type': 'GET',
-            'url': '/api/playback/play?device_id=' + playerId + '&uri=' + encodeURIComponent(track_uri),
-            'dataType': 'json'
-        })
+        if (playerId != null) {
+            $.ajax({
+                'type': 'GET',
+                'url': '/api/playback/play?device_id=' + playerId + '&uri=' + encodeURIComponent(track_uri),
+                'dataType': 'json'
+            })
+        }
     });
 });
 
-var playerId;
 window.onSpotifyWebPlaybackSDKReady = () => {
     $.ajax({
         'type': 'GET',
