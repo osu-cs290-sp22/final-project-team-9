@@ -31,7 +31,7 @@ $.ajax({
         el.remove();
     })
     var featuredPlaylists = data.result.playlists;
-    InsertBubbles(featuredPlaylists);
+    InsertBubbles(featuredPlaylists, "/demo?id=");
     // Animation must be played after the bubbles are finished being added.
     animateFlex("item", "right");
     pjax.refresh();

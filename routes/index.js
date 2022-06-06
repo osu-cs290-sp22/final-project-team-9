@@ -50,6 +50,10 @@ router.get(['/next', '/next.html'], (req, res, next) => {
     });
 });
 
+router.get(['/demo', '/demo.html'], (req, res, next) => {
+    res.render('demo');
+});
+
 router.get(['/about', '/about.html'], function(req, res, next) {
     res.render('about', {
         layout: 'blank'

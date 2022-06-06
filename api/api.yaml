@@ -221,6 +221,17 @@ paths:
             application/json:
               schema:
                 type: object
+  /playlists/public/{id}:
+    get:
+      security: []  
+      description: Retrieve public playlist from cache
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
 
 components:
   securitySchemes:

@@ -16,7 +16,9 @@ function scatterPlot(data, variables) {
         var dataArr = [];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+            if (data.tracks[i].track) {
+                dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+            }
         }
 
         // Create the configuration object for the chart
@@ -156,8 +158,10 @@ function barGraph(data, variables) {
         var names = [];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.tracks[i].track["name"], data.metadata[i][var1], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
-            names.push(data.tracks[i].track["name"]);
+            if (data.tracks[i].track) {
+                dataArr.push([data.tracks[i].track["name"], data.metadata[i][var1], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+                names.push(data.tracks[i].track["name"]);
+            }
         }
 
         // Create the configuration object for the chart
@@ -251,7 +255,9 @@ function scatter3d(data, variables) {
         ];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+            if (data.tracks[i].track) {
+                dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+            }
         }
         // Create the configuration object for the chart
         var option = {
@@ -346,7 +352,9 @@ function bar3d(data, variables) {
         var dataArr = [];
         // Pull corresponding data from the metadata and tracks arrays based on the variables
         for (var i = 0; i < data.metadata.length; i++) {
-            dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+            if (data.tracks[i].track) {
+                dataArr.push([data.metadata[i][var1], data.metadata[i][var2], data.metadata[i][var3], data.tracks[i].track["name"], data.tracks[i].track.artists[0]["name"], data.tracks[i].track["uri"]]);
+            }
         }
         // Create the configuration object for the chart
         var option = {

@@ -329,7 +329,6 @@ exports.share = async(req, res) => {
 };
 
 exports.retrieveSnapshot = async(req, res) => {
-    refresh(req);
     Share.findOne({ _id: req.params.id }, async function(err, share) {
         if (err || !share) {
             return res.json({
@@ -366,4 +365,25 @@ exports.retrieveSnapshot = async(req, res) => {
             });
         }
     })
+};
+exports.retrievePublic = async(req, res) => {
+    Playlists.findOne({ id: req.params.id }, async function(err, playlist) {
+        if (err || !playlist) {
+            return res.json({
+                "success": false,
+                "code": 500,
+                "errors": [],
+                "messages": [],
+                "result": null
+            });
+        } else {
+            return res.json({
+                "success": true,
+                "code": 200,
+                "errors": [],
+                "messages": [],
+                "result": playlist
+            });
+        }
+    });
 };
