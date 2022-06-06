@@ -18,7 +18,9 @@ exports.play = async(req, res) => {
             "messages": [],
             "result": response.data
         })
-    });
+    }).catch(function(error) {
+        console.log(error);
+    });;
 }
 
 exports.pause = async(req, res) => {
@@ -36,5 +38,7 @@ exports.pause = async(req, res) => {
             "messages": [],
             "result": response.data
         })
-    });
+    }).catch(function(error) {
+        console.log(error);
+    });;
 }

@@ -51,23 +51,20 @@
 <div id="backRight">
     <div id="right" class="overflow-hidden">
         <div class="toast-container position-fixed end-0 p-3" style="z-index: 11; top:56px;">
-                <div id="liveToast" class="toast hide text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true" style="margin-bottom: 10px">
-                        <div class="toast-body text-center" id="toast-msg-text">
-                        
-                        </div>
-                </div>
-            <div id="liveToast2" class="toast hide " style="margin-bottom: 10px" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" data-bs-animation="false">
-                    <div class="toast-header">
-                        <img style="height: 15px;" src="https://cdn-icons-png.flaticon.com/512/174/174872.png" class="rounded me-2" alt="Spotify">
-                        <strong class="me-auto">Spotify</strong>
-                        <a href="#" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></a>
-                    </div>
-                    <div class="toast-body" style="color:black">
-                        Now playing: <span id="toast-msg-text2"></span>
-                    </div>
+            <div id="liveToast" class="toast hide text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true" style="margin-bottom: 10px">
+                <div class="toast-body text-center" id="toast-msg-text"></div>
             </div>
-    </div>
-
+            <div id="liveToast2" class="toast hide " style="margin-bottom: 10px" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" data-bs-animation="false">
+                <div class="toast-header">
+                    <img style="height: 15px;" src="https://cdn-icons-png.flaticon.com/512/174/174872.png" class="rounded me-2" alt="Spotify">
+                    <strong class="me-auto">Spotify</strong>
+                    <a href="#" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></a>
+                </div>
+                <div class="toast-body" style="color:black">
+                    Now playing: <span id="toast-msg-text2"></span>
+                </div>
+            </div>
+        </div>
         <div id="graph" style="margin-left: 10%; width: 90%;height:60%"> </div>
         <div class="row" style="margin-left: 10%;">
             <div class="col-3">
@@ -81,14 +78,13 @@
             </div>
         </div>
         <br>
-        <div id="shareContainer" class="row" style="margin-left: 10%; width: 60%; display:none;">
+        <div id="shareContainer" class="row" style="margin-left: 10%; width: 60%; opacity: 0">
             <div class="input-group mb-3 col-12">
-                    <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
-                    <button class="btn btn-secondary" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
-                </div>
-                </div>  
+                <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
+                <button class="btn btn-secondary" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
+            </div>
         </div>  
-    </div>
+    </div>  
 </div>
 
 {{#section 'script'}}
@@ -97,7 +93,6 @@
 <script type="application/javascript" id="dynamicScript">
 
 document.body.removeEventListener("wheel", scrollHandler, { passive: false });
-
 var xhr = new XMLHttpRequest();
 var myChart, curType = "bar", curVars = ['danceability'];
 $.getJSON('/assets/chalk.project.json', function(themeJSON) {
@@ -286,8 +281,8 @@ $(document).ready(function() {
                 }),
                 contentType: "application/json;charset=utf-8",
                 success: function(data) {
-                    $('#shareContainer').show();
                     $('#shareInput').val(data.result);
+                    document.getElementById("shareContainer").style.opacity = 1;
                 }
             });
     }

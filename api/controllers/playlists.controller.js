@@ -58,6 +58,8 @@ exports.search = async(req, res) => {
                 count += 50;
                 max = response.data.total;
                 url = response.data.next;
+            }).catch(function(error) {
+                console.log(error);
             });
         } while (count <= max);
         const searcher = new JsonSearch(items)
@@ -89,6 +91,8 @@ exports.search = async(req, res) => {
                     "count": response.data.playlists.items.length
                 }
             });
+        }).catch(function(error) {
+            console.log(error);
         });
     }
 }
@@ -108,6 +112,8 @@ exports.getPlaylist = async(req, res) => {
             "messages": [],
             "result": response.data
         });
+    }).catch(function(error) {
+        console.log(error);
     });
 }
 
@@ -152,6 +158,8 @@ exports.getPlaylistMetadata = async(req, res) => {
                 }
             }).then(function(response) {
                 metadata = metadata.concat(response.data.audio_features);
+            }).catch(function(error) {
+                console.log(error);
             });
         } while (tracks.length > 0);
         res.json({
@@ -165,6 +173,8 @@ exports.getPlaylistMetadata = async(req, res) => {
                 "count": total
             }
         });
+    }).catch(function(error) {
+        console.log(error);
     });
 }
 
@@ -186,6 +196,8 @@ exports.getPlaylists = async(req, res) => {
             count += 50;
             max = response.data.total;
             url = response.data.next;
+        }).catch(function(error) {
+            console.log(error);
         });
     } while (count <= max);
 
@@ -243,6 +255,8 @@ exports.share = async(req, res) => {
                         tracks.push(element);
                     });
                     count += 100;
+                }).catch(function(error) {
+                    console.log(error);
                 });
             } while (count <= total);
         }
@@ -262,6 +276,8 @@ exports.share = async(req, res) => {
                 }
             }).then(function(response) {
                 metadata = metadata.concat(response.data.audio_features);
+            }).catch(function(error) {
+                console.log(error);
             });
         } while (tracks.length > 0);
         var errCount = 0;
@@ -307,6 +323,8 @@ exports.share = async(req, res) => {
 
             });
         }
+    }).catch(function(error) {
+        console.log(error);
     });
 };
 
