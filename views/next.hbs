@@ -91,8 +91,6 @@
 </div>
 
 {{#section 'script'}}
-<script src="https://sdk.scdn.co/spotify-player.js"></script>
-<script src="/assets/echarts-gl.min.js"></script>
 <script type="application/javascript" id="dynamicScript">
 
 document.body.removeEventListener("wheel", scrollHandler, { passive: false });
@@ -190,6 +188,10 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
 var jsonData;
 $(document).ready(function() {
+    var script = document.createElement("script");
+    script.src = "https://sdk.scdn.co/spotify-player.js"; 
+   
+    document.body.appendChild(script); 
         $.ajax({
             'type': 'GET',
             'url': '/api/playlists/' + findGetParameter('id') + '/metadata',
