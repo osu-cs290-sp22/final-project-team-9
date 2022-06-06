@@ -123,7 +123,31 @@ function scatterPlot(data, variables) {
 
 }
 
-function barGraph(data, variables, unit) {
+function barGraph(data, variables) {
+
+    switch (variables[0]) {
+        case "duration_ms":
+            var unit = "duration (ms)";
+            break;
+        case "loudness":
+            var unit = "loudness (dB)";
+            break;
+        case "tempo":
+            var unit = "tempo (bpm)";
+            break;
+        case "time_signature":
+            var unit = "time signature (beats per bar)";
+            break;
+        case "key":
+            var unit = "key (pitch class)";
+            break;
+        case "mode":
+            var unit = "mode (0=minor, 1=major)";
+            break;
+        default:
+            var unit = variables[0] + " score";
+            break;
+    }
     // Check if the user has selected the correct number of variables  
     if (variables.length == 1) {
         // Get the variables from array
