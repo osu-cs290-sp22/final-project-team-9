@@ -20,13 +20,7 @@
 {{#section 'script'}}
 <script type="application/javascript">
 var scrollContainer = document.getElementById('right');
-        document.body.addEventListener("wheel", (evt) => {
-            evt.preventDefault();
-            scrollContainer.scrollLeft += evt.deltaY;
-            scrollContainer.scrollLeft += evt.deltaX;
-        }, {
-            passive: false
-        });
+document.body.addEventListener("wheel", scrollHandler, { passive: false });
 animateLoad();
 $.ajax({
     'type': 'GET',
@@ -37,7 +31,7 @@ $.ajax({
         el.remove();
     })
     var featuredPlaylists = data.result.playlists;
-    InsertBubbles(featuredPlaylists);
+    InsertBubbles(featuredPlaylists, "/demo?id=");
     // Animation must be played after the bubbles are finished being added.
     animateFlex("item", "right");
     pjax.refresh();

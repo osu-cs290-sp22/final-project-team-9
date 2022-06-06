@@ -5,7 +5,7 @@ const BASE_ACC_URL = "https://accounts.spotify.com";
 const AUTH_URL = BASE_ACC_URL + "/authorize";
 const AUTH_TOKEN_URL = BASE_ACC_URL + "/api/token"
 
-exports.refresh = async(req, success = null, fail = null) => {
+var refresh = exports.refresh = async(req, success = null, fail = null) => {
     if (req.session.token !== undefined && req.session.token !== null && req.session.token.refresh_token !== undefined) {
         const token = req.session.token.refresh_token;
         const config = qs.stringify({
@@ -15,7 +15,9 @@ exports.refresh = async(req, success = null, fail = null) => {
             'client_secret': process.env.CLIENT_SECRET,
         });
 
-        var newToken = await axios.post(AUTH_TOKEN_URL, config);
+        var newToken = await axios.post(AUTH_TOKEN_URL, config).catch(function(error) {
+            console.log(error);
+        });
         if (newToken.data !== undefined && newToken.data.access_token !== undefined) {
             req.session.token = newToken.data;
             req.session.token.refresh_token = token;
@@ -74,12 +76,14 @@ exports.handleCallback = async(req, res) => {
     const config = qs.stringify({
         "grant_type": 'authorization_code',
         "code": req.query.code,
-        "redirect_uri": req.headers.referer + 'api/auth/callback',
+        "redirect_uri": req.protocol + '://' + req.get('host') + '/api/auth/callback',
         "client_id": process.env.CLIENT_ID,
         'client_secret': process.env.CLIENT_SECRET,
     });
 
-    var token = await axios.post(AUTH_TOKEN_URL, config);
+    var token = await axios.post(AUTH_TOKEN_URL, config).catch(function(error) {
+        console.log(error);
+    });
 
     if (token.data !== undefined && token.data.access_token !== undefined) {
         req.session.token = token.data;
@@ -94,8 +98,8 @@ exports.login = async(req, res) => {
     const config = qs.stringify({
         'client_id': process.env.CLIENT_ID,
         'response_type': 'code',
-        'redirect_uri': req.headers.referer + 'api/auth/callback',
-        'scope': 'user-top-read playlist-read-private playlist-read-collaborative',
+        'redirect_uri': req.protocol + '://' + req.get('host') + '/api/auth/callback',
+        'scope': 'user-top-read playlist-read-private playlist-read-collaborative streaming user-read-email user-read-private',
         "show_dialog": false
     });
 
