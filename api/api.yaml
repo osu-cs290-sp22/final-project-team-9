@@ -189,6 +189,38 @@ paths:
             application/json:
               schema:
                 type: object
+  /playlists/{id}/share:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                variables:
+                  type: array
+      description: Cache a playlist for sharing. 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /playlists/snapshot/{id}:
+    get:
+      security: []  
+      description: Retrieve playlist snapshot
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
 
 components:
   securitySchemes:

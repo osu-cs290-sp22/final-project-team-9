@@ -77,9 +77,17 @@
                 <a class="btn btn-spotify-inversed" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <a class="btn btn-spotify-inversed" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
+                <a class="btn btn-spotify-inversed" onclick="sharePlaylist()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
             </div>
         </div>
+        <br>
+        <div id="shareContainer" class="row" style="margin-left: 10%; width: 60%; display:none;">
+            <div class="input-group mb-3 col-12">
+                    <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
+                    <button class="btn btn-secondary" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
+                </div>
+                </div>  
+        </div>  
     </div>
 </div>
 
@@ -87,10 +95,11 @@
 <script src="https://sdk.scdn.co/spotify-player.js"></script>
 <script src="/assets/echarts-gl.min.js"></script>
 <script type="application/javascript" id="dynamicScript">
+
 document.body.removeEventListener("wheel", scrollHandler, { passive: false });
 
 var xhr = new XMLHttpRequest();
-var myChart;
+var myChart, curType = "bar", curVars = ['danceability'];
 $.getJSON('/assets/chalk.project.json', function(themeJSON) {
     echarts.registerTheme('chalk', themeJSON);
     myChart = echarts.init(document.getElementById('graph'), themeJSON['theme']);
@@ -186,7 +195,7 @@ $(document).ready(function() {
             'dataType': 'json'
         }).done(function(data) {
             jsonData = data.result;
-            barGraph(jsonData, ['danceability'], 'danceability score');
+            barGraph(jsonData, ['danceability']);
             
         });
         window.onresize = function() {
@@ -239,7 +248,9 @@ $(document).ready(function() {
 
     function renderGraph() {
         var graphType = $('#graphPicker').val();
+        curType = graphType;
         var variables = $('#variablePicker').val();
+        curVars = variables;
         // Call graph rendering function here
         switch(graphType) {
             case "bar":
@@ -264,6 +275,29 @@ $(document).ready(function() {
         a.download = "chart.png";
         a.click();
         }
+
+    function sharePlaylist() {
+        $.ajax({
+                type: 'POST',
+                url: '/api/playlists/'+ findGetParameter('id') + '/share',
+                data: JSON.stringify({
+                    'graphType': curType,
+                    'variables': curVars
+                }),
+                contentType: "application/json;charset=utf-8",
+                success: function(data) {
+                    $('#shareContainer').show();
+                    $('#shareInput').val(data.result);
+                }
+            });
+    }
+
+    function copyShare() {
+        var copyText = document.getElementById("shareInput");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        navigator.clipboard.writeText(copyText.value);
+    }
 
     pjax.refresh();
 </script>

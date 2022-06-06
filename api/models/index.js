@@ -8,5 +8,6 @@ db.url = process.env.MONGODB_URI;
 
 db.featuredPlaylists = require("./featuredPlaylists.model.js")(mongoose);
 db.playlists = require("./playlists.model.js")(mongoose);
+db.share = require("./share.model.js")(mongoose);
 
 module.exports = db;

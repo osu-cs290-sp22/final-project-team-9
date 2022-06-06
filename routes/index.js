@@ -92,6 +92,24 @@ router.get(['/license', '/license.html'], function(req, res, next) {
     });
 })
 
+router.get('/share/:id', function(req, res, next) {
+    res.render('share', {
+        layout: 'blank'
+    });
+});
+
+router.get(['/overview', '/overview.html'], function(req, res, next) {
+    if (req.session.token === undefined || req.session.token === null) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('overview', {
+        navState: 2,
+        layout: 'blank'
+    });
+})
+
 router.post(['/start', '/start.html'], function(req, res, next) {
     if (req.body.search) {
         console.log(" PLAYLIST POST = " + req.body.search);
