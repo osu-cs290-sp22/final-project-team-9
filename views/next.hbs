@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <div id="graph" style="margin-left: 10%; width: 90%;height:60%"> </div>
+        <div id="graph" style="margin-left: 10%; margin-right: 10%; width: 90%;height:60%"> </div>
         <div class="row" style="margin-left: 10%;">
             <div class="col-3">
                 <a class="btn btn-spotify-inversed" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
@@ -242,6 +242,7 @@ $(document).ready(function() {
     });
 
     function renderGraph() {
+        document.getElementById("shareContainer").style.opacity = 0;
         var graphType = $('#graphPicker').val();
         curType = graphType;
         var variables = $('#variablePicker').val();
