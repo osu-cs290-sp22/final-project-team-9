@@ -1,6 +1,6 @@
 <div id="left">
     <div id="inner">
-        <h1 class="text-4xl">Configure your first graph.</h1>
+        <h1 class="text-4xl" id="pageTitle">Configure your first graph</h1>
         <p>Choose the type of graph and variables you would like to visualize.</p>
         <form id="graph-configure-form" action="javascript:void(0);">
             <br>
@@ -68,7 +68,7 @@
         <div id="graph" style="margin-left: 10%; margin-right: 10%; width: 90%;height:60%"> </div>
         <div class="row">
             <div class="col-4">
-                <a class="btn btn-spotify-inversed" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
+                <a class="btn btn-spotify-inversed" onclick="saveGraph()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
             </div>
             <div class="col-4">
                 <a class="btn btn-spotify-inversed" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
@@ -201,7 +201,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     player.connect();
 });
 }
-
+if (findGetParameter('first') == 'false') {
+    document.getElementById('pageTitle').innerHTML = "Configure your graph";
+}
 
 var jsonData;
 $(document).ready(function() {
@@ -309,6 +311,23 @@ $(document).ready(function() {
                 success: function(data) {
                     $('#shareInput').val(data.result);
                     document.getElementById("shareContainer").style.opacity = 1;
+                }
+            });
+    }
+
+    function saveGraph() {
+        $.ajax({
+                type: 'POST',
+                url: '/api/playlists/'+ findGetParameter('id') + '/save',
+                data: JSON.stringify({
+                    'graphType': curType,
+                    'variables': curVars,
+                    'image': myChart.getDataURL({ pixelRatio: 0.4 }),
+                    'title': jsonData.title
+                }),
+                contentType: "application/json;charset=utf-8",
+                success: function(data) {
+                    window.location = "/overview";
                 }
             });
     }

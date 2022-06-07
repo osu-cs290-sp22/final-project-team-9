@@ -1,6 +1,6 @@
 <div id="left">
     <div id="inner">
-        <h1 class="text-4xl">Let's Get Started</h1>
+        <h1 class="text-4xl" id="pageTitle">Let's Get Started</h1>
         <p>Search for your favorite playlist or choose from one of our recommendations to start.</p>
         <form id="playlist-search-form" action="javascript:void(0);">
             <div class="input-group" style="padding-top:3%;">
@@ -39,6 +39,10 @@
 var scrollContainer = document.getElementById('right');
 document.body.addEventListener("wheel", scrollHandler, { passive: false });
 animateLoad();
+
+if (findGetParameter('first') == 'false') {
+    document.getElementById('pageTitle').innerHTML = "Choose another playlist";
+}
 
 function addNoResultsMessage() {
     const noResults = document.getElementById("noresults");
