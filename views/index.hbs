@@ -12,7 +12,31 @@
 <div id="backRight">
     <div id="right">
         {{#each playlists}}
-            {{> playlist-thumbnail title=name imageSrc=(get "url" (first images)) }}
+            {{> bubble title=name imageSrc=(get "url" (first images)) curView="global" }}
         {{/each}}
     </div>
 </div>
+
+{{#section 'script'}}
+<script type="application/javascript">
+var scrollContainer = document.getElementById('right');
+document.body.addEventListener("wheel", scrollHandler, { passive: false });
+animateLoad();
+$.ajax({
+    'type': 'GET',
+    'url': '/api/featuredPlaylists',
+    'dataType': 'json'
+}).done(function(data) {
+    document.querySelectorAll('.placeholder').forEach(el => {
+        el.remove();
+    })
+    var featuredPlaylists = data.result.playlists;
+    InsertBubbles(featuredPlaylists, "/demo?id=");
+    // Animation must be played after the bubbles are finished being added.
+    animateFlex("item", "right");
+    pjax.refresh();
+}).fail(function(err) {
+    console.log('Error fetching featured-playlists');
+});
+</script>
+{{/section}}
