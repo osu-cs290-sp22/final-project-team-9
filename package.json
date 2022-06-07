@@ -5,7 +5,11 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< Updated upstream
         "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/bubble.hbs -f ./dist/partials/bubble.js && handlebars ./views/partials/placeholder.hbs -f ./dist/partials/placeholder.js",
+=======
+        "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/placeholder.hbs ./views/partials/bubble.hbs -f ./dist/partials.js",
+>>>>>>> Stashed changes
         "start": "npm run build && node ./server.js"
     },
     "repository": {
