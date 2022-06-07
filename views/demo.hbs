@@ -1,6 +1,6 @@
 <div id="left">
     <div id="inner">
-        <h1 class="text-4xl">Configure your first graph.</h1>
+        <h1 class="text-4xl">SmartLists Demo</h1>
         <p>Choose the type of graph and variables you would like to visualize.</p>
         <form id="graph-configure-form" action="javascript:void(0);">
             <br>
@@ -54,60 +54,13 @@
             <div id="liveToast" class="toast hide text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true" style="margin-bottom: 10px">
                 <div class="toast-body text-center" id="toast-msg-text"></div>
             </div>
-            <div id="liveToast2" class="toast hide " style="margin-bottom: 10px" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" data-bs-animation="false">
-                <div class="toast-header">
-                    <img style="height: 15px;" src="https://cdn-icons-png.flaticon.com/512/174/174872.png" class="rounded me-2" alt="Spotify">
-                    <strong class="me-auto">Spotify</strong>
-                    <a href="#" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></a>
-                </div>
-                <div class="toast-body" style="color:black">
-                    Now playing: <span id="toast-msg-text2"></span>
-                </div>
-            </div>
         </div>
         <div id="graph" style="margin-left: 10%; margin-right: 10%; width: 90%;height:60%"> </div>
-        <div class="row">
-            <div class="col-4">
-                <a class="btn btn-spotify-inversed" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
-            </div>
-            <div class="col-4">
-                <a class="btn btn-spotify-inversed" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
-            </div>
-            <div class="col-3">
-                <a class="btn btn-spotify-inversed" onclick="sharePlaylist()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
-            </div>
-        </div>
-        <br>
-        <div id="shareContainer" class="row" style="width: 80%; opacity: 0">
-            <div class="input-group mb-3 col-12">
-                <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
-                <button class="btn btn-secondary" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <a class="btn btn-facebook-inversed" onclick="shareFacebook()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-facebook"></i></a>
-                </div>
-                <div class="col-2">
-                    <a class="btn btn-reddit-inversed" onclick="shareReddit()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-reddit"></i></a>
-                </div>
-                <div class="col-2">
-                    <a class="btn btn-twitter-inversed" onclick="shareTwitter()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-twitter"></i></a>
-                </div>
-                <div class="col-2">
-                    <a class="btn btn-instagram-inversed" onclick="shareInstagram()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-instagram"></i></a>
-                </div>
-                <div class="col-2">
-                    <a class="btn btn-gmail-inversed" onclick="shareEmail()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-envelope"></i></a>
-                </div>
-            </div>
-        </div> 
-        <p class="footer" id="listenText" style="opacity:0; margin-left:10%">
-            <span class="line">Click a song to listen.</span>
-        </p> 
     </div>  
 </div>
 
 {{#section 'script'}}
+<script src="/assets/echarts-gl.min.js"></script>
 <script type="application/javascript" id="dynamicScript">
 
 document.body.removeEventListener("wheel", scrollHandler, { passive: false });
@@ -119,108 +72,28 @@ $.getJSON('/assets/chalk.project.json', function(themeJSON) {
     myChart = echarts.init(document.getElementById('graph'), themeJSON['theme']);
     myChart.on('click', 'series', function (e) {
         var track_uri = e.data[e.data.length - 1];
-        if (playerId != null) {
-            $.ajax({
-                'type': 'GET',
-                'url': '/api/playback/play?device_id=' + playerId + '&uri=' + encodeURIComponent(track_uri),
-                'dataType': 'json'
-            })
-        }
+        var a = document.createElement("a");
+        a.href = "https://open.spotify.com/track/" + track_uri.split(':')[2];
+        a.target = "_blank";
+        a.click();
     });
 });
-
-window.onSpotifyWebPlaybackSDKReady = () => {
-    $.ajax({
-        'type': 'GET',
-        'url': '/api/auth/session',
-        'dataType': 'json'
-    }).done(function(data) {
-        const token = data.result.token.access_token;
-        player = new Spotify.Player({
-            name: 'SmartLists',
-            getOAuthToken: cb => { cb(token); },
-            volume: 0.5
-        });
-        player.on('initialization_error', function(e) { console.error(e); });
-
-    // Ready
-    player.addListener('ready', ({ device_id }) => {
-        console.log('Ready with Device ID', device_id);
-        playerId = device_id;
-        document.getElementById('listenText').style.opacity = 1;
-        
-        document.getElementById('liveToast2').addEventListener('hide.bs.toast', () => {
-            $.ajax({
-                    'type': 'GET',
-                    'url': '/api/playback/pause?device_id=' + playerId,
-                    'dataType': 'json'
-                });
-        })
-
-
-    });
-
-    player.addListener('player_state_changed', ({
-            position,
-            duration,
-            paused,
-            track_window: { current_track }
-            }) => {
-            if (paused || duration == position) {
-                $('#liveToast2').toast('hide')
-            } else {
-                const errorToast = document.getElementById('liveToast2');
-                const toastMsg = document.getElementById('toast-msg-text2');
-                if (current_track.artists.length >= 1) {
-                    toastMsg.innerHTML = current_track.name + " - " + current_track.artists[0].name;
-                } else {
-                    toastMsg.innerHTML = current_track.name;
-                }
-                const toast = new bootstrap.Toast(errorToast);
-                toast.show();
-                }
-            });
-
-    // Not Ready
-    player.addListener('not_ready', ({ device_id }) => {
-        console.log('Device ID has gone offline', device_id);
-    });
-
-    player.addListener('initialization_error', ({ message }) => {
-        console.error(message);
-    });
-
-    player.addListener('authentication_error', ({ message }) => {
-        console.error(message);
-    });
-
-    player.addListener('account_error', ({ message }) => {
-        console.error(message);
-    });
-
-    player.connect();
-});
-}
-
 
 var jsonData;
 $(document).ready(function() {
-    var script = document.createElement("script");
-    script.src = "https://sdk.scdn.co/spotify-player.js"; 
-   
-    document.body.appendChild(script); 
         $.ajax({
             'type': 'GET',
-            'url': '/api/playlists/' + findGetParameter('id') + '/metadata',
+            'url': '/api/playlists/public/' + findGetParameter('id'),
             'dataType': 'json'
         }).done(function(data) {
             jsonData = data.result;
+            jsonData.tracks = jsonData.trackList;
+            jsonData.metadata = jsonData.trackMetadata;
             barGraph(jsonData, ['danceability']);
-            
         });
         window.onresize = function() {
             myChart.resize();
-        };    
+        };       
     });
 
 
@@ -267,7 +140,6 @@ $(document).ready(function() {
     });
 
     function renderGraph() {
-        document.getElementById("shareContainer").style.opacity = 0;
         var graphType = $('#graphPicker').val();
         curType = graphType;
         var variables = $('#variablePicker').val();
@@ -289,35 +161,6 @@ $(document).ready(function() {
             default:
                 break;
         }
-    }
-    function downloadImage() {
-        var a = document.createElement("a");
-        a.href = myChart.getDataURL({ pixelRatio: 2 });
-        a.download = "chart.png";
-        a.click();
-        }
-
-    function sharePlaylist() {
-        $.ajax({
-                type: 'POST',
-                url: '/api/playlists/'+ findGetParameter('id') + '/share',
-                data: JSON.stringify({
-                    'graphType': curType,
-                    'variables': curVars
-                }),
-                contentType: "application/json;charset=utf-8",
-                success: function(data) {
-                    $('#shareInput').val(data.result);
-                    document.getElementById("shareContainer").style.opacity = 1;
-                }
-            });
-    }
-
-    function copyShare() {
-        var copyText = document.getElementById("shareInput");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
-        navigator.clipboard.writeText(copyText.value);
     }
 
     pjax.refresh();

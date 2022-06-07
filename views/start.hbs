@@ -36,6 +36,8 @@
 
 {{#section 'script'}}
 <script type="application/javascript" id="dynamicScript">
+var scrollContainer = document.getElementById('right');
+document.body.addEventListener("wheel", scrollHandler, { passive: false });
 animateLoad();
 
 function addNoResultsMessage() {

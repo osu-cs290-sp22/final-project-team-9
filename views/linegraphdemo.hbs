@@ -8,26 +8,42 @@
 {{#section 'script'}}
 <script src="/assets/echarts.min.js"> </script>
 <script>
+
+  var metadata;
+  var tracks;
+  var dataArr = [];
+  $.ajax({
+      'type': 'GET',
+      'url': '/api/playlists/4wclicW06SbNnIg5iQE8J2/metadata',
+      'dataType': 'json'
+  }).done(function(data) {
+      metadata = data.result.metadata;
+      tracks = data.result.tracks;
+      metadata.forEach(function(item) {
+        dataArr.push(item["danceability"]);
+      });
+      myChart.setOption({
+        series: [
+          {
+            data: dataArr
+          }
+        ]
+      });
+  });
     // Initialize the echarts instance based on the prepared dom
     var myChart = echarts.init(document.getElementById('graph'));
 
     var option = {
-      title: {
-        text: 'Playlist: Number of Songs in Genres'
-      },
-      tooltip: {},
-      legend: {
-        data: ['genres']
-      },
       xAxis: {
-        data: ['Rock', 'Jazz', 'Pop', 'Hiphop', 'Blues', 'Classical']
+        name: 'Danceability',
       },
-      yAxis: {},
+      yAxis: {
+      },
       series: [
         {
-          name: 'genres',
+          symbolSize: 20,
           type: 'line',
-          data: [25, 20, 36, 10, 10, 20]
+          data: dataArr
         }
       ]
     };

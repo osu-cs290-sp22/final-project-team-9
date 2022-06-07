@@ -15,8 +15,7 @@ function getCookie(cname) {
 }
 
 // Playlists takes in an array of playlists in a Spotify request format
-function InsertBubbles(playlists) {
-
+function InsertBubbles(playlists, url = "/next?id=") {
     var outerEl = document.getElementById("right");
     var row = Math.floor(outerEl.offsetHeight / 220);
     var col = Math.ceil(outerEl.offsetWidth / 220);
@@ -29,7 +28,7 @@ function InsertBubbles(playlists) {
         const element = Handlebars.templates['bubble.hbs']({
             title: playlists[i].name,
             imageSrc: (playlists[i].images[0]) ? playlists[i].images[0].url : "",
-            id: playlists[i].id,
+            id: url + playlists[i].id,
             lazy: (i >= numElements) ? "lazy" : "eager",
         });
         document.getElementById('right').insertAdjacentHTML('beforeend', element);
@@ -168,3 +167,22 @@ function filterBubbles(query) {
         }
     }
 }
+
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function(item) {
+            tmp = item.split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
+function scrollHandler(evt) {
+    evt.preventDefault();
+    scrollContainer.scrollLeft += evt.deltaY;
+    scrollContainer.scrollLeft += evt.deltaX;
+};

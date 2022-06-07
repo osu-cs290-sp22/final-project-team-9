@@ -60,7 +60,9 @@ exports.updateCache = async(req, res) => {
                     count += 50;
                     max = response.data.total;
                     url = response.data.next;
-                });
+                }).catch(function(error) {
+                    console.log(error);
+                });;
             } while (count <= max);
             var extras = ["37i9dQZEVXbLRQDuF5jeBp", "37i9dQZEVXbMDoHDwVN2tF", "37i9dQZF1DXcBWIGoYBM5M", "37i9dQZF1DX4JAvHpjipBk"];
             for (var i = 0; i < extras.length; i++) {
@@ -71,7 +73,9 @@ exports.updateCache = async(req, res) => {
                         }
                     }).then(function(response) {
                         items.push(response.data);
-                    });
+                    }).catch(function(error) {
+                        console.log(error);
+                    });;
                 }
 
                 if (i === extras.length - 1) {
@@ -120,7 +124,9 @@ exports.updateCache = async(req, res) => {
                                                 var trackList = "";
                                                 var length = (tracks.length > 100) ? 100 : tracks.length;
                                                 for (var i = 0; i < length; i++) {
-                                                    trackList += tracks[i].track.id + ",";
+                                                    if (tracks[i].track) {
+                                                        trackList += tracks[i].track.id + ",";
+                                                    }
                                                     tracks.splice(i--, 1);
                                                     length--;
                                                 }
@@ -130,7 +136,9 @@ exports.updateCache = async(req, res) => {
                                                     }
                                                 }).then(function(response) {
                                                     metadata = metadata.concat(response.data.audio_features);
-                                                });
+                                                }).catch(function(error) {
+                                                    console.log(error);
+                                                });;
                                             } while (tracks.length > 0);
 
                                             element.trackList = tracksCopy;
@@ -138,7 +146,9 @@ exports.updateCache = async(req, res) => {
                                             Playlists.findOneAndUpdate({ id: element.id }, element, { new: true, upsert: true, rawResult: true }, function(err, playlist) {
                                                 if (err) errCount++;
                                             });
-                                        });
+                                        }).catch(function(error) {
+                                            console.log(error);
+                                        });;
                                     }
                                 });
                                 if (itemsProcessed === items.length) {
