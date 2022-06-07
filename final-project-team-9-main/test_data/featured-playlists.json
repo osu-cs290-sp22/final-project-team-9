@@ -1,0 +1,388 @@
+{
+    "success": true,
+    "code": 200,
+    "errors": [
+
+    ],
+    "messages": [
+
+    ],
+    "result": {
+        "playlists": [{
+                "collaborative": false,
+                "description": "Slow down with some calming keys.",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX1s9knjP51Oa"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX1s9knjP51Oa",
+                "id": "37i9dQZF1DX1s9knjP51Oa",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f00000003ec69f78942a99131ab104df5",
+                    "width": null
+                }],
+                "name": "Calm Vibes",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MDUzODk5NCwwMDAwMDA5MDAwMDAwMTgwNGJjYTU5NzgwMDAwMDE2ZDE1NDk3NWNm",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX1s9knjP51Oa/tracks",
+                    "total": 427
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DX1s9knjP51Oa"
+            },
+            {
+                "collaborative": false,
+                "description": "Gentle ambient piano to help you fall asleep.",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWZd79rJ6a7lp"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZd79rJ6a7lp",
+                "id": "37i9dQZF1DWZd79rJ6a7lp",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f00000003b70e0223f544b1faa2e95ed0",
+                    "width": null
+                }],
+                "name": "Sleep",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1Mjk4NDE1OCwwMDAwMDBlODAwMDAwMTgwZGQ4ODk4ZmYwMDAwMDE2Y2Y2OTUyYjAw",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZd79rJ6a7lp/tracks",
+                    "total": 210
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DWZd79rJ6a7lp"
+            },
+            {
+                "collaborative": false,
+                "description": "Listen to easy songs from your favorite artists! Cover: Sam Smith",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWTwnEm1IYyoj"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWTwnEm1IYyoj",
+                "id": "37i9dQZF1DWTwnEm1IYyoj",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f000000036ace012ca7d090d0a72564ea",
+                    "width": null
+                }],
+                "name": "Soft Pop Hits",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MzI4MTYwNSwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWTwnEm1IYyoj/tracks",
+                    "total": 100
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DWTwnEm1IYyoj"
+            },
+            {
+                "collaborative": false,
+                "description": "Steady rain without any thunder.",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX8ymr6UES7vc"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8ymr6UES7vc",
+                "id": "37i9dQZF1DX8ymr6UES7vc",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f00000003aba1f07094bd3e98cd0122de",
+                    "width": null
+                }],
+                "name": "Rain Sounds",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY0ODY1MTc4NywwMDAwMDA1MDAwMDAwMTdmZGI0ZGRlYjgwMDAwMDE3M2I4ZGU5Yjgx",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8ymr6UES7vc/tracks",
+                    "total": 194
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DX8ymr6UES7vc"
+            },
+            {
+                "collaborative": false,
+                "description": "Pouring rain and occasional rolling thunder.",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXbcPC6Vvqudd"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXbcPC6Vvqudd",
+                "id": "37i9dQZF1DXbcPC6Vvqudd",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f0000000393fe06c436d719d3f31107d0",
+                    "width": null
+                }],
+                "name": "Night Rain",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY0ODE0MjIzNywwMDAwMDA1YzAwMDAwMTdmYmNlZWJkNjQwMDAwMDE3MGM0OWExMzVj",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXbcPC6Vvqudd/tracks",
+                    "total": 393
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DXbcPC6Vvqudd"
+            },
+            {
+                "collaborative": false,
+                "description": "The perfect backdrop to an evening spent relaxing in solitude.",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX4wta20PHgwo"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX4wta20PHgwo",
+                "id": "37i9dQZF1DX4wta20PHgwo",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f000000038dd2476df0b6af9c2a519ef6",
+                    "width": null
+                }],
+                "name": "Late Night Jazz",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MzI4MTY0OCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX4wta20PHgwo/tracks",
+                    "total": 125
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DX4wta20PHgwo"
+            },
+            {
+                "collaborative": false,
+                "description": "Relax and fall asleep to ASMR trigger sounds (no talking).",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWUAeTOoyNaqm"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWUAeTOoyNaqm",
+                "id": "37i9dQZF1DWUAeTOoyNaqm",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f0000000328bb958d28682eacbdf45389",
+                    "width": null
+                }],
+                "name": "ASMR Sleep",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MzI4MTYxMywwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWUAeTOoyNaqm/tracks",
+                    "total": 50
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DWUAeTOoyNaqm"
+            },
+            {
+                "collaborative": false,
+                "description": "Let your worries and cares slip away...",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWU0ScTcjJBdj"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWU0ScTcjJBdj",
+                "id": "37i9dQZF1DWU0ScTcjJBdj",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f000000031932c7ea794e72d82b10692c",
+                    "width": null
+                }],
+                "name": "Relax & Unwind",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MjcxMDc0NiwwMDAwMDA4NTAwMDAwMTgwY2QzY2E3OTMwMDAwMDE3MzQ5YzY0NGU3",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWU0ScTcjJBdj/tracks",
+                    "total": 116
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DWU0ScTcjJBdj"
+            },
+            {
+                "collaborative": false,
+                "description": "Soothe your mind with gentle instrumentals.",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXcCnTAt8CfNe"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXcCnTAt8CfNe",
+                "id": "37i9dQZF1DXcCnTAt8CfNe",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f0000000324b0ae50044cb70f005c2ec2",
+                    "width": null
+                }],
+                "name": "Musical Therapy",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MTc2NDEwNCwwMDAwMDA0ZTAwMDAwMTgwOTRkMDBlYTYwMDAwMDE2ZDAwYzlmMGM1",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXcCnTAt8CfNe/tracks",
+                    "total": 200
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DXcCnTAt8CfNe"
+            },
+            {
+                "collaborative": false,
+                "description": "Dreamy jams from the best bedroom producers. Cover: SALES",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXcxvFzl58uP7"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXcxvFzl58uP7",
+                "id": "37i9dQZF1DXcxvFzl58uP7",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f00000003cc90c534f1701405d5f48456",
+                    "width": null
+                }],
+                "name": "Bedroom Pop",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MzI4MTYwNCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXcxvFzl58uP7/tracks",
+                    "total": 115
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DXcxvFzl58uP7"
+            },
+            {
+                "collaborative": false,
+                "description": "Unwind to these calm classical guitar pieces.",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX0jgyAiPl8Af"
+                },
+                "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0jgyAiPl8Af",
+                "id": "37i9dQZF1DX0jgyAiPl8Af",
+                "images": [{
+                    "height": null,
+                    "url": "https://i.scdn.co/image/ab67706f000000038ed1a5002b96c2ea882541b2",
+                    "width": null
+                }],
+                "name": "Peaceful Guitar",
+                "owner": {
+                    "display_name": "Spotify",
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/user/spotify"
+                    },
+                    "href": "https://api.spotify.com/v1/users/spotify",
+                    "id": "spotify",
+                    "type": "user",
+                    "uri": "spotify:user:spotify"
+                },
+                "primary_color": null,
+                "public": null,
+                "snapshot_id": "MTY1MjQ1NDc4MCwwMDAwMDBiNDAwMDAwMTgwYmRmYWVkNGUwMDAwMDE2ZDE1MzFlYjZl",
+                "tracks": {
+                    "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0jgyAiPl8Af/tracks",
+                    "total": 174
+                },
+                "type": "playlist",
+                "uri": "spotify:playlist:37i9dQZF1DX0jgyAiPl8Af"
+            }
+        ],
+        "count": 11
+    }
+}
