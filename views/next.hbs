@@ -78,10 +78,27 @@
             </div>
         </div>
         <br>
-        <div id="shareContainer" class="row" style="width: 60%; opacity: 0">
+        <div id="shareContainer" class="row" style="width: 80%; opacity: 0">
             <div class="input-group mb-3 col-12">
                 <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
                 <button class="btn btn-secondary" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <a class="btn btn-facebook-inversed" onclick="shareFacebook()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-facebook"></i></a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-reddit-inversed" onclick="shareReddit()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-reddit"></i></a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-twitter-inversed" onclick="shareTwitter()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-twitter"></i></a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-instagram-inversed" onclick="shareInstagram()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-instagram"></i></a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-gmail-inversed" onclick="shareEmail()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-envelope"></i></a>
+                </div>
             </div>
         </div> 
         <p class="footer" id="listenText" style="opacity:0; margin-left:10%">
