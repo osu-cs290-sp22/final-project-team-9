@@ -83,7 +83,7 @@
                 <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
                 <button class="btn btn-secondary" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
             </div>
-            <div class="row">
+            <div class="row" style="justify-content: center;">
                 <div class="col-2">
                     <a class="btn btn-facebook-inversed" onclick="shareFacebook()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-facebook"></i></a>
                 </div>
@@ -92,9 +92,6 @@
                 </div>
                 <div class="col-2">
                     <a class="btn btn-twitter-inversed" onclick="shareTwitter()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-twitter"></i></a>
-                </div>
-                <div class="col-2">
-                    <a class="btn btn-instagram-inversed" onclick="shareInstagram()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-instagram"></i></a>
                 </div>
                 <div class="col-2">
                     <a class="btn btn-gmail-inversed" onclick="shareEmail()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-envelope"></i></a>
@@ -318,6 +315,28 @@ $(document).ready(function() {
         copyText.select();
         copyText.setSelectionRange(0, 99999); /* For mobile devices */
         navigator.clipboard.writeText(copyText.value);
+    }
+
+    function shareFacebook(){
+        var shareGraph = $('#shareInput').val();
+        const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + shareGraph;
+        window.open(navUrl , '_blank');
+    }
+
+    function shareReddit(){
+        var shareGraph = $('#shareInput').val();
+        window.open('https://reddit.com/submit?url=' + shareGraph + '&title=' + "Check out my graph!");
+    }
+
+    function shareTwitter(){
+        var url = $('#shareInput').val();
+        var text = "Check out my graph!";
+        window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+
+    function shareEmail(){
+        var shareGraph = $('#shareInput').val();
+        window.open('mailto:?subject=Hey check our my graph!&body=' + shareGraph);
     }
 
     pjax.refresh();
