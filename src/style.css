@@ -9,6 +9,14 @@ body {
     overflow: hidden;
 }
 
+.disabled {
+    cursor: not-allowed;
+}
+
+.disabled>a>.text>.badge {
+    background-color: #aaa !important;
+}
+
 .btn:focus,
 .btn-check:focus {
     outline: none;
