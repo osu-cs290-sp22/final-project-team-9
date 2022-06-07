@@ -37,12 +37,12 @@ function scatterPlot(data, variables) {
                 containLabel: true,
             },
             title: {
-                text: var1 + ' vs ' + var2,
+                text: data.title + ":  " + var1 + ' vs ' + var2,
                 left: '10%',
                 top: '2%',
                 textStyle: {
                     color: '#fff'
-                }
+                },
             },
             legend: {
                 right: '10%',
@@ -50,7 +50,7 @@ function scatterPlot(data, variables) {
             },
             grid: {
                 left: '8%',
-                top: '10%'
+                top: '15%'
             },
             xAxis: {
                 name: var1,
