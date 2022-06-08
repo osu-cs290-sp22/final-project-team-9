@@ -102,6 +102,15 @@ button,
     filter: brightness(0.4);
 }
 
+.graphCardbtn{
+    position: fixed;
+    opacity: 0;
+}
+
+.card:hover .graphCardbtn{
+    opacity: 1;
+}
+
 .item {
     width: 200px;
     border-radius: 45% 34% 45% 34%;
