@@ -213,7 +213,6 @@ button,
     color: rgb(0, 91, 210);
 }
 
-.navbar-brand,
 .nav-item,
 .nav-item>.btn {
     z-index: 11;
@@ -228,6 +227,10 @@ p {
     font-weight: 300;
 }
 
+/*.navbar-brand:hover{
+
+}
+*/
 @-webkit-keyframes animation {
     0% {
         -webkit-transform: matrix3d(0.8, 0, 0, 0, 0, 0.8, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
