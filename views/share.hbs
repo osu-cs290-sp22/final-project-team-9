@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div id="graph" style="height:80%"> </div>
+<div id="graph" style="height:80%;background-color:black;padding: 45px; border-radius: 25px;"> </div>
 
 {{#section 'script'}}
 <script src="/assets/echarts-gl.min.js"></script>
@@ -32,17 +32,16 @@ $.getJSON('/assets/chalk.project.json', function(themeJSON) {
         a.click();
     });
 });
-document.body.style.backgroundColor = 'black';
 $(document).ready(function() {
         $.ajax({
             'type': 'GET',
             'url': '/api/playlists/snapshot/' + location.pathname.split('/')[2],
             'dataType': 'json'
         }).done(function(data) {
-            console.log(data)
             var jsonData = data.result.playlist;
             jsonData.tracks = jsonData.trackList;
             jsonData.metadata = jsonData.trackMetadata;
+            jsonData.title = jsonData.name;
             var graphType = data.result.graphType;
             var graphVars = data.result.variables;
             renderGraph(jsonData, graphType, graphVars);
