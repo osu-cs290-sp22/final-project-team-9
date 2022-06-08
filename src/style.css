@@ -227,10 +227,10 @@ p {
     font-weight: 300;
 }
 
-/*.navbar-brand:hover{
-
+.navbar-brand:hover{
+    opacity: .5;
 }
-*/
+
 @-webkit-keyframes animation {
     0% {
         -webkit-transform: matrix3d(0.8, 0, 0, 0, 0, 0.8, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);

@@ -17,6 +17,7 @@ router.use('/assets', express.static(path.join(__dirname, '../node_modules/font-
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/animate.css/'))); // Serve "/node_modules/animate.css" from "/assets"
 router.use('/assets', express.static(path.join(__dirname, '../node_modules/pjax/'))); // Serve "/node_modules/pjax" from "/assets"
 router.use('/assets', express.static(path.join(__dirname, '../views/partials')));
+router.use('/assets', express.static(path.join(__dirname, '../dist/favicon/')));
 
 router.get(['/', '/index.html'], (req, res, next) => {
     if (req.session.token !== undefined && req.session.token !== null) {
