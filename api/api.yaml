@@ -210,6 +210,29 @@ paths:
             application/json:
               schema:
                 type: object
+  /playlists/{id}/save:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                variables:
+                  type: array
+                image:
+                  type: string
+      description: Save playlist graph to session. 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
   /playlists/snapshot/{id}:
     get:
       security: []  

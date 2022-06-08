@@ -30,8 +30,8 @@ app.use(require('express-session')({
     name: 'sl_session'
 }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 
 // 'hbs' is an abbreviated convention for 'handlebars. Only one or the other can be used, not interchangeable.
 app.set('view engine', 'hbs');

@@ -1,6 +1,6 @@
 <div id="left">
     <div id="inner">
-        <h1 class="text-4xl">Configure your first graph.</h1>
+        <h1 class="text-4xl" id="pageTitle">Configure your first graph</h1>
         <p>Choose the type of graph and variables you would like to visualize.</p>
         <form id="graph-configure-form" action="javascript:void(0);">
             <br>
@@ -71,20 +71,34 @@
         <div id="graph" style="margin-left: 10%; margin-right: 10%; width: 90%;height:60%"> </div>
         <div class="row">
             <div class="col-4">
-                <a class="btn btn-spotify-inversed" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
+                <a class="btn btn-spotify-inversed" onclick="saveGraph()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Save Graph" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
             </div>
             <div class="col-4">
-                <a class="btn btn-spotify-inversed" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
+                <a class="btn btn-spotify-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Graph" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <a class="btn btn-spotify-inversed" onclick="sharePlaylist()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
+                <a class="btn btn-spotify-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Share" onclick="sharePlaylist()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
             </div>
         </div>
         <br>
-        <div id="shareContainer" class="row" style="width: 60%; opacity: 0">
+        <div id="shareContainer" class="row" style="width: 80%; opacity: 0">
             <div class="input-group mb-3 col-12">
                 <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
-                <button class="btn btn-secondary" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
+                <button class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy Link" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
+            </div>
+            <div class="row" style="justify-content: center;">
+                <div class="col-2">
+                    <a class="btn btn-facebook-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Facebook" onclick="shareFacebook()" style="margin-top:5%; border-radius: 100%;" ><i class="fa fa-facebook"></i></a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-reddit-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reddit" onclick="shareReddit()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-reddit"></i></a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-twitter-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Twitter" onclick="shareTwitter()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-twitter"></i></a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-gmail-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Email" onclick="shareEmail()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-envelope"></i></a>
+                </div>
             </div>
         </div> 
         <p class="footer" id="listenText" style="opacity:0; margin-left:10%">
@@ -187,7 +201,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     player.connect();
 });
 }
-
+if (findGetParameter('first') == 'false') {
+    document.getElementById('pageTitle').innerHTML = "Configure your graph";
+}
 
 var jsonData;
 $(document).ready(function() {
@@ -320,11 +336,50 @@ $(document).ready(function() {
             });
     }
 
+    function saveGraph() {
+        $.ajax({
+                type: 'POST',
+                url: '/api/playlists/'+ findGetParameter('id') + '/save',
+                data: JSON.stringify({
+                    'graphType': curType,
+                    'variables': curVars,
+                    'image': myChart.getDataURL({ pixelRatio: 0.4 }),
+                    'title': jsonData.title
+                }),
+                contentType: "application/json;charset=utf-8",
+                success: function(data) {
+                    window.location = "/overview";
+                }
+            });
+    }
+
     function copyShare() {
         var copyText = document.getElementById("shareInput");
         copyText.select();
         copyText.setSelectionRange(0, 99999); /* For mobile devices */
         navigator.clipboard.writeText(copyText.value);
+    }
+
+    function shareFacebook(){
+        var shareGraph = $('#shareInput').val();
+        const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + shareGraph;
+        window.open(navUrl , '_blank');
+    }
+
+    function shareReddit(){
+        var shareGraph = $('#shareInput').val();
+        window.open('https://reddit.com/submit?url=' + shareGraph + '&title=' + "Check out my graph!");
+    }
+
+    function shareTwitter(){
+        var url = $('#shareInput').val();
+        var text = "Check out my graph!";
+        window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+
+    function shareEmail(){
+        var shareGraph = $('#shareInput').val();
+        window.open('mailto:?subject=Hey check our my graph!&body=' + shareGraph);
     }
 
     pjax.refresh();

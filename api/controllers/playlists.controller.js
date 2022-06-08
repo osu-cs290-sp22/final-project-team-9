@@ -170,7 +170,8 @@ exports.getPlaylistMetadata = async(req, res) => {
             "result": {
                 "tracks": tracksCopy,
                 "metadata": metadata,
-                "count": total
+                "count": total,
+                "title": response.data.name
             }
         });
     }).catch(function(error) {
@@ -385,5 +386,32 @@ exports.retrievePublic = async(req, res) => {
                 "result": playlist
             });
         }
+    });
+};
+
+exports.saveGraph = async(req, res) => {
+    if (req.session.graphs) {
+        req.session.graphs.push({
+            "playlist": req.params.id,
+            "graphType": req.body.graphType,
+            "variables": req.body.variables,
+            "image": req.body.image,
+            "title": req.body.title,
+        });
+    } else {
+        req.session.graphs = [{
+            "playlist": req.params.id,
+            "graphType": req.body.graphType,
+            "variables": req.body.variables,
+            "image": req.body.image,
+            "title": req.body.title
+        }];
+    }
+    return res.json({
+        "success": true,
+        "code": 200,
+        "errors": [],
+        "messages": [],
+        "result": null
     });
 };

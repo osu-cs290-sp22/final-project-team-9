@@ -37,12 +37,12 @@ function scatterPlot(data, variables) {
                 containLabel: true,
             },
             title: {
-                text: var1 + ' vs ' + var2,
+                text: `${data.title}:  (${var1} vs ${var2})`,
                 left: '10%',
                 top: '2%',
                 textStyle: {
                     color: '#fff'
-                }
+                },
             },
             legend: {
                 right: '10%',
@@ -50,7 +50,7 @@ function scatterPlot(data, variables) {
             },
             grid: {
                 left: '8%',
-                top: '10%'
+                top: '15%'
             },
             xAxis: {
                 name: var1,
@@ -179,7 +179,7 @@ function barGraph(data, variables) {
                 containLabel: true,
             },
             title: {
-                text: var1,
+                text: `${data.title}:  (${var1})`,
                 left: '10%',
                 top: '2%',
                 textStyle: {
@@ -402,6 +402,14 @@ function scatter3d(data, variables) {
                         `;
                 },
             },
+            title: {
+                text: `${data.title}:  (${var1} vs ${var2} vs ${var3})`,
+                left: '10%',
+                top: '2%',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
             grid3D: {},
             xAxis3D: {
                 name: var1,
@@ -498,6 +506,14 @@ function bar3d(data, variables) {
                         ${var3}: ${param.data[2]}
                         `;
                 },
+            },
+            title: {
+                text: `${data.title}:  (${var1} vs ${var2} vs ${var3})`,
+                left: '10%',
+                top: '2%',
+                textStyle: {
+                    color: '#fff'
+                }
             },
             grid3D: {},
             visualMap: {
