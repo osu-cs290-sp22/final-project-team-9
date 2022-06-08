@@ -284,6 +284,7 @@ exports.share = async(req, res) => {
         var errCount = 0;
         response.data.trackList = tracksCopy;
         response.data.trackMetadata = metadata;
+        response.data.title = response.data.name;
 
         Playlists.findOne({ snapshot_id: response.data.snapshot_id }, async function(err, playlist) {
             if (err || !playlist) {
@@ -406,6 +407,20 @@ exports.saveGraph = async(req, res) => {
             "image": req.body.image,
             "title": req.body.title
         }];
+    }
+    return res.json({
+        "success": true,
+        "code": 200,
+        "errors": [],
+        "messages": [],
+        "result": null
+    });
+};
+
+exports.deleteGraph = async(req, res) => {
+    if (req.session.graphs && req.session.graphs.length > req.params.id) {
+        req.session.graphs.splice(req.params.id, 1);
+        req.session.save();
     }
     return res.json({
         "success": true,

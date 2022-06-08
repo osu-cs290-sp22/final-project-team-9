@@ -89,6 +89,25 @@ button,
     color: white;
 }
 
+.gcContainer {
+    transition: all .2s ease-in-out;
+    transition: 0.25s linear;
+}
+
+.gcContainer:hover {
+    transform: scale(1.1);
+}
+
+.gcOverlay {
+    opacity: 0;
+    background-color: #000000b3;
+    transition: 0.25s linear;
+}
+
+.gcContainer:hover>.gcOverlay {
+    opacity: 1;
+}
+
 .item {
     width: 200px;
     border-radius: 45% 34% 45% 34%;
@@ -213,7 +232,6 @@ button,
     color: rgb(0, 91, 210);
 }
 
-.navbar-brand,
 .nav-item,
 .nav-item>.btn {
     z-index: 11;
@@ -227,6 +245,7 @@ button,
 p {
     font-weight: 300;
 }
+
 
 @-webkit-keyframes animation {
     0% {

@@ -38,10 +38,10 @@ $(document).ready(function() {
             'url': '/api/playlists/snapshot/' + location.pathname.split('/')[2],
             'dataType': 'json'
         }).done(function(data) {
-            console.log(data)
             var jsonData = data.result.playlist;
             jsonData.tracks = jsonData.trackList;
             jsonData.metadata = jsonData.trackMetadata;
+            jsonData.title = jsonData.name;
             var graphType = data.result.graphType;
             var graphVars = data.result.variables;
             renderGraph(jsonData, graphType, graphVars);

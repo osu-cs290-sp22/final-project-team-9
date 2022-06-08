@@ -4,7 +4,8 @@
 <head>
     {{> head}}
     <title>SmartLists</title>
-    <script src="/assets/echarts.min.js"> </script>
+    <script src="/assets/echarts.min.js"></script>
+
 </head>
 
 <body style="text-align: center;">
@@ -75,6 +76,19 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function(){
+            $( ".navbar-brand" ).hover(
+            function() {
+                $("#bruh").attr("src", "/assets/Sequence 02.gif");
+            }, function() {
+                $("#bruh").attr("src", "/assets/SL d2.8.png");
+            }
+            );
+        });
+    </script>
+
 </body>
 
 {{{sections.script}}}
