@@ -1,10 +1,10 @@
 <div id="left">
     <div id="inner">
-        <h1 class="text-4xl" id="pageTitle">Configure your first graph</h1>
-        <p>Choose the type of graph and variables you would like to visualize.</p>
+        <h1 class="text-4xl" id="pageTitle">Configure your first visualization</h1>
+        <p>Choose the type of visualization and variables you would like to visualize.</p>
         <form id="graph-configure-form" action="javascript:void(0);">
             <br>
-            <h2>Graph Type</h2>
+            <h2>Visualization Type</h2>
             <div class="input-group" style="padding-top:3%;">
                 <select id="graphPicker" class="selectpicker" data-size="4" data-width="100%" required>
                     <optgroup label="2D">
@@ -17,6 +17,9 @@
                     <optgroup label="3D">
                         <option value="bar3d" data-size="3">Bar</option>
                         <option value="scatter3d" data-size="3">Scatter</option>
+                    </optgroup>
+                    <optgroup label="Image">
+                        <option value="ai" data-size="3">AI Playlist Art</option>
                     </optgroup>
                     {{!-- <option value="pie" data-size="1">Pie</option> --}}
                     {{!-- <option value="line" data-size="2">Line</option> --}}
@@ -43,7 +46,7 @@
                     <option class="nonscale" value="mode" data-content="<span class='badge text-bg-dark'>Mode</span>">Mode</option>
                 </select>
             </div>
-            <a class="btn btn-spotify-inversed col-8" href="#" onclick="renderGraph()" style="margin-top:5%">Generate Graph</a>
+            <a class="btn btn-spotify-inversed col-8" href="#" onclick="renderGraph()" style="margin-top:5%">Generate Visualization</a>
         </form>
     </div>
     <p class="footer">
@@ -68,42 +71,43 @@
                 </div>
             </div>
         </div>
-        <div id="graph" style="margin-left: 10%; margin-right: 10%; width: 90%;height:60%"> </div>
-        <div class="row">
+        <div id="graph" style="margin-left: 10%; margin-right: 10%; width: 90%;height:60%">
+        </div>
+        <div id="imageWrapper" class="d-flex" style="height: 0px; justify-content: center; align-items: center;">
+            <img id="aiImage" style="border-radius: 11px;object-fit: cover;height: 0px;width: 300px;" src="/assets/spinner.gif"/>
+        </div>
+        <div class="row" style="z-index: 1;">
             <div class="col-4">
-                <a class="btn btn-spotify-inversed" onclick="saveGraph()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Save Graph" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
+                <a class="btn btn-spotify-inversed" onclick="saveGraph()" data-bs-toggle="tooltip" title="Save" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-plus"></i></a>
             </div>
             <div class="col-4">
-                <a class="btn btn-spotify-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Graph" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
+                <a class="btn btn-spotify-inversed" data-bs-toggle="tooltip" title="Download" onclick="downloadImage()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-download"></i></a>
             </div>
             <div class="col-3">
-                <a class="btn btn-spotify-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Share" onclick="sharePlaylist()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
+                <a class="btn btn-spotify-inversed" data-bs-toggle="tooltip" title="Share" onclick="sharePlaylist()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-share"></i></a>
             </div>
         </div>
         <br>
         <div id="shareContainer" class="row" style="width: 80%; opacity: 0">
-            <div class="input-group mb-3 col-12">
+            <div class="input-group mb-3 col-12" id="shareUrl">
                 <input id="shareInput" type="text" class="form-control" disabled aria-describedby="button-addon2">
-                <button class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy Link" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
+                <button class="btn btn-secondary" data-bs-toggle="tooltip" title="Copy Link" type="button" id="button-addon2" onclick="copyShare()"><i class="fa fa-copy"></i></button>
             </div>
             <div class="row" style="justify-content: center;">
                 <div class="col-2">
-                    <a class="btn btn-facebook-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Facebook" onclick="shareFacebook()" style="margin-top:5%; border-radius: 100%;" ><i class="fa fa-facebook"></i></a>
+                    <a class="btn btn-facebook-inversed" data-bs-toggle="tooltip" title="Facebook" onclick="shareFacebook()" style="margin-top:5%; border-radius: 100%;" ><i class="fa fa-facebook"></i></a>
                 </div>
                 <div class="col-2">
-                    <a class="btn btn-reddit-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reddit" onclick="shareReddit()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-reddit"></i></a>
+                    <a class="btn btn-reddit-inversed" data-bs-toggle="tooltip" title="Reddit" onclick="shareReddit()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-reddit"></i></a>
                 </div>
                 <div class="col-2">
-                    <a class="btn btn-twitter-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Twitter" onclick="shareTwitter()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-twitter"></i></a>
+                    <a class="btn btn-twitter-inversed" data-bs-toggle="tooltip" title="Twitter" onclick="shareTwitter()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-twitter"></i></a>
                 </div>
                 <div class="col-2">
-                    <a class="btn btn-gmail-inversed" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Email" onclick="shareEmail()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-envelope"></i></a>
+                    <a class="btn btn-gmail-inversed" data-bs-toggle="tooltip" title="Email" onclick="shareEmail()" style="margin-top:5%; border-radius: 100%;"><i class="fa fa-envelope"></i></a>
                 </div>
             </div>
         </div> 
-        <p class="footer" id="listenText" style="opacity:0; margin-left:10%">
-            <span class="line">Click a song to listen.</span>
-        </p> 
     </div>  
 </div>
 
@@ -202,11 +206,15 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 });
 }
 if (findGetParameter('first') == 'false') {
-    document.getElementById('pageTitle').innerHTML = "Configure your graph";
+    document.getElementById('pageTitle').innerHTML = "Configure your visualization";
 }
 
 var jsonData;
 $(document).ready(function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
     var script = document.createElement("script");
     script.src = "https://sdk.scdn.co/spotify-player.js"; 
    
@@ -252,6 +260,9 @@ $(document).ready(function() {
         nonscale.forEach(function(element) {
             element.removeAttribute("disabled");
         });
+        // remove disable attribute from variable picker
+        $('#variablePicker').removeAttr("disabled");
+
         switch(val) {
             case "bar":
                 optionCount = 1;
@@ -280,6 +291,8 @@ $(document).ready(function() {
                     element.setAttribute("disabled", "disabled");
                 });
                 break;
+            case "ai":
+                $('#variablePicker').attr("disabled", "disabled");
             default:
                 break;
         }
@@ -296,6 +309,12 @@ $(document).ready(function() {
         var variables = $('#variablePicker').val();
         curVars = variables;
         // Call graph rendering function here
+        document.getElementById("imageWrapper").style.height = "0px";
+        document.getElementById("aiImage").style.height = "0px";
+        document.getElementById("graph").style.height = "60%";
+        document.getElementById("graph").style.opacity = "1";
+        document.getElementById("graph").style["z-index"] = "1";
+        myChart.resize();
         switch(graphType) {
             case "bar":
                 barGraph(jsonData, variables);
@@ -318,19 +337,43 @@ $(document).ready(function() {
             case "bar3d":
                 bar3d(jsonData, variables);
                 break;
+            case "ai":
+                $('#aiImage').attr('src', '/assets/spinner.gif');
+                document.getElementById("graph").style.height = "0px";
+                document.getElementById("graph").style.opacity = "0";
+                document.getElementById("graph").style["z-index"] = "0";
+                document.getElementById("imageWrapper").style.height = "55%";
+                document.getElementById("aiImage").style.height = "300px";
+                ai(jsonData);
+                break;
             default:
                 break;
         }
     }
     function downloadImage() {
-        var a = document.createElement("a");
-        a.href = myChart.getDataURL({ pixelRatio: 2 });
-        a.download = "chart.png";
-        a.click();
+        if ($('#graphPicker').val() == "ai") {
+            var image = document.getElementById("aiImage");
+            var a = document.createElement("a");
+            a.href = image.src;
+            a.download = "image.png";
+            a.click();
+        }
+        else {
+            var a = document.createElement("a");
+            a.href = myChart.getDataURL({ pixelRatio: 2 });
+            a.download = "chart.png";
+            a.click();
+            }
         }
 
     function sharePlaylist() {
-        $.ajax({
+        if ($('#graphPicker').val() == "ai") {
+            document.getElementById("shareContainer").style.opacity = 1;
+            document.getElementById("shareUrl").style.opacity = 0;
+            document.getElementById("shareUrl").style.height = "0px";
+        }
+        else {
+            $.ajax({
                 type: 'POST',
                 url: '/api/playlists/'+ findGetParameter('id') + '/share',
                 data: JSON.stringify({
@@ -341,11 +384,22 @@ $(document).ready(function() {
                 success: function(data) {
                     $('#shareInput').val(data.result);
                     document.getElementById("shareContainer").style.opacity = 1;
+                    document.getElementById("shareUrl").style.opacity = 1;
+                    document.getElementById("shareUrl").style.removeProperty('height');
                 }
             });
+        }
     }
 
     function saveGraph() {
+        if ($('#graphPicker').val() == "ai") {
+                const errorToast = document.getElementById('liveToast');
+                var toastText = document.getElementById('toast-msg-text');
+                toastText.innerHTML = "AI Art is not supported for saving.";
+                const toast = new bootstrap.Toast(errorToast);
+                toast.show();
+        }
+        else {
         $.ajax({
                 type: 'POST',
                 url: '/api/playlists/'+ findGetParameter('id') + '/save',
@@ -360,6 +414,7 @@ $(document).ready(function() {
                     window.location = "/overview";
                 }
             });
+        }
     }
 
     function copyShare() {
@@ -370,25 +425,45 @@ $(document).ready(function() {
     }
 
     function shareFacebook(){
-        var shareGraph = $('#shareInput').val();
+        if ($('#graphPicker').val() == "ai") {
+            var shareGraph = document.getElementById("aiImage").src;
+        } else {
+            var shareGraph = $('#shareInput').val();
+        }
         const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + shareGraph;
         window.open(navUrl , '_blank');
+
     }
 
     function shareReddit(){
-        var shareGraph = $('#shareInput').val();
+        if ($('#graphPicker').val() == "ai") {
+            var shareGraph = document.getElementById("aiImage").src;
+        } else {
+            var shareGraph = $('#shareInput').val();
+        }
         window.open('https://reddit.com/submit?url=' + shareGraph + '&title=' + "Check out my graph!");
     }
 
     function shareTwitter(){
-        var url = $('#shareInput').val();
-        var text = "Check out my graph!";
+        if ($('#graphPicker').val() == "ai") {
+            var url = document.getElementById("aiImage").src;
+            var text = "Check out my art!";
+        } else {
+            var url = $('#shareInput').val();
+            var text = "Check out my graph!";
+        }
         window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
 
     function shareEmail(){
-        var shareGraph = $('#shareInput').val();
-        window.open('mailto:?subject=Hey check our my graph!&body=' + shareGraph);
+        if ($('#graphPicker').val() == "ai") {
+            var shareGraph = document.getElementById("aiImage").src;
+            window.open('mailto:?subject=Hey check our my art!&body=' + shareGraph);
+        } else {
+            var shareGraph = $('#shareInput').val();
+            window.open('mailto:?subject=Hey check our my graph!&body=' + shareGraph);
+        }
+        
     }
 
     pjax.refresh();

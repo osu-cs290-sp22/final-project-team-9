@@ -233,6 +233,25 @@ paths:
             application/json:
               schema:
                 type: object
+  /playlists/{id}/image:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+      description: Update playlist image.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
   /playlists/graphs/delete/{id}:
     delete:
       description: Delete graph from session
@@ -258,6 +277,46 @@ paths:
     get:
       security: []  
       description: Retrieve public playlist from cache
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /ai/start:
+    post:
+      security: []  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /ai/check:
+    post:
+      security: []  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                task:
+                  type: string
       responses:
         '200':
           description: OK

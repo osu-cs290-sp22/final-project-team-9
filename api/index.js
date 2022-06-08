@@ -7,6 +7,7 @@ const authRouter = require('./routes/auth');
 const playlistRouter = require('./routes/playlists');
 const featuredPlaylistsRouter = require('./routes/featuredPlaylists');
 const playbackRouter = require('./routes/playback');
+const aiRouter = require('./routes/ai');
 const auth = require('./controllers/auth.controller');
 const db = require("./models/");
 
@@ -74,6 +75,7 @@ apiRouter.use('/auth', authRouter);
 apiRouter.use('/playlists', playlistRouter);
 apiRouter.use('/featuredPlaylists', featuredPlaylistsRouter);
 apiRouter.use('/playback', playbackRouter);
+apiRouter.use('/ai', aiRouter);
 
 module.exports = {
     router: apiRouter,

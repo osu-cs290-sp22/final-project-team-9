@@ -1,8 +1,8 @@
-<div class="gcContainer cursor-pointer" style="margin: 1%;">
+<div class="gcContainer cursor-pointer h-60" style="margin: 1%;">
     <div class="gcOverlay rounded-md text-center h-60 d-flex items-center justify-center" style="z-index: 10;position: absolute;width: 18rem;">
         <div class="graphCardbtn">
-            <button class="btn btn-secondary" onclick="openGraph('{{playlist}}', '{{type}}', {{variables}})" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View" style="margin-top:5%; border-radius: 100%; margin: 10px;"><i class="fa fa-eye"></i></button>
-            <button class="btn btn-secondary" onclick="deleteGraph({{id}})" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete" style="margin-top:5%; border-radius: 100%; margin: 10px;"><i class="fa fa-trash-o"></i></button>
+            <button class="btn btn-secondary" onclick="openGraph('{{playlist}}', '{{type}}', {{variables}})" data-bs-toggle="tooltip" title="View" style="margin-top:5%; border-radius: 100%; margin: 10px;"><i class="fa fa-eye"></i></button>
+            <button class="btn btn-secondary" onclick="deleteGraph({{id}})" data-bs-toggle="tooltip" title="Delete" style="margin-top:5%; border-radius: 100%; margin: 10px;"><i class="fa fa-trash-o"></i></button>
         </div>
     </div>
     <div class="gc card real bg-zinc-700 rounded-md text-center h-60" style="width:18rem">

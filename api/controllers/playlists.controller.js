@@ -430,3 +430,24 @@ exports.deleteGraph = async(req, res) => {
         "result": null
     });
 };
+
+exports.updateImage = async(req, res) => {
+    refresh(req);
+    var url = 'https://api.spotify.com/v1/playlists/' + req.params.id + '/images';
+    await axios.put(url, req.body.image, {
+        headers: {
+            'Authorization': 'Bearer ' + req.session.token.access_token,
+            'Content-Type': 'image/jpeg'
+        }
+    }).then(function(response) {
+        res.json({
+            "success": true,
+            "code": 200,
+            "errors": [],
+            "messages": [],
+            "result": response.data
+        });
+    }).catch(function(error) {
+        console.log(error.response);
+    });
+}
