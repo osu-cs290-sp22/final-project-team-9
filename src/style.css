@@ -98,16 +98,14 @@ button,
     transition: 0.25s linear;
 }
 
-.card.real:hover {
-    filter: brightness(0.4);
-}
-
 .graphCardbtn{
     position: fixed;
+    margin: 5px;
     opacity: 0;
 }
 
 .card:hover .graphCardbtn{
+    -webkit-filter: brightness(100%);
     opacity: 1;
 }
 

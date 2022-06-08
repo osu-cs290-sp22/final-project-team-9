@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css && handlebars ./views/partials/placeholder.hbs ./views/partials/bubble.hbs ./views/partials/graph-card.hbs -f ./dist/partials.js",
-        "start": "npm run build && node ./server.js"
+        "start": "npm run build && node ./server.js",
+        "watch": "watch 'npm run start' ./views/partials"
     },
     "repository": {
         "type": "git",
@@ -43,7 +44,8 @@
         "mongoose-sequence": "^5.3.1",
         "pjax": "^0.2.8",
         "qs": "^6.10.3",
-        "search-array": "^1.5.0"
+        "search-array": "^1.5.0",
+        "watch": "^1.0.2"
     },
     "devDependencies": {
         "tailwindcss": "^3.0.24"
