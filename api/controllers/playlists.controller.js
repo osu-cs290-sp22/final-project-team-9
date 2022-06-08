@@ -284,6 +284,7 @@ exports.share = async(req, res) => {
         var errCount = 0;
         response.data.trackList = tracksCopy;
         response.data.trackMetadata = metadata;
+        response.data.title = response.data.name;
 
         Playlists.findOne({ snapshot_id: response.data.snapshot_id }, async function(err, playlist) {
             if (err || !playlist) {
