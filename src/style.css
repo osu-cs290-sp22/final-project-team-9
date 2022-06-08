@@ -98,6 +98,10 @@ button,
     transition: 0.25s linear;
 }
 
+.card.real:hover {
+    filter: brightness(0.4);
+}
+
 .item {
     width: 200px;
     border-radius: 45% 34% 45% 34%;
