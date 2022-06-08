@@ -2,61 +2,23 @@
 <html lang="en">
 
 <head>
-    {{> head}}
+     {{> head}}
     <title>SmartLists</title>
-    <script src="/assets/echarts.min.js"> </script>
 </head>
 
 <body style="text-align: center;">
     {{> nav navState=navState}}
-    <div class="content" id="content">
+    <div class="content">
         {{{body}}}
     </div>
 
     <script src="/assets/jquery.min.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/pjax.min.js"></script>
-    <script src="/assets/handlebars.min.js"></script>
-    <script src="/assets/partials.js"></script>
-    <script src="/assets/js/bootstrap-select.min.js"></script>
-    <script src="/assets/echarts-gl.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/index.js"></script>
-    <script src="/assets/graph.js"></script>
     <script>
-        var pjax = new Pjax({
-            elements: "a.bubble",
-            selectors: ["#right", "#left", "#dynamicScript"],
-            cacheBust: false,
-            switches: {
-                "#right": Pjax.switches.sideBySide,
-                "#left": Pjax.switches.sideBySide,
-                "#dynamicScript": Pjax.switches.outerHTML
-            },
-            switchesOptions: {
-                "#right": {
-                    classNames: {
-                        remove: "animate__animated animate__fadeOutUp",
-                        add: "animate__animated animate__fadeInUp"
-                    }
-                },
-                "#left": {
-                    classNames: {
-                        remove: "animate__animated animate__fadeOutUp",
-                        add: "animate__animated animate__fadeInUp",
-                    },
-                    callbacks: {
-                        removeElement: function(el) {
-                            el.style.marginLeft = "-" + (el.getBoundingClientRect().width/2) + "px"
-                            el.style.position = "absolute"
-                            el.style.left = "50%"
-                        },
-                    }
-                }
-            },
-        })
+        animateFlex("item", "right");
+
         $(document).ready(function() {
-            
-            // Sends search requests to the server
             $("#playlist-search-form").submit(function(event) {
                 var formData = {
                     'search': $('#playlist-search-input').val()
@@ -74,8 +36,16 @@
                 event.preventDefault();
             });
         });
+
+        var scrollContainer = document.getElementById('right');
+        document.body.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+            scrollContainer.scrollLeft += evt.deltaX;
+        }, {
+            passive: false
+        });
     </script>
 </body>
 
-{{{sections.script}}}
 </html>

@@ -3,17 +3,15 @@ const OpenApiValidator = require('express-openapi-validator');
 const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const authRouter = require('./routes/auth');
-const playlistRouter = require('./routes/playlists');
-const featuredPlaylistsRouter = require('./routes/featuredPlaylists');
-const playbackRouter = require('./routes/playback');
-const auth = require('./controllers/auth.controller');
-const db = require("./models/");
+const auth = require('./auth');
+const playlists = require('./playlists');
 
 const apiSpec = path.join(__dirname, 'api.yaml');
 
 apiRouter.use(cookieParser()); // Need cookie parser for cookie auth
 apiRouter.use('/spec', express.static(apiSpec));
+apiRouter.use('/auth', auth.router);
+apiRouter.use('/playlists', playlists.router);
 
 apiRouter.use(
     OpenApiValidator.middleware({
@@ -56,24 +54,6 @@ apiRouter.get('/', function(req, res, next) {
         "result": null
     });
 })
-
-db.mongoose
-    .connect(db.url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => {
-        console.log("Connected to the database!");
-    })
-    .catch(err => {
-        console.log("Cannot connect to the database!", err);
-        process.exit();
-    });
-
-apiRouter.use('/auth', authRouter);
-apiRouter.use('/playlists', playlistRouter);
-apiRouter.use('/featuredPlaylists', featuredPlaylistsRouter);
-apiRouter.use('/playback', playbackRouter);
 
 module.exports = {
     router: apiRouter,
