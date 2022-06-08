@@ -233,6 +233,25 @@ paths:
             application/json:
               schema:
                 type: object
+  /playlists/{id}/image:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+      description: Update playlist image.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
   /playlists/graphs/delete/{id}:
     delete:
       description: Delete graph from session

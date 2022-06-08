@@ -99,7 +99,7 @@ exports.login = async(req, res) => {
         'client_id': process.env.CLIENT_ID,
         'response_type': 'code',
         'redirect_uri': req.protocol + '://' + req.get('host') + '/api/auth/callback',
-        'scope': 'user-top-read playlist-read-private playlist-read-collaborative streaming user-read-email user-read-private',
+        'scope': 'user-top-read playlist-read-private playlist-read-collaborative streaming user-read-email user-read-private ugc-image-upload playlist-modify-public playlist-modify-private',
         "show_dialog": false
     });
 

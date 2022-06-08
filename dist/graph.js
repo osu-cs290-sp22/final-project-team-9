@@ -808,3 +808,52 @@ function radar(data, variables) {
         errMsg("at least three");
     }
 }
+
+function ai(data) {
+    var prompt = "album art inspired by: "
+    for (var i = 0; i < data.metadata.length; i++) {
+        if (data.tracks[i].track) {
+            if ((prompt + " " + data.tracks[i].track.artists[0]["name"] + ",").length < 100) {
+                prompt += (" " + data.tracks[i].track.artists[0]["name"] + ",");
+            }
+        }
+    }
+    var token, taskId, status;
+    $.ajax({
+        type: 'POST',
+        url: '/api/ai/start',
+        data: JSON.stringify({
+            'prompt': prompt
+        }),
+        contentType: "application/json;charset=utf-8",
+        success: function(data) {
+            token = data.result.token;
+            taskId = data.result.taskID;
+            status = data.result.status;
+            checkStatus(token, taskId);
+        }
+    });
+
+}
+
+function checkStatus(token, taskId) {
+    $.ajax({
+        type: 'POST',
+        url: '/api/ai/check',
+        data: JSON.stringify({
+            'token': token,
+            'task': taskId
+        }),
+        contentType: "application/json;charset=utf-8",
+        success: function(data) {
+            if (data.result.photo_url_list && data.result.photo_url_list[data.result.photo_url_list.length - 1]) {
+                $('#aiImage').attr('src', data.result.photo_url_list[data.result.photo_url_list.length - 1]);
+            }
+            if (data.result.state != "completed" && data.result.state != "failed") {
+                setTimeout(function() {
+                    checkStatus(token, taskId);
+                }, 1500);
+            }
+        }
+    });
+}
