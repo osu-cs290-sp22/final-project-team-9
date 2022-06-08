@@ -89,23 +89,22 @@ button,
     color: white;
 }
 
-.card{
+.gcContainer {
     transition: all .2s ease-in-out;
-  }
-  
-.card:hover{
-    transform: scale(1.1);
     transition: 0.25s linear;
 }
 
-.graphCardbtn{
-    position: fixed;
-    margin: 5px;
-    opacity: 0;
+.gcContainer:hover {
+    transform: scale(1.1);
 }
 
-.card:hover .graphCardbtn{
-    -webkit-filter: brightness(100%);
+.gcOverlay {
+    opacity: 0;
+    background-color: #000000b3;
+    transition: 0.25s linear;
+}
+
+.gcContainer:hover>.gcOverlay {
     opacity: 1;
 }
 
