@@ -9,7 +9,10 @@
                 <select id="graphPicker" class="selectpicker" data-size="4" data-width="100%" required>
                     <optgroup label="2D">
                         <option value="bar" data-size="1">Bar</option>
+                        <option value="avgbar" data-size="1">Average Bar</option>
                         <option value="scatter" data-size="2">Scatter</option>
+                        <option value="parallel" data-size="13">Parallel Line</option>
+                        <option value="radar" data-size="13">Radar</option>
                     </optgroup>
                     <optgroup label="3D">
                         <option value="bar3d" data-size="3">Bar</option>
@@ -228,11 +231,23 @@ $(document).ready(function() {
             case "bar":
                 optionCount = 1;
                 break;
+            case "avgbar":
+                optionCount = 1;
+                nonscale.forEach(function(element) {
+                    element.setAttribute("disabled", "disabled");
+                });
+                break;
             case "scatter":
                 optionCount = 2;
                 break;
             case "scatter3d":
                 optionCount = 3;
+                break;
+            case "parallel":
+                optionCount = 13;
+                break;
+            case "radar":
+                optionCount = 13;
                 break;
             case "bar3d":
                 optionCount = 3;
@@ -260,11 +275,20 @@ $(document).ready(function() {
             case "bar":
                 barGraph(jsonData, variables);
                 break;
+            case "avgbar":
+                avgBarGraph(jsonData, variables);
+                break;
             case "scatter":
                 scatterPlot(jsonData, variables);
                 break;
             case "scatter3d":
                 scatter3d(jsonData, variables);
+                break;
+            case "parallel":
+                parallelLine(jsonData, variables);
+                break;
+            case "radar":
+                radar(jsonData, variables);
                 break;
             case "bar3d":
                 bar3d(jsonData, variables);
