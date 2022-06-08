@@ -64,7 +64,7 @@
                 <div class="toast-header">
                     <img style="height: 15px;" src="https://cdn-icons-png.flaticon.com/512/174/174872.png" class="rounded me-2" alt="Spotify">
                     <strong class="me-auto">Spotify</strong>
-                    <a href="#" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></a>
+                    <a href="#" class="btn-close" onclick="player.togglePlay();" data-bs-dismiss="toast" aria-label="Close"></a>
                 </div>
                 <div class="toast-body" style="color:black">
                     Now playing: <span id="toast-msg-text2"></span>
@@ -152,16 +152,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         console.log('Ready with Device ID', device_id);
         playerId = device_id;
         document.getElementById('listenText').style.opacity = 1;
-        
-        document.getElementById('liveToast2').addEventListener('hide.bs.toast', () => {
-            $.ajax({
-                    'type': 'GET',
-                    'url': '/api/playback/pause?device_id=' + playerId,
-                    'dataType': 'json'
-                });
-        })
-
-
     });
 
     player.addListener('player_state_changed', ({
