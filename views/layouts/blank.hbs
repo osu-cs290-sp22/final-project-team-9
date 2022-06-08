@@ -4,7 +4,8 @@
 <head>
     {{> head}}
     <title>SmartLists</title>
-    <script src="/assets/echarts.min.js"> </script>
+    <script src="/assets/echarts.min.js">
+    </script>
     <style>
         body {
             overflow: unset;
@@ -21,6 +22,7 @@
             max-width: initial;
         }
     </style>
+
 </head>
 
 <body>
@@ -39,6 +41,18 @@
     <script src="/assets/index.js"></script>
     <script src="/assets/graph.js"></script>
     {{{sections.script}}}
+
+    <script>
+        $(document).ready(function(){
+            $( ".navbar-brand" ).hover(
+            function() {
+                $("#bruh").attr("src", "/assets/Sequence 02.gif");
+            }, function() {
+                $("#bruh").attr("src", "/assets/SL d2.8.png");
+            }
+            );
+        });
+    </script>
 
 </body>
 </html>

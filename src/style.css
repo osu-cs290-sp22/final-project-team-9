@@ -227,9 +227,6 @@ p {
     font-weight: 300;
 }
 
-.navbar-brand:hover{
-    opacity: .5;
-}
 
 @-webkit-keyframes animation {
     0% {
