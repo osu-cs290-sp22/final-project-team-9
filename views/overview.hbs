@@ -1,0 +1,34 @@
+<div id="inner" class="flex flex-wrap flew-row justify-around h-full">
+    {{> placeholder-card }}
+</div>
+
+{{#section 'script'}}
+<script type="application/javascript" id="dynamicScript">
+var jsonData;
+
+$(document).ready(function() {
+    $.ajax({
+        'type': 'GET',
+        'url': '/api/auth/session/',
+        'dataType': 'json'
+    }).done(function(data) {
+        jsonData = data.result;
+        console.log(jsonData.graphs)
+        if (jsonData.graphs) {
+            
+            for (let i = 0; i < jsonData.graphs.length; i++) {
+                var variableString = jsonData.graphs[i].variables.join(' vs ')
+                const element = Handlebars.templates['graph-card.hbs']({
+                    imageSrc: jsonData.graphs[i].image,
+                    title: jsonData.graphs[i].title,
+                    variables: variableString,
+                });
+                document.getElementById('inner').insertAdjacentHTML('afterbegin', element);
+
+            }
+        }
+        
+    });    
+});
+</script>
+{{/section}}
