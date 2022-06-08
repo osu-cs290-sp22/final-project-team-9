@@ -1,10 +1,10 @@
 <div id="left">
     <div id="inner">
-        <h1 class="text-4xl" id="pageTitle">Configure your first graph</h1>
-        <p>Choose the type of graph and variables you would like to visualize.</p>
+        <h1 class="text-4xl" id="pageTitle">Configure your first visualization</h1>
+        <p>Choose the type of visualization and variables you would like to visualize.</p>
         <form id="graph-configure-form" action="javascript:void(0);">
             <br>
-            <h2>Graph Type</h2>
+            <h2>Visualization Type</h2>
             <div class="input-group" style="padding-top:3%;">
                 <select id="graphPicker" class="selectpicker" data-size="4" data-width="100%" required>
                     <optgroup label="2D">
@@ -17,6 +17,9 @@
                     <optgroup label="3D">
                         <option value="bar3d" data-size="3">Bar</option>
                         <option value="scatter3d" data-size="3">Scatter</option>
+                    </optgroup>
+                    <optgroup label="Image">
+                        <option value="ai" data-size="3">AI Playlist Art</option>
                     </optgroup>
                     {{!-- <option value="pie" data-size="1">Pie</option> --}}
                     {{!-- <option value="line" data-size="2">Line</option> --}}
@@ -43,7 +46,7 @@
                     <option class="nonscale" value="mode" data-content="<span class='badge text-bg-dark'>Mode</span>">Mode</option>
                 </select>
             </div>
-            <a class="btn btn-spotify-inversed col-8" href="#" onclick="renderGraph()" style="margin-top:5%">Generate Graph</a>
+            <a class="btn btn-spotify-inversed col-8" href="#" onclick="renderGraph()" style="margin-top:5%">Generate Visualization</a>
         </form>
     </div>
     <p class="footer">
@@ -202,7 +205,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 });
 }
 if (findGetParameter('first') == 'false') {
-    document.getElementById('pageTitle').innerHTML = "Configure your graph";
+    document.getElementById('pageTitle').innerHTML = "Configure your visualization";
 }
 
 var jsonData;
@@ -252,6 +255,9 @@ $(document).ready(function() {
         nonscale.forEach(function(element) {
             element.removeAttribute("disabled");
         });
+        // remove disable attribute from variable picker
+        $('#variablePicker').removeAttr("disabled");
+
         switch(val) {
             case "bar":
                 optionCount = 1;
@@ -280,6 +286,8 @@ $(document).ready(function() {
                     element.setAttribute("disabled", "disabled");
                 });
                 break;
+            case "ai":
+                $('#variablePicker').attr("disabled", "disabled");
             default:
                 break;
         }
@@ -296,6 +304,7 @@ $(document).ready(function() {
         var variables = $('#variablePicker').val();
         curVars = variables;
         // Call graph rendering function here
+        document.getElementById("graph").style.opacity = 1;
         switch(graphType) {
             case "bar":
                 barGraph(jsonData, variables);
@@ -317,6 +326,9 @@ $(document).ready(function() {
                 break;
             case "bar3d":
                 bar3d(jsonData, variables);
+                break;
+            case "ai":
+                document.getElementById("graph").style.opacity = 0;
                 break;
             default:
                 break;
