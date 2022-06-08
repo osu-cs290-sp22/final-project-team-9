@@ -2,7 +2,7 @@
 function errMsg(count) {
     const errorToast = document.getElementById('liveToast');
     var toastText = document.getElementById('toast-msg-text');
-    toastText.innerHTML = "Please select " + count + " variables.";
+    toastText.innerHTML = "Please select " + count + " variable(s).";
     const toast = new bootstrap.Toast(errorToast);
     toast.show();
 }
@@ -230,6 +230,136 @@ function barGraph(data, variables) {
                         position: 'top'
                     }
                 },
+            }]
+        };
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option, true);
+    } else {
+        // If the user has selected the wrong number of variables, display an error message
+        errMsg("one");
+    }
+
+}
+
+function avgBarGraph(data, variables) {
+
+    switch (variables[0]) {
+        case "duration_ms":
+            var unit = "duration (ms)";
+            break;
+        case "loudness":
+            var unit = "loudness (dB)";
+            break;
+        case "tempo":
+            var unit = "tempo (bpm)";
+            break;
+        case "time_signature":
+            var unit = "time signature (beats per bar)";
+            break;
+        case "key":
+            var unit = "key (pitch class)";
+            break;
+        case "mode":
+            var unit = "mode (0=minor, 1=major)";
+            break;
+        default:
+            var unit = variables[0] + " score";
+            break;
+    }
+    // Check if the user has selected the correct number of variables  
+    if (variables.length == 1) {
+        // Get the variables from array
+        var var1 = variables[0];
+        var dataArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var groups = ['0 - 0.1', '0.1 - 0.2', '0.2 - 0.3', '0.3 - 0.4', '0.4 - 0.5', '0.5 - 0.6', '0.6 - 0.7', '0.7 - 0.8', '0.8 - 0.9', '0.9 - 1.0']
+            // Pull corresponding data from the metadata and tracks arrays based on the variables
+        for (var i = 0; i < data.metadata.length; i++) {
+            if (data.tracks[i].track) {
+                var score = Math.round(data.metadata[i][var1] * 10) / 10
+                switch (score) {
+                    case 0:
+                        dataArr[0]++;
+                        break;
+                    case 0.1:
+                        dataArr[0]++;
+                        break;
+                    case 0.2:
+                        dataArr[1]++;
+                        break;
+                    case 0.3:
+                        dataArr[2]++;
+                        break;
+                    case 0.4:
+                        dataArr[3]++;
+                        break;
+                    case 0.5:
+                        dataArr[4]++;
+                        break;
+                    case 0.6:
+                        dataArr[5]++;
+                        break;
+                    case 0.7:
+                        dataArr[6]++;
+                        break;
+                    case 0.8:
+                        dataArr[7]++;
+                        break;
+                    case 0.9:
+                        dataArr[8]++;
+                        break;
+                    case 1.0:
+                        dataArr[9]++;
+                        break;
+                }
+            }
+        }
+
+        // Create the configuration object for the chart
+        var option = {
+            tooltip: {},
+            grid: {
+                containLabel: true,
+            },
+            title: {
+                text: `${data.title}:  (average ${var1})`,
+                left: '10%',
+                top: '2%',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            legend: {
+                right: '10%',
+                top: '3%',
+            },
+            xAxis: {
+                name: 'name',
+                nameLocation: 'middle',
+                nameGap: 30,
+                type: 'category',
+                data: groups,
+                nameTextStyle: {
+                    color: '#fff'
+                },
+                axisLabel: {
+                    color: '#fff'
+                }
+
+            },
+            yAxis: {
+                name: unit,
+                nameLocation: 'middle',
+                nameGap: 40,
+                nameTextStyle: {
+                    color: '#fff'
+                },
+                axisLabel: {
+                    color: '#fff',
+                }
+            },
+            series: [{
+                data: dataArr,
+                type: 'bar',
             }]
         };
         // Display the chart using the configuration items and data just specified.
@@ -488,5 +618,193 @@ function bar3d(data, variables) {
     } else {
         // If the user has selected the wrong number of variables, display an error message
         errMsg("three");
+    }
+}
+
+function parallelLine(data, variables) {
+    if (variables.length >= 2) {
+        // Get the variables from array
+        var axisSchema = [];
+        for (var i = 0; i < variables.length; i++) {
+            axisSchema.push({ dim: i, name: variables[i] });
+        }
+
+        // Manually set first array item to be axis labels
+        var dataArr = [];
+        // Pull corresponding data from the metadata and tracks arrays based on the variables
+        for (var i = 0; i < data.metadata.length; i++) {
+            if (data.tracks[i].track) {
+                var curData = [];
+                for (var j = 0; j < variables.length; j++) {
+                    curData.push(data.metadata[i][variables[j]]);
+                }
+
+                curData.push(data.tracks[i].track["name"])
+                curData.push(data.tracks[i].track.artists[0]["name"])
+                curData.push(data.tracks[i].track["uri"])
+                dataArr.push(curData);
+            }
+        }
+        // Create the configuration object for the chart
+        var option = {
+            visualMap: {
+                show: false,
+                min: 0,
+                precision: 2,
+                max: 1,
+                dimension: 1,
+                inRange: {
+                    color: ['#d94e5d', '#eac736', '#50a3ba'].reverse()
+                }
+            },
+            title: {
+                text: `${data.title}:  Parallel Lines`,
+                left: '5%',
+                top: '0%',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            tooltip: {
+                formatter: (param) => {
+                    var string = `
+                track: ${param.data[param.data.length - 3]}<br />
+                artist: ${param.data[param.data.length - 2]}<br />
+                `;
+                    for (var i = 0; i < variables.length; i++) {
+                        string += `${variables[i]}: ${param.data[i]}<br />`;
+                    }
+                    return string;
+                },
+            },
+            parallelAxis: axisSchema,
+            parallel: {
+                parallelAxisDefault: {
+                    type: 'value',
+                    splitLine: {
+                        show: false
+                    },
+                }
+            },
+            series: [{
+                type: 'parallel',
+                data: dataArr
+            }, ]
+        };
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option, true, false, true);
+    } else {
+        // If the user has selected the wrong number of variables, display an error message
+        errMsg("at least two");
+    }
+}
+
+function radar(data, variables) {
+    if (variables.length >= 3) {
+        // Get the variables from array
+        var axisSchema = [];
+        for (var i = 0; i < variables.length; i++) {
+            axisSchema.push({ name: variables[i] });
+        }
+
+        // Manually set first array item to be axis labels
+        var dataArr = [];
+        // Pull corresponding data from the metadata and tracks arrays based on the variables
+        for (var i = 0; i < data.metadata.length; i++) {
+            if (data.tracks[i].track) {
+                var curData = [];
+                for (var j = 0; j < variables.length; j++) {
+                    curData.push(data.metadata[i][variables[j]]);
+                }
+
+                curData.push(data.tracks[i].track["name"])
+                curData.push(data.tracks[i].track.artists[0]["name"])
+                curData.push(data.tracks[i].track["uri"])
+                dataArr.push(curData);
+            }
+        }
+        // Create the configuration object for the chart
+        var option = {
+            tooltip: {
+                formatter: (param) => {
+                    var string = `
+                track: ${param.data[param.data.length - 3]}<br />
+                artist: ${param.data[param.data.length - 2]}<br />
+                `;
+                    for (var i = 0; i < variables.length; i++) {
+                        string += `${variables[i]}: ${param.data[i]}<br />`;
+                    }
+                    return string;
+                },
+            },
+            visualMap: {
+                show: false,
+                min: 0,
+                precision: 2,
+                max: 1,
+                dimension: 2,
+                inRange: {
+                    color: ['#d94e5d', '#eac736', '#50a3ba'].reverse(),
+                }
+            },
+            title: {
+                text: `${data.title}:  Radar`,
+                left: '10%',
+                top: '1%',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            radar: {
+                indicator: axisSchema,
+                shape: 'circle',
+                splitNumber: axisSchema.length,
+                axisName: {
+                    color: 'rgb(238, 197, 102)'
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: [
+                            'rgba(238, 197, 102, 0.1)',
+                            'rgba(238, 197, 102, 0.2)',
+                            'rgba(238, 197, 102, 0.4)',
+                            'rgba(238, 197, 102, 0.6)',
+                            'rgba(238, 197, 102, 0.8)',
+                            'rgba(238, 197, 102, 1)'
+                        ].reverse()
+                    }
+                },
+                splitArea: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(238, 197, 102, 0.5)'
+                    }
+                }
+            },
+            series: [{
+                type: 'radar',
+                data: dataArr,
+                symbol: 'none',
+                itemStyle: {
+                    color: '#F9713C'
+                },
+                areaStyle: {
+                    opacity: 0.1
+                },
+                emphasis: {
+                    lineStyle: {
+                        width: 4,
+                        type: 'dotted',
+                    },
+                },
+            }, ]
+        };
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option, true, false, true);
+    } else {
+        // If the user has selected the wrong number of variables, display an error message
+        errMsg("at least three");
     }
 }
