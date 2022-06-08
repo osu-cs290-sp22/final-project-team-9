@@ -416,3 +416,17 @@ exports.saveGraph = async(req, res) => {
         "result": null
     });
 };
+
+exports.deleteGraph = async(req, res) => {
+    if (req.session.graphs && req.session.graphs.length > req.params.id) {
+        req.session.graphs.splice(req.params.id, 1);
+        req.session.save();
+    }
+    return res.json({
+        "success": true,
+        "code": 200,
+        "errors": [],
+        "messages": [],
+        "result": null
+    });
+};

@@ -15,20 +15,31 @@ $(document).ready(function() {
         jsonData = data.result;
         console.log(jsonData.graphs)
         if (jsonData.graphs) {
-            
             for (let i = 0; i < jsonData.graphs.length; i++) {
-                var variableString = jsonData.graphs[i].variables.join(' vs ')
                 const element = Handlebars.templates['graph-card.hbs']({
                     imageSrc: jsonData.graphs[i].image,
                     title: jsonData.graphs[i].title,
-                    variables: variableString,
+                    variables: JSON.stringify(jsonData.graphs[i].variables),
+                    id: i,
+                    playlist: jsonData.graphs[i].playlist,
+                    type: jsonData.graphs[i].graphType,
                 });
                 document.getElementById('inner').insertAdjacentHTML('afterbegin', element);
-
             }
         }
-        
     });    
 });
+
+function deleteGraph(idx) {
+    $.ajax({
+        'type': 'DELETE',
+        'url': '/api/playlists/graphs/delete/' + idx,
+    });
+    location.reload();
+}
+
+function openGraph(playlist, type, variables) {
+    window.location = '/next/?first=false&id=' + playlist + '&type=' + type + '&variables=' + JSON.stringify(variables);
+}
 </script>
 {{/section}}

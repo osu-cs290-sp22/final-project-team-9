@@ -233,6 +233,16 @@ paths:
             application/json:
               schema:
                 type: object
+  /playlists/graphs/delete/{id}:
+    delete:
+      description: Delete graph from session
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
   /playlists/snapshot/{id}:
     get:
       security: []  

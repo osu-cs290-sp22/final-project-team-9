@@ -217,7 +217,16 @@ $(document).ready(function() {
             'dataType': 'json'
         }).done(function(data) {
             jsonData = data.result;
-            barGraph(jsonData, ['danceability']);
+            if (findGetParameter('type') && findGetParameter('variables')) {
+                curType = findGetParameter('type');
+                curVars = JSON.parse(findGetParameter('variables'));
+                $('#graphPicker').selectpicker('val', curType);
+                $('#variablePicker').selectpicker('val', curVars);
+                renderGraph(findGetParameter('type'), JSON.parse(findGetParameter('variables')));
+            }
+            else {
+                barGraph(jsonData, ['danceability']);
+            }
             
         });
         window.onresize = function() {
