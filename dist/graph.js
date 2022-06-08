@@ -321,7 +321,7 @@ function avgBarGraph(data, variables) {
                 containLabel: true,
             },
             title: {
-                text: 'average ' + var1,
+                text: `${data.title}:  (average ${var1})`,
                 left: '10%',
                 top: '2%',
                 textStyle: {
@@ -622,7 +622,7 @@ function bar3d(data, variables) {
 }
 
 function parallelLine(data, variables) {
-    if (variables.length >= 1) {
+    if (variables.length >= 2) {
         // Get the variables from array
         var axisSchema = [];
         for (var i = 0; i < variables.length; i++) {
@@ -652,10 +652,17 @@ function parallelLine(data, variables) {
                 min: 0,
                 precision: 2,
                 max: 1,
-                dimension: 2,
+                dimension: 1,
                 inRange: {
                     color: ['#d94e5d', '#eac736', '#50a3ba'].reverse()
-                        // colorAlpha: [0, 1]
+                }
+            },
+            title: {
+                text: `${data.title}:  Parallel Lines`,
+                left: '5%',
+                top: '0%',
+                textStyle: {
+                    color: '#fff'
                 }
             },
             tooltip: {
@@ -688,7 +695,7 @@ function parallelLine(data, variables) {
         myChart.setOption(option, true, false, true);
     } else {
         // If the user has selected the wrong number of variables, display an error message
-        errMsg("at least one");
+        errMsg("at least two");
     }
 }
 
@@ -738,6 +745,14 @@ function radar(data, variables) {
                 dimension: 2,
                 inRange: {
                     color: ['#d94e5d', '#eac736', '#50a3ba'].reverse(),
+                }
+            },
+            title: {
+                text: `${data.title}:  Radar`,
+                left: '10%',
+                top: '1%',
+                textStyle: {
+                    color: '#fff'
                 }
             },
             radar: {
